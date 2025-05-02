@@ -1,0 +1,68 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  PEDAGOGIC
+  TEACHER
+  STUDENT
+}
+
+model User {
+  id         Int        @id @default(autoincrement())
+  email      String     @unique
+  firstName  String
+  lastName   String
+  role       Role
+  otp        String?
+  otpExpiry  DateTime?
+  isActive   Boolean    @default(true)
+  department String?
+  level      String?
+  class      String?
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  documents  Document[]
+  views      View[]
+}
+
+model Document {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  fileUrl     String
+  fileKey     String
+  author      User     @relation(fields: [authorId], references: [id])
+  authorId    Int
+  department  String
+  level       String
+  class       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  views       View[]
+}
+
+model View {
+  id         Int      @id @default(autoincrement())
+  document   Document @relation(fields: [documentId], references: [id])
+  documentId Int
+  viewer     User     @relation(fields: [userId], references: [id])
+  // The ID of the user associated with this view. 
+  // This field links to the User model and can be extended for multiple user types in the future.
+  userId     Int
+  progress   Float    @default(0)
+  lastViewed DateTime @default(now())
+}
