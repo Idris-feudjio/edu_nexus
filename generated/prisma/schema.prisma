@@ -60,8 +60,6 @@ model View {
   document   Document @relation(fields: [documentId], references: [id])
   documentId Int
   viewer     User     @relation(fields: [userId], references: [id])
-  // The ID of the user associated with this view. 
-  // This field links to the User model and can be extended for multiple user types in the future.
   userId     Int
   progress   Float    @default(0)
   lastViewed DateTime @default(now())

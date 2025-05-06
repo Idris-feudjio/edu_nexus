@@ -1,18 +1,18 @@
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { PrismaModule } from '../common/prisma/prisma.module';
+import { ConfigModule, ConfigService } from '@nestjs/config'; 
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
-//import { JwtStrategy } from './strategies/jwt.strategy';
-import { OtpService } from './otp.service';
-import { MailService } from '../common/mail/mail.service';
+import { JwtStrategy } from './strategies/jwt.strategy';  
+import { PrismaModule } from 'src/prisma/prisma.module';
+import { MailService } from 'src/common/mail/mail.service';
+import { OtpService } from 'src/common/otp.service';
 
 @Module({
   imports: [
     PrismaModule,
-    PassportModule,
+    PassportModule, 
     JwtModule.registerAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({

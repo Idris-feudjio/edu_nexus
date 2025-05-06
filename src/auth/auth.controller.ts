@@ -34,4 +34,12 @@ export class AuthController {
   async testToken(@Req() req) {
     return { user: req.user };
   }
+
+  @Post('me')
+  sayMe(@Body() body: any) {
+    console.log(body);
+    
+    return { message: 'Hello, ' + body };
+
+  }
 }

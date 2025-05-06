@@ -1,5 +1,4 @@
-import { IsEmail, IsNotEmpty, IsString } from "class-validator";
-import { ApiTags, ApiOperation, PartialType } from '@nestjs/swagger';
+import { IsEmail, IsNotEmpty, IsString } from "class-validator"; 
 
 export class RequestOtpDto {
     @IsEmail()
@@ -8,17 +7,4 @@ export class RequestOtpDto {
     email: string;
     }
 
-
-    const user:UserDtos ={}
-    class IUser{
-        @IsString()
-        id:number;
-        @IsString()
-        name:string
-        @IsEmail()
-        @IsString()
-        email:string
-        }
- 
-class UserDtos extends PartialType(IUser){}
     

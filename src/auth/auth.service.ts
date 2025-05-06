@@ -1,10 +1,11 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-import { User } from '@prisma/client';
-import { PrismaService } from '../common/prisma/prisma.service';
-import { OtpService } from './otp.service';
+import { JwtService } from '@nestjs/jwt';  
 import { MailService } from '../common/mail/mail.service';
 import * as argon2 from 'argon2';
+import { User } from 'generated/prisma/client';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { ConfigService } from '@nestjs/config';
+import { OtpService } from 'src/common/otp.service';
 
 @Injectable()
 export class AuthService {
@@ -13,6 +14,7 @@ export class AuthService {
     private jwtService: JwtService,
     private otpService: OtpService,
     private mailService: MailService,
+    private configService: ConfigService,
   ) {}
 
   async requestOtp(email: string): Promise<{ message: string }> {
@@ -75,7 +77,7 @@ export class AuthService {
     };
 
     return {
-      access_token: this.jwtService.sign(payload),
+      access_token: this.jwtService.sign(payload,{expiresIn: '15m',secret: this.configService.get<string>('JWT_SECRET')}), 
       user: {
         id: user.id,
         email: user.email,
