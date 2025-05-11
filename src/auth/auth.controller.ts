@@ -1,8 +1,8 @@
 import { Controller, Post, Body, UseGuards, Req } from '@nestjs/common';
-import { AuthService } from './auth.service';  
-import { AuthGuard } from '@nestjs/passport';
+import { AuthService } from './auth.service'; 
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { RequestOtpDto, ValidateOtpDto } from './dto';
+import { JwtAuthGuard } from './guard';
 
 @ApiTags('Authentication')
 @Controller('auth')
@@ -28,7 +28,7 @@ export class AuthController {
   }
 
   @Post('test-token')
-  @UseGuards(AuthGuard('jwt'))
+  @UseGuards(new JwtAuthGuard())
   @ApiOperation({ summary: 'Test JWT token' })
   @ApiResponse({ status: 200, description: 'Token is valid' })
   async testToken(@Req() req) {
