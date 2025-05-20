@@ -18,11 +18,12 @@ import {
   import { CreateDocumentDto } from './dto/create-document.dto';
   import { UpdateDocumentDto } from './dto/update-document.dto';
   import { RecordDocumentViewDto } from './dto/record-view.dto'; 
-  import { Role } from 'generated/prisma';
   import { ApiBearerAuth, ApiBody, ApiConsumes, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard, RolesGuard } from 'src/auth/guard';
 import { Roles } from 'src/auth/decorator';
-import { Multer } from 'multer';
+import { Multer } from 'multer';   
+import { Role } from 'src/common/enums/role.enum';
+
   
   @ApiTags('Documents')
   @ApiBearerAuth()

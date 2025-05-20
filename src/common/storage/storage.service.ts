@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { Multer } from 'multer';
 import { Storage } from '@google-cloud/storage';
 import { ConfigService } from '@nestjs/config';
 
@@ -19,7 +18,7 @@ export class StorageService {
     this.bucketName = this.configService.get('GCS_BUCKET_NAME')?? 'edu-nexus-iut.appspot.com';
   }
 
-  async uploadFile(file: Multer.File) {
+  async uploadFile(file:Express.Multer.File) {
     const fileName = `${Date.now()}-${file.originalname}`;
     const fileStream = this.storage.bucket(this.bucketName).file(fileName);
 
