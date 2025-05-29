@@ -11,7 +11,7 @@ export class DocumentsService {
     private storageService: StorageService,
   ) {}
 
-  async create(createDocumentDto: CreateDocumentDto, file: Multer.File) {
+  async create(createDocumentDto: CreateDocumentDto, file: Express.Multer.File) {
     const { fileUrl, fileKey } = await this.storageService.uploadFile(file);
 
     return this.prisma.document.create({

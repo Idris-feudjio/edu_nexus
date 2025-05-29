@@ -47,7 +47,7 @@ import { Role } from 'src/common/enums/role.enum';
     @ApiResponse({ status: 403, description: 'Forbidden' })
     async create(
       @Body() createDocumentDto: CreateDocumentDto,
-      @UploadedFile() file: Multer.File,
+      @UploadedFile() file: Express.Multer.File,
       @Req() req,
     ) {
       // Vérifier que l'auteur est bien l'utilisateur connecté

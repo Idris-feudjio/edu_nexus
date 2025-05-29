@@ -1,9 +1,8 @@
-import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { Injectable } from '@nestjs/common'; 
 import * as xlsx from 'xlsx'; 
-import { Role } from 'src/common/enums/role.enum';
-
-@Injectable()
+import { Role } from 'src/common/enums/role.enum'; 
+import { PrismaService } from 'src/prisma/prisma.service';
+ 
 export class ExcelImportService {
   constructor(private prisma: PrismaService) {}
 
@@ -32,14 +31,15 @@ export class ExcelImportService {
         try {
           // Mapper les données vers le format attendu par Prisma
           const studentData = this.mapRowToStudentData(row);
+          console.log('Importing student data:', studentData); 
           
           // Créer l'étudiant en base de données
-          await this.prisma.student.create({
+          await this.prisma.user.create({
             data: studentData,
           });
           
           result.success++;
-        } catch (error) {
+        } catch (error) { 
           result.errors.push({
             row,
             error: error.message,
@@ -69,10 +69,26 @@ export class ExcelImportService {
       department: row['department'] || row['département'] || null,
       level: row['level'] || row['niveau'] || null,
       class: row['class'] || row['classe'] || null,
+      createdAt: row['createdAt'] ? this.convertDateToString(new Date(row['createdAt'])) : new Date().toISOString().split('T')[0], // Date de création
+      updatedAt: row['updatedAt'] ? this.convertDateToString(new Date(row['updatedAt'])) : new Date().toISOString().split('T')[0], // Date de mise à jour
+ 
       matricule: this.getString(row['matricule']),
     };
   }
 
+  /**
+   * Convertit une date sous la forme 2025-05-06T01:13:25.635Z
+   */
+  
+  private convertDateToString(date: Date): string {
+    if (!(date instanceof Date) || isNaN(date.getTime())) {
+      throw new Error('Date invalide');
+    }
+    return date.toISOString().split('T')[0]; // Format YYYY-MM-DD
+  }
+
+
+  
   /**
    * Convertit une valeur en chaîne de caractères
    */

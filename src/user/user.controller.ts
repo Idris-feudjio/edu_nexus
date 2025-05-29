@@ -20,12 +20,11 @@ import { extname } from 'path';
 import { ExcelImportService } from 'src/common/storage/import.student.service';
 import { UserService } from './user.service';
 
-@UseGuards(JwtAuthGuard)
+@UseGuards(new JwtAuthGuard())
 @Controller('users')
 export class UserController {
   constructor(
     private readonly userService: UserService,
-    private readonly excelImportService: ExcelImportService,
   ) {}
 
   @Get('me')
@@ -33,7 +32,7 @@ export class UserController {
     return this.userService.getMe(user.email);
   }
 
-  @Post('students')
+  @Post('import-students') 
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
