@@ -1,41 +1,31 @@
 import { Injectable } from '@nestjs/common';
-import { Role, User } from 'generated/prisma';
+import { PrismaClient } from '@prisma/client';
+import e from 'express';
+import { BaseRepository, BaseService } from 'src/common/abstracts';
 import { ExcelImportService } from 'src/common/storage/import.student.service';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from 'src/prisma/prisma.service'; 
+import { UserData } from './dto';
+import { UserRepository } from './repository/user.repository';
 
+ 
 @Injectable()
-export class UserService {
-   
-    constructor(private readonly prismaService: PrismaService,private excelImportService: ExcelImportService) {
-        // Constructor logic if needed
+export class UserService extends BaseService<UserData> {
+    repository: UserRepository; 
+    constructor(
+        private readonly prisma: PrismaService,
+        private readonly excelImportService: ExcelImportService, 
+        private readonly userRepository: UserRepository
+    ) { 
+        super(); 
+        this.repository = userRepository; 
     }
 
     getMe(email: string) {
-        return this.prismaService.user.findUnique({
-            where: { email },
-            select: {
-                id: true,
-                email: true, 
-                isActive: true,
-                createdAt: true,
-                updatedAt: true,
-            },
-        });
+        return this.repository.getMe(email);
     }
 
     async getAllUserByRole( role: "ADMIN" | "PEDAGOGIC" | "TEACHER" | "STUDENT") {
-        return await this.prismaService.user.findMany({
-            where: {
-                role: role,
-            },
-            select: {
-                id: true,
-                email: true,
-                isActive: true,
-                createdAt: true,
-                updatedAt: true,
-            },
-        }); 
+        return await this.repository.getAllUserByRole(role); 
     }
 
     async insertStudentFromExcel(filePath: string): Promise<{ success: number; errors: any[] }> {

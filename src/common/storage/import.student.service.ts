@@ -1,8 +1,9 @@
-import { Injectable } from '@nestjs/common'; 
-import * as xlsx from 'xlsx'; 
-import { Role } from 'src/common/enums/role.enum'; 
+import { Injectable } from '@nestjs/common';
+import * as xlsx from 'xlsx';
+import { Role } from 'src/common/enums/role.enum';
 import { PrismaService } from 'src/prisma/prisma.service';
- 
+import { User } from 'generated/prisma';
+
 export class ExcelImportService {
   constructor(private prisma: PrismaService) {}
 
@@ -10,18 +11,25 @@ export class ExcelImportService {
    * Importe les étudiants depuis un fichier Excel
    * @param filePath Chemin vers le fichier Excel
    */
-  async importStudentsFromExcel(filePath: string): Promise<{ success: number; errors: any[] }> {
+  async importStudentsFromExcel(
+    filePath: string,
+  ): Promise<{ success: number; errors: any[] }> {
     try {
       // Lire le fichier Excel
       const workbook = xlsx.readFile(filePath);
       const sheetName = workbook.SheetNames[0];
-      const worksheet = workbook.Sheets[sheetName];
-      
+      const worksheet =
+        workbook.Sheets[sheetName];
+
       // Convertir en JSON
-      const data = xlsx.utils.sheet_to_json(worksheet);
-      
+      const data =
+        xlsx.utils.sheet_to_json(worksheet);
+
       // Statistiques d'importation
-      const result: { success: number; errors: { row: any; error: any }[] } = {
+      const result: {
+        success: number;
+        errors: { row: any; error: any }[];
+      } = {
         success: 0,
         errors: [],
       };
@@ -30,26 +38,32 @@ export class ExcelImportService {
       for (const row of data) {
         try {
           // Mapper les données vers le format attendu par Prisma
-          const studentData = this.mapRowToStudentData(row);
-          console.log('Importing student data:', studentData); 
-          
+          const studentData =
+            this.mapRowToStudentData(row);
+          console.log(
+            'Importing student data:',
+            studentData,
+          );
+
           // Créer l'étudiant en base de données
           await this.prisma.user.create({
             data: studentData,
           });
           
           result.success++;
-        } catch (error) { 
+        } catch (error) {
           result.errors.push({
             row,
             error: error.message,
           });
         }
       }
-      
+
       return result;
     } catch (error) {
-      throw new Error(`Erreur lors de l'importation: ${error.message}`);
+      throw new Error(
+        `Erreur lors de l'importation: ${error.message}`,
+      );
     }
   }
 
@@ -87,8 +101,6 @@ export class ExcelImportService {
     return date.toISOString().split('T')[0]; // Format YYYY-MM-DD
   }
 
-
-  
   /**
    * Convertit une valeur en chaîne de caractères
    */

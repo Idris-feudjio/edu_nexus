@@ -18,18 +18,25 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
 import { ExcelImportService } from 'src/common/storage/import.student.service';
-import { UserService } from './user.service';
+import { UserService } from './user.service'; 
+import { UserData } from './dto';
+import { AbstractController } from 'src/common/abstracts';
 
 @UseGuards(new JwtAuthGuard())
 @Controller('users')
-export class UserController {
+export class UserController extends AbstractController<UserData> {
+   protected service: UserService ;
+ 
   constructor(
     private readonly userService: UserService,
-  ) {}
+  ) {
+    super();
+    this.service = userService;
+  }
 
   @Get('me')
-  getMe(@GetUser() user: User) {
-    return this.userService.getMe(user.email);
+  getMe(@GetUser() user: UserData) {
+    return this.service.getMe(user.email);
   }
 
   @Post('import-students') 
