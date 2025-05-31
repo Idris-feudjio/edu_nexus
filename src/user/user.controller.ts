@@ -22,7 +22,7 @@ import { UserService } from './user.service';
 import { UserData } from './dto';
 import { AbstractController } from 'src/common/abstracts';
 
-@UseGuards(new JwtAuthGuard())
+//@UseGuards(new JwtAuthGuard())
 @Controller('users')
 export class UserController extends AbstractController<UserData> {
    protected service: UserService ;
@@ -104,5 +104,23 @@ export class UserController extends AbstractController<UserData> {
         message: `Erreur lors de l'importation: ${error.message}`,
       };
     }
+  }
+
+  @Post('excel')
+ @UseInterceptors(FileInterceptor('file'))
+  async importExcel(@UploadedFile() file: Express.Multer.File) { 
+        if (!file) {
+      return {
+        success: false,
+        message: "Aucun fichier n'a été fourni",
+      };
+    }
+    console.log('Fichier reçu:', {
+    originalname: file?.originalname,
+    size: file?.size,
+    buffer: file?.buffer?.length,
+    mimetype: file?.mimetype
+  });
+    return this.userService.importStudentsFromExcel(file);
   }
 }

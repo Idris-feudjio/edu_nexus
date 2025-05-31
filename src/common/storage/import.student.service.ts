@@ -39,16 +39,41 @@ export class ExcelImportService {
         try {
           // Mapper les données vers le format attendu par Prisma
           const studentData =
-            this.mapRowToStudentData(row);
+            this.mapRowToStudentData(row); 
+          // transaction et éviter les doublons
+           const createdStudents = await this.prisma.$transaction(
+            async (prisma) => {
+              const existingStudent = await prisma.user.findUnique({
+                where: {
+                  email: studentData.email,
+                },
+              });
+              if (existingStudent) {
+                throw new Error(
+                  `L'étudiant avec l'email ${studentData.email} existe déjà.`,
+                );
+              }
+              // Créer l'étudiant dans la base de données
+              return await prisma.user.create({
+                data: {
+                  email: studentData.email,
+                  firstName: studentData.firstName,
+                  lastName: studentData.lastName,
+                  role: studentData.role || 'STUDENT',
+                  class: studentData.class || null,
+                  department: studentData.department || null,
+                  level: studentData.level || null,
+                  isActive: true,
+                  createdAt: new Date(),
+                  updatedAt: new Date(),
+                },
+              });
+            }   
+        )  
           console.log(
-            'Importing student data:',
-            studentData,
+            'Étudiant créé avec succès:',
+            createdStudents,
           );
-
-          // Créer l'étudiant en base de données
-          await this.prisma.user.create({
-            data: studentData,
-          });
           
           result.success++;
         } catch (error) {
@@ -71,7 +96,7 @@ export class ExcelImportService {
    * Mappe une ligne Excel aux champs de l'étudiant
    * @param row Ligne Excel au format JSON
    */
-  private mapRowToStudentData(row: any) {
+   mapRowToStudentData(row: any) {
     // Conversion des noms de colonnes Excel vers les noms de champs dans la base de données
     // Ajustez les noms de colonnes selon votre fichier Excel
     return {
@@ -81,12 +106,9 @@ export class ExcelImportService {
       gender: this.getString(row['gender'] || row['sexe']),
       role: this.parseRole(row['role']),
       department: row['department'] || row['département'] || null,
-      level: row['level'] || row['niveau'] || null,
-      class: row['class'] || row['classe'] || null,
-      createdAt: row['createdAt'] ? this.convertDateToString(new Date(row['createdAt'])) : new Date().toISOString().split('T')[0], // Date de création
-      updatedAt: row['updatedAt'] ? this.convertDateToString(new Date(row['updatedAt'])) : new Date().toISOString().split('T')[0], // Date de mise à jour
- 
-      matricule: this.getString(row['matricule']),
+      level: this.getString(row['level'] || row['niveau'] || null),
+      class: this.getString(row['class'] || row['classe'] || null),
+      matricule: this.getString(row['matricule']), 
     };
   }
 
@@ -104,7 +126,7 @@ export class ExcelImportService {
   /**
    * Convertit une valeur en chaîne de caractères
    */
-  private getString(value: any): string {
+  getString(value: any): string {
     if (value === undefined || value === null) {
       throw new Error('Valeur obligatoire manquante');
     }
@@ -114,7 +136,7 @@ export class ExcelImportService {
   /**
    * Parse le rôle depuis une chaîne de caractères
    */
-  private parseRole(roleStr: string): Role {
+  parseRole(roleStr: string): Role {
     if (!roleStr) {
       return 'STUDENT' as Role; // Valeur par défaut
     }
