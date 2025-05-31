@@ -46,24 +46,22 @@ export class UserService extends BaseService<UserData> {
 
 
 async importStudentsFromExcel(file: Express.Multer.File): Promise<{ success: boolean; count: number; students: any[] }> {
-      if (!file?.buffer) {
-    throw new BadRequestException('Fichier invalide');
-  } 
+    if (!file?.buffer) {
+        throw new BadRequestException('Fichier invalide');
+     } 
      try { 
     const workbook = xlsx.read(file.buffer, {
-      type: 'buffer'});
+      type: 'buffer',});
       const sheetName = workbook.SheetNames[0];
       const worksheet =
         workbook.Sheets[sheetName];
-
-      // Convertir en JSON
+ 
       const studentsData =
         xlsx.utils.sheet_to_json(worksheet);
 
     if (!studentsData || studentsData.length === 0) {
       throw new Error('Le fichier Excel est vide ou mal formaté.');
-    }
-    // Valider et formater les données
+    } 
     const formattedStudents = studentsData.map((row: any) => {
       return {
       email: this.excelImportService.getString(row['email']),
@@ -77,10 +75,7 @@ async importStudentsFromExcel(file: Express.Multer.File): Promise<{ success: boo
       matricule:  this.excelImportService.getString(row['matricule']),
       };
     });
-
-    // Insérer dans la base de données
-   
-
+ 
       const createdStudents = await this.prisma.$transaction(
         formattedStudents.map(studentData => 
           this.prisma.user.create({
@@ -105,8 +100,7 @@ async importStudentsFromExcel(file: Express.Multer.File): Promise<{ success: boo
         count: createdStudents.length,
         students: createdStudents,
       };
-    } catch (error) {
-      // Gérer les erreurs (comme les emails dupliqués)
+    } catch (error) { 
       throw new Error(`Erreur lors de l'importation: ${error.message}`);
     }
   }
