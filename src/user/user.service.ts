@@ -44,6 +44,28 @@ export class UserService extends BaseService<UserData> {
         return this.excelImportService.importStudentsFromExcel(filePath);
     }
 
+    async activateOrDeactivateUser(
+        id: number,
+        isActive: boolean
+    ): Promise<{ success: boolean; message: string }> {
+        const user = await this.repository.update(id, { isActive });
+        if (!user) {
+            throw new BadRequestException('Utilisateur non trouvé');
+        }
+        return {
+            success: true,
+            message: `Utilisateur ${isActive ? 'activé' : 'désactivé'} avec succès`,
+        };
+    }
+
+    async activateUser(id: number): Promise<{ success: boolean; message: string }> {
+        return this.activateOrDeactivateUser(id, true);
+    }
+    async deactivateUser(id: number): Promise<{ success: boolean; message: string }> {
+        return this.activateOrDeactivateUser(id, false);  
+
+    }
+
 
 async importStudentsFromExcel(file: Express.Multer.File): Promise<{ success: boolean; count: number; students: any[] }> {
     if (!file?.buffer) {

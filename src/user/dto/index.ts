@@ -1,2 +1,3 @@
-export * from './user.create-student-dto';
 export * from './user.dto';
+export * from './user.students.dto';
+export * from './user.admin.dto';

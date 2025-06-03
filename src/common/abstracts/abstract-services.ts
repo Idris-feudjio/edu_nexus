@@ -1,3 +1,4 @@
+import { SearchQueryDto } from "../dto";
 import { AbstractCrud } from "./abstract-crud";
 import { BaseRepository } from "./abstract-repository";
 
@@ -8,8 +9,12 @@ export abstract class BaseService<T> implements AbstractCrud<T> {
     return await this.repository.create(data);
   }
 
-  async findAll(): Promise<T[]> {
-    return await this.repository.findAll();
+async search(query: string): Promise<T[]> {
+    return await this.repository.search(query);
+  }
+
+  async searchAll(filters: SearchQueryDto<T>): Promise<T[]> {
+    return await this.repository.searchAll(filters);
   }
 
   async findById(id: number): Promise<T | null> {
@@ -24,8 +29,8 @@ export abstract class BaseService<T> implements AbstractCrud<T> {
     return await this.repository.delete(id);
   }
 
-  async count(): Promise<number> {
-    return await this.repository.count();
+  async count(filters:SearchQueryDto<T>): Promise<number> {
+    return await this.repository.count(filters);
   }
 
   async exists(id: number): Promise<boolean> {

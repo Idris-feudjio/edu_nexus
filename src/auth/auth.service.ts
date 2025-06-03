@@ -29,7 +29,9 @@ export class AuthService {
     }
 
     const otp = this.otpService.generateOtp();
-    const otpExpiry = new Date(Date.now() + 5 * 60 * 1000); // 5 minutes expiry
+
+    const otpExpiry = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours expiry
+    
 
     await this.prisma.user.update({
       where: { email },
@@ -77,7 +79,7 @@ export class AuthService {
     };
 
     return {
-      access_token: this.jwtService.sign(payload,{expiresIn: '15m',secret: this.configService.get<string>('JWT_SECRET')}), 
+      access_token: this.jwtService.sign(payload,{expiresIn: '24h',secret: this.configService.get<string>('JWT_SECRET')}), 
       user: {
         id: user.id,
         email: user.email,

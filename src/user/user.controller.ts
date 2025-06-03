@@ -3,26 +3,29 @@ import {
   Controller,
   Get,
   Param,
-  Post,
-  Put,
-  Req,
+  Post, 
   UseGuards,
   UseInterceptors,
   UploadedFile,
-} from '@nestjs/common';
-import { JwtAuthGuard } from 'src/auth/guard';
+  Put,
+} from '@nestjs/common'; 
 import { User } from 'generated/prisma';
-import { GetUser } from 'src/auth/decorator';
+
 
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
 import { ExcelImportService } from 'src/common/storage/import.student.service';
 import { UserService } from './user.service'; 
-import { UserData } from './dto';
+import { CreateAdminDto, UserData } from './dto';
 import { AbstractController } from 'src/common/abstracts';
+import { GetUser, Roles } from 'src/auth/decorator'; 
 
-//@UseGuards(new JwtAuthGuard())
+import { Role } from 'src/common/enums/role.enum';
+
+import { JwtAuthGuard, RolesGuard } from 'src/auth/guard'; 
+
+@UseGuards(new JwtAuthGuard())
 @Controller('users')
 export class UserController extends AbstractController<UserData> {
    protected service: UserService ;
@@ -107,7 +110,8 @@ export class UserController extends AbstractController<UserData> {
   }
 
   @Post('excel')
- @UseInterceptors(FileInterceptor('file'))
+ @Roles(Role.ADMIN, Role.PEDAGOGIC)
+  @UseInterceptors(FileInterceptor('file'))
   async importExcel(@UploadedFile() file: Express.Multer.File) { 
         if (!file) {
       return {
@@ -115,12 +119,31 @@ export class UserController extends AbstractController<UserData> {
         message: "Aucun fichier n'a été fourni",
       };
     }
-    console.log('Fichier reçu:', {
-    originalname: file?.originalname,
-    size: file?.size,
-    buffer: file?.buffer?.length,
-    mimetype: file?.mimetype
-  });
     return this.userService.importStudentsFromExcel(file);
   }
+
+  @Put(':id/activate')
+  @Roles(Role.ADMIN, Role.PEDAGOGIC)
+  async activateUser(
+    @Param('id') id: number,
+  ) {
+    return this.userService.activateUser(id);
+  }
+
+  @Put(':id/deactivate')
+  @Roles(Role.ADMIN, Role.PEDAGOGIC)
+  async deactivateUser(
+    @Param('id') id: number,
+  ) {
+    return this.userService.deactivateUser(id);
+  }
+
+  @Post('create-admin')
+   @Roles(Role.ADMIN, Role.PEDAGOGIC)
+  async createAdmin(  
+    @Body() userData: CreateAdminDto, 
+  ) {
+    return this.userService.create(userData);
+  }
+
 }

@@ -8,7 +8,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
   
-  main();
+ // main();
 
   const config = new DocumentBuilder()
   .setTitle('EduNexus IUT API')
