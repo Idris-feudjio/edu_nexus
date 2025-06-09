@@ -24,7 +24,6 @@ export abstract class BaseRepository<T> implements AbstractCrud<T> {
   }
 
 async searchAll(query: SearchQueryDto<T>): Promise<T[]> {
-  console.log(`Searching with query: ${JSON.stringify(query)}`);
   
     const { search, filters: filterConditions, page, limit, sortBy, order, fieldFilters } = query;
     const where: any = {};
@@ -60,10 +59,6 @@ async searchAll(query: SearchQueryDto<T>): Promise<T[]> {
     });
    
   }
- 
- //async findById(id: number): Promise<T | null> {
- //  return await this.model.findUnique({ where: { id } });
- //}
 
   async findById(key: any): Promise<T | null> {
    return await this.model.findUnique({ where: { key } });
@@ -76,7 +71,7 @@ async searchAll(query: SearchQueryDto<T>): Promise<T[]> {
     });
   }
 
-  async delete(id: number): Promise<T> {
+  async delete(id: number): Promise<void> {
     return await this.model.delete({ where: { id } });
   }
 

@@ -24,11 +24,11 @@ export abstract class AbstractController<T> implements AbstractCrud<T> {
     }
 
     @Delete(':id/delete')
-    async delete(@Param('id') id: number): Promise<T> {
+    async delete(@Param('id') id: number): Promise<void> {
         return this.service.delete(id);
     }
 
-    @Get('count')
+    @Post('count')
     async count(@Body() filters: SearchQueryDto<T>): Promise<number> {
         return this.service.count(filters);
     }

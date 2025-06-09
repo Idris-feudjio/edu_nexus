@@ -25,7 +25,7 @@ async search(query: string): Promise<T[]> {
     return await this.repository.update(id, data);
   }
 
-  async delete(id: number): Promise<T> {
+  async delete(id: number): Promise<void> {
     return await this.repository.delete(id);
   }
 
