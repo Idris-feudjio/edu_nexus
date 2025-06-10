@@ -19,6 +19,14 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document); 
 
+  // Enable CORS with error handling
+  try {
+    app.enableCors();
+  } catch (error) {
+    console.error('Failed to enable CORS:', error);
+  }
+   
+
   await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();

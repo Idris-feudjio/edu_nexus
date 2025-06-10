@@ -6,6 +6,7 @@ import { User } from 'generated/prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { ConfigService } from '@nestjs/config';
 import { OtpService } from 'src/common/otp.service';
+import { AuthResponse } from './dto';
 
 @Injectable()
 export class AuthService {
@@ -17,7 +18,7 @@ export class AuthService {
     private configService: ConfigService,
   ) {}
 
-  async requestOtp(email: string): Promise<{ message: string }> {
+  async requestOtp(email: string): Promise<AuthResponse> { // { message: string }
     const user = await this.prisma.user.findUnique({ where: { email } });
     
     if (!user) {
@@ -40,7 +41,7 @@ export class AuthService {
 
     await this.mailService.sendOtpEmail(user.email, otp);
 
-    return { message: 'OTP sent to your email' };
+    return {success:true, message: 'OTP sent to your email' };
   }
 
   async validateOtp(email: string, otp: string): Promise<User> {
@@ -68,7 +69,7 @@ export class AuthService {
     return user;
   }
 
-  async login(user: User) {
+  async login(user: User):Promise<AuthResponse> {
     const payload = { 
       email: user.email, 
       sub: user.id,
@@ -79,17 +80,16 @@ export class AuthService {
     };
 
     return {
-      access_token: this.jwtService.sign(payload,{expiresIn: '24h',secret: this.configService.get<string>('JWT_SECRET')}), 
-      user: {
-        id: user.id,
-        email: user.email,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        role: user.role,
-        department: user.department,
-        level: user.level,
-        class: user.class,
-      },
+      success:true,message:"Authentication successful",
+      token: this.jwtService.sign(payload,{expiresIn: '24h',secret: this.configService.get<string>('JWT_SECRET')}), 
+      user:user
     };
   }
+
+  // logic to logout
+async logout(user: User): Promise<AuthResponse> {
+  // For JWT-based stateless auth, logout is handled client-side by deleting the token.
+  // Optionally, you can implement token blacklisting here if needed.
+  return { success: true, message: 'Logged out successfully' };
+}
 }

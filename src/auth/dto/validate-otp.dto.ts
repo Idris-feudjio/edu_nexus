@@ -8,5 +8,5 @@ export class ValidateOtpDto {
 
     @IsNotEmpty()
     @IsString()
-    otp: string;
+    otpCode: string;
 }

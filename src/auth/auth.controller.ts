@@ -19,10 +19,10 @@ export class AuthController {
   @Post('validate-otp')
   @ApiOperation({ summary: 'Validate OTP and get access token' })
   @ApiResponse({ status: 200, description: 'Returns JWT token' })
-  async validateOtp(@Body() validateOtpDto: ValidateOtpDto) {
+  async validateOtp(@Body() validateOtpDto: any) {
     const user = await this.authService.validateOtp(
       validateOtpDto.email,
-      validateOtpDto.otp,
+      validateOtpDto.otpCode,
     );
     return this.authService.login(user);
   }

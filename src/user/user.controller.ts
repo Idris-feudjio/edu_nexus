@@ -42,7 +42,7 @@ export class UserController extends AbstractController<UserData> {
     return this.service.getMe(user.email);
   }
 
-  @Post('import-students') 
+  @Post('import-doc') 
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
@@ -109,7 +109,7 @@ export class UserController extends AbstractController<UserData> {
     }
   }
 
-  @Post('excel')
+  @Post('import-students')
  @Roles(Role.ADMIN, Role.PEDAGOGIC)
   @UseInterceptors(FileInterceptor('file'))
   async importExcel(@UploadedFile() file: Express.Multer.File) { 
