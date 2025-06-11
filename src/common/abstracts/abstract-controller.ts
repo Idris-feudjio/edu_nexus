@@ -1,7 +1,7 @@
 import { Body, Delete, Get, Param, Post, Put } from "@nestjs/common";
 import { AbstractCrud } from "./abstract-crud";
 import { BaseService } from "./abstract-services";
-import { SearchQueryDto } from "../dto";
+import { PaginateDataResponse, SearchQueryDto } from "../dto";
 
 
 export abstract class AbstractController<T> implements AbstractCrud<T> {
@@ -45,7 +45,9 @@ export abstract class AbstractController<T> implements AbstractCrud<T> {
     }
 
     @Post('search-all')
-    async searchAll(@Body() filters: SearchQueryDto<T>): Promise<T[]> {
+    async searchAll(@Body() filters: SearchQueryDto<T>):Promise<PaginateDataResponse<T>> {
+        console.log(filters);
+        
         return this.service.searchAll(filters);
     } 
 }

@@ -1,4 +1,4 @@
-import { SearchQueryDto } from "../dto";
+import { PaginateDataResponse, SearchQueryDto } from "../dto";
 import { AbstractCrud } from "./abstract-crud";
 import { BaseRepository } from "./abstract-repository";
 
@@ -13,7 +13,7 @@ async search(query: string): Promise<T[]> {
     return await this.repository.search(query);
   }
 
-  async searchAll(filters: SearchQueryDto<T>): Promise<T[]> {
+  async searchAll(filters: SearchQueryDto<T>):Promise<PaginateDataResponse<T>> {
     return await this.repository.searchAll(filters);
   }
 

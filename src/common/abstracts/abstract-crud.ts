@@ -1,10 +1,10 @@
-import { SearchQueryDto } from "../dto";
+import { PaginateDataResponse, SearchQueryDto } from "../dto";
 
  
 export interface AbstractCrud<T> {
      create(data: Partial<T>): Promise<T>; 
      search(query: string): Promise<T[]>;
-     searchAll(filters: SearchQueryDto<T>): Promise<T[]>;
+     searchAll(filters: SearchQueryDto<T>): Promise<PaginateDataResponse<T>>;
      findById(id: number):any;// Promise<T | null>;
      update(id: number, data: Partial<T>): Promise<T>;
      delete(id: number): Promise<void>;

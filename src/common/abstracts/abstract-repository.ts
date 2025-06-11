@@ -1,7 +1,7 @@
 import { Prisma, PrismaClient } from "generated/prisma";
 import { AbstractCrud } from "./abstract-crud";
 import { PrismaService } from "src/prisma/prisma.service";
-import { SearchQueryDto } from "../dto";
+import { PaginateDataResponse, SearchQueryDto } from "../dto";
 import { log } from "console";
 
 
@@ -23,15 +23,18 @@ export abstract class BaseRepository<T> implements AbstractCrud<T> {
     }); 
   }
 
-async searchAll(query: SearchQueryDto<T>): Promise<T[]> {
+async searchAll(query: SearchQueryDto<T>): Promise<PaginateDataResponse<T>> {
   
     const { search, filters: filterConditions, page, limit, sortBy, order, fieldFilters } = query;
     const where: any = {};
     if (search) {
-      where.OR = [
-        { name: { contains: search, mode: 'insensitive' } },
-        { description: { contains: search, mode: 'insensitive' } }, 
-      ];
+      const stringFields = Object.keys(this.model.fields).filter(
+        (field: string) => this.model.fields[field].type === 'String'
+      );
+      where.OR = stringFields.map((field: string) => ({
+        [field]: { contains: search, mode: 'insensitive' }
+      }));
+     
     }
     if (filterConditions) {
       filterConditions.forEach((filter: string) => {
@@ -48,16 +51,24 @@ async searchAll(query: SearchQueryDto<T>): Promise<T[]> {
         where[key] = { in: value };
       }
     }
-    const skip = (page || 1 - 1) * (limit || 10);
+    const skip = ((page || 1) - 1) * (limit || 10);
     const take = limit || 10;
     const orderBy: any = sortBy ? { [sortBy]: order || 'asc' } : undefined;
-    return await this.model.findMany({
-      where,
-      skip,
-      take,
-      orderBy,
-    });
-   
+    const [data, total] = await Promise.all([
+      this.model.findMany({
+        where,
+        skip,
+        take,
+        orderBy,
+      }),
+      this.model.count({ where }),
+    ]);
+    return {
+      data,
+      total,
+      page: page || 1,
+      totalPages: Math.ceil(total / (limit || 10)),
+    };
   }
 
   async findById(key: any): Promise<T | null> {

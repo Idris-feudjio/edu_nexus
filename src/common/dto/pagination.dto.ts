@@ -23,3 +23,10 @@ export class PaginationDto {
         };
     }
 }
+
+export interface PaginateDataResponse <T>{
+  data: T[];
+  total: number;
+  page: number;
+  totalPages: number;
+}

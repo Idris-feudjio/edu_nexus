@@ -17,7 +17,7 @@ export class SearchQueryDto<Q>{
 
     @IsOptional()
     @IsObject()
-    fieldFilters?: Record<string, (string | number)[]>; 
+    fieldFilters?: Record<string, (string | number|boolean)[]>; 
 
 
     @IsOptional()
