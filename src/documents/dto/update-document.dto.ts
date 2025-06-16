@@ -56,3 +56,91 @@ export class UpdateDocumentDto {
   @IsOptional()
   authorId?: number;
 }
+
+export class UploadFileDto {
+  @ApiProperty({
+    description: 'Nom du fichier',
+    example: 'document.pdf',
+    required: true,
+  })
+  @IsString()
+  filename: string;
+
+  @ApiProperty({
+    description: 'Type MIME du fichier',
+    example: 'application/pdf',
+    required: true,
+  })
+  @IsString()
+  mimetype: string;
+
+  @ApiProperty({
+    description: 'Taille du fichier en octets',
+    example: 102400,
+    required: true,
+  })
+  @IsNumber()
+  size: number;
+}
+
+
+export class DownloadFileDto {
+  @ApiProperty({
+    description: 'Nom du fichier à télécharger',
+    example: 'document.pdf',
+    required: true,
+  })
+  @IsString()
+  filename: string;
+
+  @ApiProperty({
+    description: 'Type MIME du fichier',
+    example: 'application/pdf',
+    required: true,
+  })
+  @IsString()
+  mimetype: string;
+
+  @ApiProperty({
+    description: 'Contenu du fichier encodé en base64',
+    example: 'JVBERi0xLjQKJcfs...',
+    required: true,
+  })
+  @IsString()
+  content: string;
+}
+
+
+export class UploadFileResponseDto {
+  @ApiProperty({
+    description: 'Message de confirmation de l\'upload',
+    example: 'Fichier téléchargé avec succès',
+    required: true,
+  })
+  @IsString()
+  message: string;
+
+  @ApiProperty({
+    description: 'Nom du fichier téléchargé',
+    example: 'document.pdf',
+    required: true,
+  })
+  @IsString()
+  filename: string;
+
+  @ApiProperty({
+    description: 'Type MIME du fichier téléchargé',
+    example: 'application/pdf',
+    required: true,
+  })
+  @IsString()
+  mimetype: string;
+
+  @ApiProperty({
+    description: 'Taille du fichier téléchargé en octets',
+    example: 102400,
+    required: true,
+  })
+  @IsNumber()
+  size: number;
+}

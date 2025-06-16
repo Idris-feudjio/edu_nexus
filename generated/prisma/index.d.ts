@@ -2585,8 +2585,8 @@ export namespace Prisma {
     id: number
     title: string
     description: string | null
-    fileUrl: string
-    fileKey: string
+    fileUrl: string | null
+    fileKey: string | null
     authorId: number
     department: string
     level: string
@@ -2698,8 +2698,8 @@ export namespace Prisma {
       id: number
       title: string
       description: string | null
-      fileUrl: string
-      fileKey: string
+      fileUrl: string | null
+      fileKey: string | null
       authorId: number
       department: string
       level: string
@@ -4969,8 +4969,8 @@ export namespace Prisma {
     id?: IntFilter<"Document"> | number
     title?: StringFilter<"Document"> | string
     description?: StringNullableFilter<"Document"> | string | null
-    fileUrl?: StringFilter<"Document"> | string
-    fileKey?: StringFilter<"Document"> | string
+    fileUrl?: StringNullableFilter<"Document"> | string | null
+    fileKey?: StringNullableFilter<"Document"> | string | null
     authorId?: IntFilter<"Document"> | number
     department?: StringFilter<"Document"> | string
     level?: StringFilter<"Document"> | string
@@ -4985,8 +4985,8 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     description?: SortOrderInput | SortOrder
-    fileUrl?: SortOrder
-    fileKey?: SortOrder
+    fileUrl?: SortOrderInput | SortOrder
+    fileKey?: SortOrderInput | SortOrder
     authorId?: SortOrder
     department?: SortOrder
     level?: SortOrder
@@ -5004,8 +5004,8 @@ export namespace Prisma {
     NOT?: DocumentWhereInput | DocumentWhereInput[]
     title?: StringFilter<"Document"> | string
     description?: StringNullableFilter<"Document"> | string | null
-    fileUrl?: StringFilter<"Document"> | string
-    fileKey?: StringFilter<"Document"> | string
+    fileUrl?: StringNullableFilter<"Document"> | string | null
+    fileKey?: StringNullableFilter<"Document"> | string | null
     authorId?: IntFilter<"Document"> | number
     department?: StringFilter<"Document"> | string
     level?: StringFilter<"Document"> | string
@@ -5020,8 +5020,8 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     description?: SortOrderInput | SortOrder
-    fileUrl?: SortOrder
-    fileKey?: SortOrder
+    fileUrl?: SortOrderInput | SortOrder
+    fileKey?: SortOrderInput | SortOrder
     authorId?: SortOrder
     department?: SortOrder
     level?: SortOrder
@@ -5042,8 +5042,8 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Document"> | number
     title?: StringWithAggregatesFilter<"Document"> | string
     description?: StringNullableWithAggregatesFilter<"Document"> | string | null
-    fileUrl?: StringWithAggregatesFilter<"Document"> | string
-    fileKey?: StringWithAggregatesFilter<"Document"> | string
+    fileUrl?: StringNullableWithAggregatesFilter<"Document"> | string | null
+    fileKey?: StringNullableWithAggregatesFilter<"Document"> | string | null
     authorId?: IntWithAggregatesFilter<"Document"> | number
     department?: StringWithAggregatesFilter<"Document"> | string
     level?: StringWithAggregatesFilter<"Document"> | string
@@ -5232,8 +5232,8 @@ export namespace Prisma {
   export type DocumentCreateInput = {
     title: string
     description?: string | null
-    fileUrl: string
-    fileKey: string
+    fileUrl?: string | null
+    fileKey?: string | null
     department: string
     level: string
     class?: string | null
@@ -5247,8 +5247,8 @@ export namespace Prisma {
     id?: number
     title: string
     description?: string | null
-    fileUrl: string
-    fileKey: string
+    fileUrl?: string | null
+    fileKey?: string | null
     authorId: number
     department: string
     level: string
@@ -5261,8 +5261,8 @@ export namespace Prisma {
   export type DocumentUpdateInput = {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    fileUrl?: StringFieldUpdateOperationsInput | string
-    fileKey?: StringFieldUpdateOperationsInput | string
+    fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    fileKey?: NullableStringFieldUpdateOperationsInput | string | null
     department?: StringFieldUpdateOperationsInput | string
     level?: StringFieldUpdateOperationsInput | string
     class?: NullableStringFieldUpdateOperationsInput | string | null
@@ -5276,8 +5276,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    fileUrl?: StringFieldUpdateOperationsInput | string
-    fileKey?: StringFieldUpdateOperationsInput | string
+    fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    fileKey?: NullableStringFieldUpdateOperationsInput | string | null
     authorId?: IntFieldUpdateOperationsInput | number
     department?: StringFieldUpdateOperationsInput | string
     level?: StringFieldUpdateOperationsInput | string
@@ -5291,8 +5291,8 @@ export namespace Prisma {
     id?: number
     title: string
     description?: string | null
-    fileUrl: string
-    fileKey: string
+    fileUrl?: string | null
+    fileKey?: string | null
     authorId: number
     department: string
     level: string
@@ -5304,8 +5304,8 @@ export namespace Prisma {
   export type DocumentUpdateManyMutationInput = {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    fileUrl?: StringFieldUpdateOperationsInput | string
-    fileKey?: StringFieldUpdateOperationsInput | string
+    fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    fileKey?: NullableStringFieldUpdateOperationsInput | string | null
     department?: StringFieldUpdateOperationsInput | string
     level?: StringFieldUpdateOperationsInput | string
     class?: NullableStringFieldUpdateOperationsInput | string | null
@@ -5317,8 +5317,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    fileUrl?: StringFieldUpdateOperationsInput | string
-    fileKey?: StringFieldUpdateOperationsInput | string
+    fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    fileKey?: NullableStringFieldUpdateOperationsInput | string | null
     authorId?: IntFieldUpdateOperationsInput | number
     department?: StringFieldUpdateOperationsInput | string
     level?: StringFieldUpdateOperationsInput | string
@@ -6177,8 +6177,8 @@ export namespace Prisma {
   export type DocumentCreateWithoutAuthorInput = {
     title: string
     description?: string | null
-    fileUrl: string
-    fileKey: string
+    fileUrl?: string | null
+    fileKey?: string | null
     department: string
     level: string
     class?: string | null
@@ -6191,8 +6191,8 @@ export namespace Prisma {
     id?: number
     title: string
     description?: string | null
-    fileUrl: string
-    fileKey: string
+    fileUrl?: string | null
+    fileKey?: string | null
     department: string
     level: string
     class?: string | null
@@ -6257,8 +6257,8 @@ export namespace Prisma {
     id?: IntFilter<"Document"> | number
     title?: StringFilter<"Document"> | string
     description?: StringNullableFilter<"Document"> | string | null
-    fileUrl?: StringFilter<"Document"> | string
-    fileKey?: StringFilter<"Document"> | string
+    fileUrl?: StringNullableFilter<"Document"> | string | null
+    fileKey?: StringNullableFilter<"Document"> | string | null
     authorId?: IntFilter<"Document"> | number
     department?: StringFilter<"Document"> | string
     level?: StringFilter<"Document"> | string
@@ -6418,8 +6418,8 @@ export namespace Prisma {
   export type DocumentCreateWithoutViewsInput = {
     title: string
     description?: string | null
-    fileUrl: string
-    fileKey: string
+    fileUrl?: string | null
+    fileKey?: string | null
     department: string
     level: string
     class?: string | null
@@ -6432,8 +6432,8 @@ export namespace Prisma {
     id?: number
     title: string
     description?: string | null
-    fileUrl: string
-    fileKey: string
+    fileUrl?: string | null
+    fileKey?: string | null
     authorId: number
     department: string
     level: string
@@ -6499,8 +6499,8 @@ export namespace Prisma {
   export type DocumentUpdateWithoutViewsInput = {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    fileUrl?: StringFieldUpdateOperationsInput | string
-    fileKey?: StringFieldUpdateOperationsInput | string
+    fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    fileKey?: NullableStringFieldUpdateOperationsInput | string | null
     department?: StringFieldUpdateOperationsInput | string
     level?: StringFieldUpdateOperationsInput | string
     class?: NullableStringFieldUpdateOperationsInput | string | null
@@ -6513,8 +6513,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    fileUrl?: StringFieldUpdateOperationsInput | string
-    fileKey?: StringFieldUpdateOperationsInput | string
+    fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    fileKey?: NullableStringFieldUpdateOperationsInput | string | null
     authorId?: IntFieldUpdateOperationsInput | number
     department?: StringFieldUpdateOperationsInput | string
     level?: StringFieldUpdateOperationsInput | string
@@ -6571,8 +6571,8 @@ export namespace Prisma {
     id?: number
     title: string
     description?: string | null
-    fileUrl: string
-    fileKey: string
+    fileUrl?: string | null
+    fileKey?: string | null
     department: string
     level: string
     class?: string | null
@@ -6590,8 +6590,8 @@ export namespace Prisma {
   export type DocumentUpdateWithoutAuthorInput = {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    fileUrl?: StringFieldUpdateOperationsInput | string
-    fileKey?: StringFieldUpdateOperationsInput | string
+    fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    fileKey?: NullableStringFieldUpdateOperationsInput | string | null
     department?: StringFieldUpdateOperationsInput | string
     level?: StringFieldUpdateOperationsInput | string
     class?: NullableStringFieldUpdateOperationsInput | string | null
@@ -6604,8 +6604,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    fileUrl?: StringFieldUpdateOperationsInput | string
-    fileKey?: StringFieldUpdateOperationsInput | string
+    fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    fileKey?: NullableStringFieldUpdateOperationsInput | string | null
     department?: StringFieldUpdateOperationsInput | string
     level?: StringFieldUpdateOperationsInput | string
     class?: NullableStringFieldUpdateOperationsInput | string | null
@@ -6618,8 +6618,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    fileUrl?: StringFieldUpdateOperationsInput | string
-    fileKey?: StringFieldUpdateOperationsInput | string
+    fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    fileKey?: NullableStringFieldUpdateOperationsInput | string | null
     department?: StringFieldUpdateOperationsInput | string
     level?: StringFieldUpdateOperationsInput | string
     class?: NullableStringFieldUpdateOperationsInput | string | null

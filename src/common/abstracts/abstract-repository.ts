@@ -9,6 +9,8 @@ export abstract class BaseRepository<T> implements AbstractCrud<T> {
   protected abstract model: any;
 
   async create(data: Partial<T>): Promise<T> {
+    console.log("//////////////////////////////////////");
+    
     return await this.model.create({ data });
   }
 

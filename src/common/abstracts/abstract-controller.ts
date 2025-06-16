@@ -10,6 +10,8 @@ export abstract class AbstractController<T> implements AbstractCrud<T> {
 
     @Post('create')
     async create(@Body() data: Partial<T>): Promise<T> {
+        console.log(data);
+        
         return this.service.create(data);
     }
 

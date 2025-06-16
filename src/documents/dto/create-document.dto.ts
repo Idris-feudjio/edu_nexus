@@ -1,5 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
+import { Document as DocumentType } from 'generated/prisma';
+ 
+// If you need a Document model, use composition or type aliasing instead of class inheritance
+export interface DocumentModel extends DocumentType{}; 
 
 export class CreateDocumentDto {
   @ApiProperty({

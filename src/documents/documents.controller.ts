@@ -15,7 +15,7 @@ import {
   } from '@nestjs/common';
   import { FileInterceptor } from '@nestjs/platform-express';
   import { DocumentsService } from './documents.service';
-  import { CreateDocumentDto } from './dto/create-document.dto';
+  import { CreateDocumentDto, DocumentModel } from './dto';
   import { UpdateDocumentDto } from './dto/update-document.dto';
   import { RecordDocumentViewDto } from './dto/record-view.dto'; 
   import { ApiBearerAuth, ApiBody, ApiConsumes, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
@@ -23,14 +23,20 @@ import { JwtAuthGuard, RolesGuard } from 'src/auth/guard';
 import { Roles } from 'src/auth/decorator';
 import { Multer } from 'multer';   
 import { Role } from 'src/common/enums/role.enum';
+import { AbstractController, BaseService } from 'src/common/abstracts';
 
   
   @ApiTags('Documents')
   @ApiBearerAuth()
   @Controller('documents')
   @UseGuards(JwtAuthGuard, RolesGuard)
-  export class DocumentsController {
-    constructor(private readonly documentsService: DocumentsService) {}
+  export class DocumentsController extends AbstractController<DocumentModel>{
+     service: DocumentsService;
+    
+    constructor(private readonly documentsService: DocumentsService) {
+      super()
+      this.service = documentsService
+    }
   
     @Post()
     @Roles(Role.TEACHER, Role.PEDAGOGIC, Role.ADMIN)
@@ -45,7 +51,7 @@ import { Role } from 'src/common/enums/role.enum';
     @ApiResponse({ status: 400, description: 'Bad request' })
     @ApiResponse({ status: 401, description: 'Unauthorized' })
     @ApiResponse({ status: 403, description: 'Forbidden' })
-    async create(
+    async createWithImage(
       @Body() createDocumentDto: CreateDocumentDto,
       @UploadedFile() file: Express.Multer.File,
       @Req() req,
@@ -54,7 +60,7 @@ import { Role } from 'src/common/enums/role.enum';
       if (createDocumentDto.authorId !== req.user.sub && req.user.role !== Role.ADMIN) {
         throw new ForbiddenException('You can only upload documents for yourself');
       }
-      return this.documentsService.create(createDocumentDto, file);
+      return this.documentsService.createWithImage(createDocumentDto, file);
     }
   
     @Get()
@@ -89,7 +95,7 @@ import { Role } from 'src/common/enums/role.enum';
     @ApiResponse({ status: 401, description: 'Unauthorized' })
     @ApiResponse({ status: 403, description: 'Forbidden' })
     @ApiResponse({ status: 404, description: 'Document not found' })
-    async update(
+    async updateWithImage(
       @Param('id') id: string,
       @Body() updateDocumentDto: UpdateDocumentDto,
       @Req() req,

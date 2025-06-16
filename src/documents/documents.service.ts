@@ -1,26 +1,52 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { StorageService } from 'src/common/storage/storage.service';
+import {
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
+import { StorageService } from 'src/common/storage/google.cloud.service';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { Multer } from 'multer'; 
-import { CreateDocumentDto, RecordDocumentViewDto, UpdateDocumentDto } from './dto';
+import { Multer } from 'multer';
+import {
+  CreateDocumentDto,
+  DocumentModel,
+  RecordDocumentViewDto,
+  UpdateDocumentDto,
+} from './dto';
+import { S3Service } from '../common/storage/s3.service';
+import {
+  BaseRepository,
+  BaseService,
+} from 'src/common/abstracts';
+import { DocumentRepository } from './repository/document.repository';
 
 @Injectable()
-export class DocumentsService {
+export class DocumentsService extends BaseService<DocumentModel> {
+   repository: DocumentRepository;
   constructor(
     private prisma: PrismaService,
     private storageService: StorageService,
-  ) {}
+    private s3Service: S3Service,
+    private docRepository: DocumentRepository,
+  ) {
+    super();
+    this.repository = docRepository;
+  }
 
-  async create(createDocumentDto: CreateDocumentDto, file: Express.Multer.File) {
-    const { fileUrl, fileKey } = await this.storageService.uploadFile(file);
+ 
+
+  async createWithImage(
+    createDocumentDto: CreateDocumentDto,
+    file: Express.Multer.File,
+  ) {
+    const { fileUrl, fileKey } =
+      await this.s3Service.uploadFile(file);
 
     return this.prisma.document.create({
-        data: {
-            ...createDocumentDto,
-            fileUrl,
-            fileKey,
-            level: createDocumentDto.level ?? '', // Ensure level is a string
-        },
+      data: {
+        ...createDocumentDto,
+        fileUrl,
+        fileKey,
+        level: createDocumentDto.level ?? '', // Ensure level is a string
+      },
 
       include: { author: true },
     });
@@ -32,13 +58,22 @@ export class DocumentsService {
     });
   }
 
-  async findForUser(userId: number, department: string, level: string, userClass?: string) {
+  async findForUser(
+    userId: number,
+    department: string,
+    level: string,
+    userClass?: string,
+  ) {
     return this.prisma.document.findMany({
       where: {
         OR: [
           { department, level, class: userClass },
           { department, level, class: null },
-          { department, level: undefined, class: null },
+          {
+            department,
+            level: undefined,
+            class: null,
+          },
         ],
       },
       include: { author: true },
@@ -46,17 +81,23 @@ export class DocumentsService {
   }
 
   async findOne(id: number) {
-    const document = await this.prisma.document.findUnique({
-      where: { id },
-      include: { author: true, views: true },
-    });
+    const document =
+      await this.prisma.document.findUnique({
+        where: { id },
+        include: { author: true, views: true },
+      });
     if (!document) {
-      throw new NotFoundException(`Document with ID ${id} not found`);
+      throw new NotFoundException(
+        `Document with ID ${id} not found`,
+      );
     }
     return document;
   }
 
-  async update(id: number, updateDocumentDto: UpdateDocumentDto) {
+  async updateWithImage(
+    id: number,
+    updateDocumentDto: UpdateDocumentDto,
+  ) {
     await this.findOne(id); // Check if document exists
     return this.prisma.document.update({
       where: { id },
@@ -66,21 +107,32 @@ export class DocumentsService {
 
   async remove(id: number) {
     const document = await this.findOne(id);
-    await this.storageService.deleteFile(document.fileKey);
-    return this.prisma.document.delete({ where: { id } });
+    await this.storageService.deleteFile(
+      document.fileKey,
+    );
+    return this.prisma.document.delete({
+      where: { id },
+    });
   }
 
-  async recordView(recordViewDto: RecordDocumentViewDto) {
-    const { documentId, userId, progress } = recordViewDto;
+  async recordView(
+    recordViewDto: RecordDocumentViewDto,
+  ) {
+    const { documentId, userId, progress } =
+      recordViewDto;
 
-    const existingView = await this.prisma.view.findFirst({
-      where: { documentId, userId },
-    });
+    const existingView =
+      await this.prisma.view.findFirst({
+        where: { documentId, userId },
+      });
 
     if (existingView) {
       return this.prisma.view.update({
         where: { id: existingView.id },
-        data: { progress, lastViewed: new Date() },
+        data: {
+          progress,
+          lastViewed: new Date(),
+        },
       });
     }
 
