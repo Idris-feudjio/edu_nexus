@@ -9,12 +9,13 @@ import { MulterModule } from '@nestjs/platform-express';
 import { memoryStorage } from 'multer';
 
 @Module({   
-     imports: [
+  imports: [
     MulterModule.register({
       storage: memoryStorage(),
     }),
   ],
-    providers: [UserService,ExcelImportService,UserRepository], 
-    controllers: [ UserController],
+  providers: [UserService, ExcelImportService, UserRepository], 
+  controllers: [UserController],
+  exports: [UserService,ExcelImportService], // Export UserService to make it available globally
 })
 export class UserModule {}

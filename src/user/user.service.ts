@@ -66,6 +66,14 @@ export class UserService extends BaseService<UserData> {
 
     }
 
+    async isUserActive(id: number): Promise<boolean> {
+      const user = await this.repository.findById(id);
+      if (!user) {
+        throw new BadRequestException('Utilisateur non trouvé');
+      }
+      return !!user.isActive;
+    }
+
 
 async importStudentsFromExcel(file: Express.Multer.File): Promise<{ success: boolean; count: number; students: any[] }> {
     if (!file?.buffer) {

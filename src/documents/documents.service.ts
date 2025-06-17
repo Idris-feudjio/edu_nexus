@@ -4,48 +4,70 @@ import {
 } from '@nestjs/common';
 import { StorageService } from 'src/common/storage/google.cloud.service';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { Multer } from 'multer';
 import {
-  CreateDocumentDto,
-  DocumentModel,
-  RecordDocumentViewDto,
-  UpdateDocumentDto,
+  CreateAnnouncementDto,
+  AnnouncementsModel,
+  RecordAnnouncementViewDto,
+  UpdateAnnouncementDto,
 } from './dto';
 import { S3Service } from '../common/storage/s3.service';
 import {
   BaseRepository,
   BaseService,
 } from 'src/common/abstracts';
-import { DocumentRepository } from './repository/document.repository';
+import { AnnouncementRepository } from './repository/document.repository';
+import { UserService } from 'src/user/user.service';
 
 @Injectable()
-export class DocumentsService extends BaseService<DocumentModel> {
-   repository: DocumentRepository;
+export class AnnouncementsService extends BaseService<AnnouncementsModel> {
+  repository: AnnouncementRepository;
   constructor(
     private prisma: PrismaService,
     private storageService: StorageService,
     private s3Service: S3Service,
-    private docRepository: DocumentRepository,
+    private docRepository: AnnouncementRepository,
+    private userService: UserService,
   ) {
     super();
     this.repository = docRepository;
   }
 
- 
+  async createAnnounce(
+    announce: CreateAnnouncementDto,
+  ) {
+    const isUserActive =
+      await this.userService.isUserActive(
+        announce.authorId,
+      );
+    if (!isUserActive) {
+      throw new NotFoundException(
+        'User Not Found',
+      );
+    }
+    console.log('Is user active', isUserActive);
+
+    // Use AnnouncementsRepository to create the document
+    return this.repository.create(announce);
+  }
 
   async createWithImage(
-    createDocumentDto: CreateDocumentDto,
+    createAnnouncementsDto: CreateAnnouncementDto,
     file: Express.Multer.File,
   ) {
-    const { fileUrl, fileKey } =
-      await this.s3Service.uploadFile(file);
-
+       const { fileUrl, fileKey } =
+      await this.s3Service.uploadFile(
+        file,
+        true,
+        createAnnouncementsDto.fileSource,
+      );
+// Remove fileSource from createAnnouncementsDto before saving
+const { fileSource, ...restDto } = createAnnouncementsDto;
     return this.prisma.document.create({
       data: {
-        ...createDocumentDto,
+        ...restDto,
         fileUrl,
         fileKey,
-        level: createDocumentDto.level ?? '', // Ensure level is a string
+        level: createAnnouncementsDto.level ?? '', // Ensure level is a string
       },
 
       include: { author: true },
@@ -88,7 +110,7 @@ export class DocumentsService extends BaseService<DocumentModel> {
       });
     if (!document) {
       throw new NotFoundException(
-        `Document with ID ${id} not found`,
+        `Announcements with ID ${id} not found`,
       );
     }
     return document;
@@ -96,12 +118,12 @@ export class DocumentsService extends BaseService<DocumentModel> {
 
   async updateWithImage(
     id: number,
-    updateDocumentDto: UpdateDocumentDto,
+    updateAnnouncementsDto: UpdateAnnouncementDto,
   ) {
     await this.findOne(id); // Check if document exists
     return this.prisma.document.update({
       where: { id },
-      data: updateDocumentDto,
+      data: updateAnnouncementsDto,
     });
   }
 
@@ -116,7 +138,7 @@ export class DocumentsService extends BaseService<DocumentModel> {
   }
 
   async recordView(
-    recordViewDto: RecordDocumentViewDto,
+    recordViewDto: RecordAnnouncementViewDto,
   ) {
     const { documentId, userId, progress } =
       recordViewDto;

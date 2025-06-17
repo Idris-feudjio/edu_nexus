@@ -12,14 +12,14 @@ import { v4 as uuidv4 } from 'uuid';
 @Injectable()
 export class S3Service implements IStorage {
   private client: S3Client;
-  private bucketName:string
+  private bucketName:string|undefined
   private readonly logger=new Logger(S3Service.name)
  
   constructor(
     private readonly configService: ConfigService, 
   ) {
     const s3_region = this.configService.get('S3_REGION');
-    const  bucketName = this.configService.get('S3_BUCKET_NAME');
+    this.bucketName = configService.get('S3_BUCKET_NAME');
  
     if (!s3_region) {
       this.logger.error("S3_REGION not found in environment variables")
@@ -47,9 +47,12 @@ export class S3Service implements IStorage {
 
 
   // methods inside DmsService class
-async uploadFile(file: Express.Multer.File, isPublic: boolean = true): Promise<{ isPublic?: boolean; fileUrl: string; fileKey: string; message?: string }> {
-  try {
-    const fileKey = `${uuidv4()}`;
+async uploadFile(file: Express.Multer.File, isPublic = true,fileSource:string|undefined): Promise<{ isPublic?: boolean; fileUrl: string; fileKey: string; message?: string }> {
+  try { 
+    let fileKey = `${uuidv4()}`;
+    if(fileSource){
+        fileKey = fileSource+`/${uuidv4()}`;
+    }
     const command = new PutObjectCommand({
       Bucket: this.bucketName,
       Key: fileKey,

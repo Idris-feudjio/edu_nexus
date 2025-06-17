@@ -48,6 +48,7 @@ model Document {
   description String?
   fileUrl     String?
   fileKey     String?
+  //fileSource  String?  This is a valid field name, not an attribute
   author      User     @relation(fields: [authorId], references: [id])
   authorId    Int
   department  String

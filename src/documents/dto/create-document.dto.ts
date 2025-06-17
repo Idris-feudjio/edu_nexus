@@ -1,11 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
-import { Document as DocumentType } from 'generated/prisma';
+import { Document  } from '@prisma/client';
  
 // If you need a Document model, use composition or type aliasing instead of class inheritance
-export interface DocumentModel extends DocumentType{}; 
+export interface AnnouncementsModel extends Document{}; 
 
-export class CreateDocumentDto {
+export class CreateAnnouncementDto {
   @ApiProperty({
     description: 'Titre du document',
     example: 'Introduction à la programmation',
@@ -27,7 +27,7 @@ export class CreateDocumentDto {
     description: 'ID de l\'auteur du document',
     example: 1,
   })
-  @IsNumber()
+ // @IsNumber()
   @IsNotEmpty()
   authorId: number;
 
@@ -56,4 +56,16 @@ export class CreateDocumentDto {
   @IsString()
   @IsOptional()
   class?: string;
+
+  @IsString()
+  @IsOptional()
+  fileUrl?: string;
+
+  @IsString()
+  @IsOptional()
+  fileKey?: string;
+
+  @IsString()
+  @IsOptional()
+  fileSource?:string;// 'COURSES'|'PROFILES'|'SCHEDULES';
 }

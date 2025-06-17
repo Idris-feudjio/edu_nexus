@@ -7,7 +7,7 @@ import {
 } from 'class-validator';
 import { 
   User,
-} from 'generated/prisma';
+} from '@prisma/client';
 
 export interface UserData extends User {}
 

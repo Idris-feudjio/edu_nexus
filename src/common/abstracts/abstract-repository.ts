@@ -2,15 +2,12 @@ import { Prisma, PrismaClient } from "generated/prisma";
 import { AbstractCrud } from "./abstract-crud";
 import { PrismaService } from "src/prisma/prisma.service";
 import { PaginateDataResponse, SearchQueryDto } from "../dto";
-import { log } from "console";
 
 
 export abstract class BaseRepository<T> implements AbstractCrud<T> {
   protected abstract model: any;
 
   async create(data: Partial<T>): Promise<T> {
-    console.log("//////////////////////////////////////");
-    
     return await this.model.create({ data });
   }
 
@@ -73,8 +70,8 @@ async searchAll(query: SearchQueryDto<T>): Promise<PaginateDataResponse<T>> {
     };
   }
 
-  async findById(key: any): Promise<T | null> {
-   return await this.model.findUnique({ where: { key } });
+  async findById(id: any): Promise<T | null> {
+   return await this.model.findUnique({ where: { id } });
  }
 
   async update(id: number, data: Partial<T>): Promise<T> {

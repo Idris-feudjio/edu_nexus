@@ -1,12 +1,14 @@
 import { Module } from '@nestjs/common';
-import { DocumentsService } from './documents.service';
-import { DocumentsController } from './documents.controller'; 
+import {  AnnouncementsService } from './documents.service';
+import { AnnouncementsController } from './documents.controller'; 
 import { PrismaModule } from 'src/prisma/prisma.module'; 
-import { S3Service, StorageService } from 'src/common/storage';
-import { DocumentRepository } from './repository/document.repository';
+import { ExcelImportService, S3Service, StorageService } from 'src/common/storage';
+import { AnnouncementRepository } from './repository/document.repository';
+import { UserService } from 'src/user/user.service';
+import { UserRepository } from 'src/user/repository/user.repository';
 
 @Module({
-  providers: [DocumentsService, StorageService, DocumentRepository,S3Service],
-  controllers: [DocumentsController]
+  providers: [AnnouncementsService, StorageService, AnnouncementRepository,S3Service,UserService,ExcelImportService,UserRepository],
+  controllers: [AnnouncementsController]
 })
-export class DocumentsModule {}
+export class AnnouncementModule {}

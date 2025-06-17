@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString, IsOptional, IsNumber } from 'class-validator';
 
-export class UpdateDocumentDto {
+export class UpdateAnnouncementDto {
   @ApiProperty({
     description: 'Nouveau titre du document',
     example: 'Programmation avancée',

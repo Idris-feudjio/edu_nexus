@@ -1,6 +1,6 @@
 // I Need to create to
 interface IStorage {
-  uploadFile(file: Express.Multer.File,isPublic:boolean ): Promise<{
+  uploadFile(file: Express.Multer.File,isPublic:boolean, fileType:string): Promise<{
     isPublic?: boolean;
     fileUrl?: string;
     fileKey?: string;

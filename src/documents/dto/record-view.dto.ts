@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNumber, IsNotEmpty, Min, Max } from 'class-validator';
 
-export class RecordDocumentViewDto {
+export class RecordAnnouncementViewDto {
   @ApiProperty({
     description: 'ID du document consulté',
     example: 1,
