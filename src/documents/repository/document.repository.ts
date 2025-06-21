@@ -1,6 +1,6 @@
 import { BaseRepository } from "src/common/abstracts";
 import { AnnouncementsModel } from "../dto";
-import { PrismaClient, Role } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 
 
 import { PrismaService } from "src/prisma/prisma.service";

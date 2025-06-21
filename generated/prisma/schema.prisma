@@ -38,6 +38,8 @@ model User {
   documents  Document[]
   views      View[]
 
+  studentProfile StudentProfile?
+
   @@map("users")
 }
 
@@ -70,4 +72,32 @@ model View {
   lastViewed DateTime @default(now())
 
   @@map("views")
+}
+
+model StudentProfile {
+  id        Int     @id @default(autoincrement())
+  userId    Int     @unique
+  user      User    @relation(fields: [userId], references: [id])
+  filiereId Int
+  filiere   Filiere @relation(fields: [filiereId], references: [id])
+}
+
+model Departement {
+  id       Int       @id @default(autoincrement())
+  name     String    @unique
+  code     String    @unique
+  filieres Filiere[]
+
+  @@map("department")
+}
+
+model Filiere {
+  id            Int              @id @default(autoincrement())
+  name          String           @unique
+  code          String           @unique
+  departement   Departement      @relation(fields: [departementId], references: [id])
+  departementId Int
+  students      StudentProfile[]
+
+  @@map("filiere")
 }

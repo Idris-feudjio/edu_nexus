@@ -1,7 +1,8 @@
 import { UserData, UserDto } from "./user.dto";
 
-import { Prisma, User } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 import { IsBoolean, IsEmail, IsNotEmpty, IsString, } from "class-validator";
+import { User } from "generated/prisma";
 
 export class CreateStudentDto{ 
       @IsEmail()

@@ -54,24 +54,32 @@ export class AnnouncementsService extends BaseService<AnnouncementsModel> {
     createAnnouncementsDto: CreateAnnouncementDto,
     file: Express.Multer.File,
   ) {
-       const { fileUrl, fileKey } =
+    const { fileUrl, fileKey } =
       await this.s3Service.uploadFile(
         file,
         true,
         createAnnouncementsDto.fileSource,
       );
-// Remove fileSource from createAnnouncementsDto before saving
-const { fileSource, ...restDto } = createAnnouncementsDto;
-    return this.prisma.document.create({
-      data: {
-        ...restDto,
-        fileUrl,
-        fileKey,
-        level: createAnnouncementsDto.level ?? '', // Ensure level is a string
-      },
+    // Remove fileSource from createAnnouncementsDto before saving
+    const { fileSource, ...restDto } =
+      createAnnouncementsDto;
 
-      include: { author: true },
-    });
+    const data = {
+      ...restDto,
+      fileUrl,
+      fileKey,
+    };
+    return this.repository.create(data);
+    // return this.prisma.document.create({
+    //   data: {
+    //     ...restDto,
+    //     fileUrl,
+    //     fileKey,
+    //     level: createAnnouncementsDto.level ?? '', // Ensure level is a string
+    //   },
+
+    //   include: { author: true },
+    // });
   }
 
   async findAll() {
@@ -130,7 +138,7 @@ const { fileSource, ...restDto } = createAnnouncementsDto;
   async remove(id: number) {
     const document = await this.findOne(id);
     await this.storageService.deleteFile(
-      document.fileKey,
+      document.fileKey!,
     );
     return this.prisma.document.delete({
       where: { id },

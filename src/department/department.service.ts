@@ -1,0 +1,19 @@
+import { Injectable } from '@nestjs/common'; 
+import { Departement } from "generated/prisma";
+import { BaseService } from 'src/common/abstracts';
+import { DepartementRepository } from './repository/department.repository';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { DepartementDto } from './dto';
+
+@Injectable()
+export class DepartmentService extends BaseService<DepartementDto> {
+    repository: DepartementRepository; 
+      constructor(private departmentRepo: DepartementRepository,
+          private readonly prisma: PrismaService,
+      ){
+        super()
+        this.repository = departmentRepo;
+    }
+
+
+}

@@ -20,12 +20,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.7.0
- * Query Engine version: 3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
+ * Prisma Client JS version: 6.10.1
+ * Query Engine version: 9b628578b3b7cae625e8c927178f15a170e74a9c
  */
 Prisma.prismaVersion = {
-  client: "6.7.0",
-  engine: "3cff47a7f5d65c3ea74883f1d736e41d68ce91ed"
+  client: "6.10.1",
+  engine: "9b628578b3b7cae625e8c927178f15a170e74a9c"
 }
 
 Prisma.PrismaClientKnownRequestError = () => {
@@ -158,6 +158,25 @@ exports.Prisma.ViewScalarFieldEnum = {
   lastViewed: 'lastViewed'
 };
 
+exports.Prisma.StudentProfileScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  filiereId: 'filiereId'
+};
+
+exports.Prisma.DepartementScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  code: 'code'
+};
+
+exports.Prisma.FiliereScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  code: 'code',
+  departementId: 'departementId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -182,7 +201,10 @@ exports.Role = exports.$Enums.Role = {
 exports.Prisma.ModelName = {
   User: 'User',
   Document: 'Document',
-  View: 'View'
+  View: 'View',
+  StudentProfile: 'StudentProfile',
+  Departement: 'Departement',
+  Filiere: 'Filiere'
 };
 
 /**

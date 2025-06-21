@@ -28,6 +28,21 @@ export type Document = $Result.DefaultSelection<Prisma.$DocumentPayload>
  * 
  */
 export type View = $Result.DefaultSelection<Prisma.$ViewPayload>
+/**
+ * Model StudentProfile
+ * 
+ */
+export type StudentProfile = $Result.DefaultSelection<Prisma.$StudentProfilePayload>
+/**
+ * Model Departement
+ * 
+ */
+export type Departement = $Result.DefaultSelection<Prisma.$DepartementPayload>
+/**
+ * Model Filiere
+ * 
+ */
+export type Filiere = $Result.DefaultSelection<Prisma.$FilierePayload>
 
 /**
  * Enums
@@ -202,6 +217,36 @@ export class PrismaClient<
     * ```
     */
   get view(): Prisma.ViewDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.studentProfile`: Exposes CRUD operations for the **StudentProfile** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more StudentProfiles
+    * const studentProfiles = await prisma.studentProfile.findMany()
+    * ```
+    */
+  get studentProfile(): Prisma.StudentProfileDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.departement`: Exposes CRUD operations for the **Departement** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Departements
+    * const departements = await prisma.departement.findMany()
+    * ```
+    */
+  get departement(): Prisma.DepartementDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.filiere`: Exposes CRUD operations for the **Filiere** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Filieres
+    * const filieres = await prisma.filiere.findMany()
+    * ```
+    */
+  get filiere(): Prisma.FiliereDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -260,8 +305,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.7.0
-   * Query Engine version: 3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
+   * Prisma Client JS version: 6.10.1
+   * Query Engine version: 9b628578b3b7cae625e8c927178f15a170e74a9c
    */
   export type PrismaVersion = {
     client: string
@@ -644,7 +689,10 @@ export namespace Prisma {
   export const ModelName: {
     User: 'User',
     Document: 'Document',
-    View: 'View'
+    View: 'View',
+    StudentProfile: 'StudentProfile',
+    Departement: 'Departement',
+    Filiere: 'Filiere'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -663,7 +711,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "document" | "view"
+      modelProps: "user" | "document" | "view" | "studentProfile" | "departement" | "filiere"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -889,6 +937,228 @@ export namespace Prisma {
           }
         }
       }
+      StudentProfile: {
+        payload: Prisma.$StudentProfilePayload<ExtArgs>
+        fields: Prisma.StudentProfileFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.StudentProfileFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentProfilePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.StudentProfileFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentProfilePayload>
+          }
+          findFirst: {
+            args: Prisma.StudentProfileFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentProfilePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.StudentProfileFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentProfilePayload>
+          }
+          findMany: {
+            args: Prisma.StudentProfileFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentProfilePayload>[]
+          }
+          create: {
+            args: Prisma.StudentProfileCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentProfilePayload>
+          }
+          createMany: {
+            args: Prisma.StudentProfileCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.StudentProfileCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentProfilePayload>[]
+          }
+          delete: {
+            args: Prisma.StudentProfileDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentProfilePayload>
+          }
+          update: {
+            args: Prisma.StudentProfileUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentProfilePayload>
+          }
+          deleteMany: {
+            args: Prisma.StudentProfileDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.StudentProfileUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.StudentProfileUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentProfilePayload>[]
+          }
+          upsert: {
+            args: Prisma.StudentProfileUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentProfilePayload>
+          }
+          aggregate: {
+            args: Prisma.StudentProfileAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateStudentProfile>
+          }
+          groupBy: {
+            args: Prisma.StudentProfileGroupByArgs<ExtArgs>
+            result: $Utils.Optional<StudentProfileGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.StudentProfileCountArgs<ExtArgs>
+            result: $Utils.Optional<StudentProfileCountAggregateOutputType> | number
+          }
+        }
+      }
+      Departement: {
+        payload: Prisma.$DepartementPayload<ExtArgs>
+        fields: Prisma.DepartementFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.DepartementFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DepartementPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.DepartementFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DepartementPayload>
+          }
+          findFirst: {
+            args: Prisma.DepartementFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DepartementPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.DepartementFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DepartementPayload>
+          }
+          findMany: {
+            args: Prisma.DepartementFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DepartementPayload>[]
+          }
+          create: {
+            args: Prisma.DepartementCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DepartementPayload>
+          }
+          createMany: {
+            args: Prisma.DepartementCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.DepartementCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DepartementPayload>[]
+          }
+          delete: {
+            args: Prisma.DepartementDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DepartementPayload>
+          }
+          update: {
+            args: Prisma.DepartementUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DepartementPayload>
+          }
+          deleteMany: {
+            args: Prisma.DepartementDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.DepartementUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.DepartementUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DepartementPayload>[]
+          }
+          upsert: {
+            args: Prisma.DepartementUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DepartementPayload>
+          }
+          aggregate: {
+            args: Prisma.DepartementAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDepartement>
+          }
+          groupBy: {
+            args: Prisma.DepartementGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DepartementGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.DepartementCountArgs<ExtArgs>
+            result: $Utils.Optional<DepartementCountAggregateOutputType> | number
+          }
+        }
+      }
+      Filiere: {
+        payload: Prisma.$FilierePayload<ExtArgs>
+        fields: Prisma.FiliereFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FiliereFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilierePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FiliereFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilierePayload>
+          }
+          findFirst: {
+            args: Prisma.FiliereFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilierePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FiliereFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilierePayload>
+          }
+          findMany: {
+            args: Prisma.FiliereFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilierePayload>[]
+          }
+          create: {
+            args: Prisma.FiliereCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilierePayload>
+          }
+          createMany: {
+            args: Prisma.FiliereCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FiliereCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilierePayload>[]
+          }
+          delete: {
+            args: Prisma.FiliereDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilierePayload>
+          }
+          update: {
+            args: Prisma.FiliereUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilierePayload>
+          }
+          deleteMany: {
+            args: Prisma.FiliereDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FiliereUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FiliereUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilierePayload>[]
+          }
+          upsert: {
+            args: Prisma.FiliereUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilierePayload>
+          }
+          aggregate: {
+            args: Prisma.FiliereAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFiliere>
+          }
+          groupBy: {
+            args: Prisma.FiliereGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FiliereGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FiliereCountArgs<ExtArgs>
+            result: $Utils.Optional<FiliereCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -976,6 +1246,9 @@ export namespace Prisma {
     user?: UserOmit
     document?: DocumentOmit
     view?: ViewOmit
+    studentProfile?: StudentProfileOmit
+    departement?: DepartementOmit
+    filiere?: FiliereOmit
   }
 
   /* Types for Logging */
@@ -1133,6 +1406,68 @@ export namespace Prisma {
    */
   export type DocumentCountOutputTypeCountViewsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ViewWhereInput
+  }
+
+
+  /**
+   * Count Type DepartementCountOutputType
+   */
+
+  export type DepartementCountOutputType = {
+    filieres: number
+  }
+
+  export type DepartementCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    filieres?: boolean | DepartementCountOutputTypeCountFilieresArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * DepartementCountOutputType without action
+   */
+  export type DepartementCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DepartementCountOutputType
+     */
+    select?: DepartementCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * DepartementCountOutputType without action
+   */
+  export type DepartementCountOutputTypeCountFilieresArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FiliereWhereInput
+  }
+
+
+  /**
+   * Count Type FiliereCountOutputType
+   */
+
+  export type FiliereCountOutputType = {
+    students: number
+  }
+
+  export type FiliereCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    students?: boolean | FiliereCountOutputTypeCountStudentsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * FiliereCountOutputType without action
+   */
+  export type FiliereCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FiliereCountOutputType
+     */
+    select?: FiliereCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * FiliereCountOutputType without action
+   */
+  export type FiliereCountOutputTypeCountStudentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StudentProfileWhereInput
   }
 
 
@@ -1404,6 +1739,7 @@ export namespace Prisma {
     updatedAt?: boolean
     documents?: boolean | User$documentsArgs<ExtArgs>
     views?: boolean | User$viewsArgs<ExtArgs>
+    studentProfile?: boolean | User$studentProfileArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1459,6 +1795,7 @@ export namespace Prisma {
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     documents?: boolean | User$documentsArgs<ExtArgs>
     views?: boolean | User$viewsArgs<ExtArgs>
+    studentProfile?: boolean | User$studentProfileArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1469,6 +1806,7 @@ export namespace Prisma {
     objects: {
       documents: Prisma.$DocumentPayload<ExtArgs>[]
       views: Prisma.$ViewPayload<ExtArgs>[]
+      studentProfile: Prisma.$StudentProfilePayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -1880,6 +2218,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     documents<T extends User$documentsArgs<ExtArgs> = {}>(args?: Subset<T, User$documentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     views<T extends User$viewsArgs<ExtArgs> = {}>(args?: Subset<T, User$viewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ViewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    studentProfile<T extends User$studentProfileArgs<ExtArgs> = {}>(args?: Subset<T, User$studentProfileArgs<ExtArgs>>): Prisma__StudentProfileClient<$Result.GetResult<Prisma.$StudentProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2355,6 +2694,25 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ViewScalarFieldEnum | ViewScalarFieldEnum[]
+  }
+
+  /**
+   * User.studentProfile
+   */
+  export type User$studentProfileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentProfile
+     */
+    select?: StudentProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentProfile
+     */
+    omit?: StudentProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentProfileInclude<ExtArgs> | null
+    where?: StudentProfileWhereInput
   }
 
   /**
@@ -4693,6 +5051,3279 @@ export namespace Prisma {
 
 
   /**
+   * Model StudentProfile
+   */
+
+  export type AggregateStudentProfile = {
+    _count: StudentProfileCountAggregateOutputType | null
+    _avg: StudentProfileAvgAggregateOutputType | null
+    _sum: StudentProfileSumAggregateOutputType | null
+    _min: StudentProfileMinAggregateOutputType | null
+    _max: StudentProfileMaxAggregateOutputType | null
+  }
+
+  export type StudentProfileAvgAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    filiereId: number | null
+  }
+
+  export type StudentProfileSumAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    filiereId: number | null
+  }
+
+  export type StudentProfileMinAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    filiereId: number | null
+  }
+
+  export type StudentProfileMaxAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    filiereId: number | null
+  }
+
+  export type StudentProfileCountAggregateOutputType = {
+    id: number
+    userId: number
+    filiereId: number
+    _all: number
+  }
+
+
+  export type StudentProfileAvgAggregateInputType = {
+    id?: true
+    userId?: true
+    filiereId?: true
+  }
+
+  export type StudentProfileSumAggregateInputType = {
+    id?: true
+    userId?: true
+    filiereId?: true
+  }
+
+  export type StudentProfileMinAggregateInputType = {
+    id?: true
+    userId?: true
+    filiereId?: true
+  }
+
+  export type StudentProfileMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    filiereId?: true
+  }
+
+  export type StudentProfileCountAggregateInputType = {
+    id?: true
+    userId?: true
+    filiereId?: true
+    _all?: true
+  }
+
+  export type StudentProfileAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which StudentProfile to aggregate.
+     */
+    where?: StudentProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StudentProfiles to fetch.
+     */
+    orderBy?: StudentProfileOrderByWithRelationInput | StudentProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: StudentProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StudentProfiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StudentProfiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned StudentProfiles
+    **/
+    _count?: true | StudentProfileCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: StudentProfileAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: StudentProfileSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: StudentProfileMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: StudentProfileMaxAggregateInputType
+  }
+
+  export type GetStudentProfileAggregateType<T extends StudentProfileAggregateArgs> = {
+        [P in keyof T & keyof AggregateStudentProfile]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateStudentProfile[P]>
+      : GetScalarType<T[P], AggregateStudentProfile[P]>
+  }
+
+
+
+
+  export type StudentProfileGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StudentProfileWhereInput
+    orderBy?: StudentProfileOrderByWithAggregationInput | StudentProfileOrderByWithAggregationInput[]
+    by: StudentProfileScalarFieldEnum[] | StudentProfileScalarFieldEnum
+    having?: StudentProfileScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: StudentProfileCountAggregateInputType | true
+    _avg?: StudentProfileAvgAggregateInputType
+    _sum?: StudentProfileSumAggregateInputType
+    _min?: StudentProfileMinAggregateInputType
+    _max?: StudentProfileMaxAggregateInputType
+  }
+
+  export type StudentProfileGroupByOutputType = {
+    id: number
+    userId: number
+    filiereId: number
+    _count: StudentProfileCountAggregateOutputType | null
+    _avg: StudentProfileAvgAggregateOutputType | null
+    _sum: StudentProfileSumAggregateOutputType | null
+    _min: StudentProfileMinAggregateOutputType | null
+    _max: StudentProfileMaxAggregateOutputType | null
+  }
+
+  type GetStudentProfileGroupByPayload<T extends StudentProfileGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<StudentProfileGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof StudentProfileGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], StudentProfileGroupByOutputType[P]>
+            : GetScalarType<T[P], StudentProfileGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type StudentProfileSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    filiereId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    filiere?: boolean | FiliereDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["studentProfile"]>
+
+  export type StudentProfileSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    filiereId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    filiere?: boolean | FiliereDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["studentProfile"]>
+
+  export type StudentProfileSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    filiereId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    filiere?: boolean | FiliereDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["studentProfile"]>
+
+  export type StudentProfileSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    filiereId?: boolean
+  }
+
+  export type StudentProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "filiereId", ExtArgs["result"]["studentProfile"]>
+  export type StudentProfileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    filiere?: boolean | FiliereDefaultArgs<ExtArgs>
+  }
+  export type StudentProfileIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    filiere?: boolean | FiliereDefaultArgs<ExtArgs>
+  }
+  export type StudentProfileIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    filiere?: boolean | FiliereDefaultArgs<ExtArgs>
+  }
+
+  export type $StudentProfilePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "StudentProfile"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      filiere: Prisma.$FilierePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      userId: number
+      filiereId: number
+    }, ExtArgs["result"]["studentProfile"]>
+    composites: {}
+  }
+
+  type StudentProfileGetPayload<S extends boolean | null | undefined | StudentProfileDefaultArgs> = $Result.GetResult<Prisma.$StudentProfilePayload, S>
+
+  type StudentProfileCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<StudentProfileFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: StudentProfileCountAggregateInputType | true
+    }
+
+  export interface StudentProfileDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['StudentProfile'], meta: { name: 'StudentProfile' } }
+    /**
+     * Find zero or one StudentProfile that matches the filter.
+     * @param {StudentProfileFindUniqueArgs} args - Arguments to find a StudentProfile
+     * @example
+     * // Get one StudentProfile
+     * const studentProfile = await prisma.studentProfile.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends StudentProfileFindUniqueArgs>(args: SelectSubset<T, StudentProfileFindUniqueArgs<ExtArgs>>): Prisma__StudentProfileClient<$Result.GetResult<Prisma.$StudentProfilePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one StudentProfile that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {StudentProfileFindUniqueOrThrowArgs} args - Arguments to find a StudentProfile
+     * @example
+     * // Get one StudentProfile
+     * const studentProfile = await prisma.studentProfile.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends StudentProfileFindUniqueOrThrowArgs>(args: SelectSubset<T, StudentProfileFindUniqueOrThrowArgs<ExtArgs>>): Prisma__StudentProfileClient<$Result.GetResult<Prisma.$StudentProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first StudentProfile that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StudentProfileFindFirstArgs} args - Arguments to find a StudentProfile
+     * @example
+     * // Get one StudentProfile
+     * const studentProfile = await prisma.studentProfile.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends StudentProfileFindFirstArgs>(args?: SelectSubset<T, StudentProfileFindFirstArgs<ExtArgs>>): Prisma__StudentProfileClient<$Result.GetResult<Prisma.$StudentProfilePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first StudentProfile that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StudentProfileFindFirstOrThrowArgs} args - Arguments to find a StudentProfile
+     * @example
+     * // Get one StudentProfile
+     * const studentProfile = await prisma.studentProfile.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends StudentProfileFindFirstOrThrowArgs>(args?: SelectSubset<T, StudentProfileFindFirstOrThrowArgs<ExtArgs>>): Prisma__StudentProfileClient<$Result.GetResult<Prisma.$StudentProfilePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more StudentProfiles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StudentProfileFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all StudentProfiles
+     * const studentProfiles = await prisma.studentProfile.findMany()
+     * 
+     * // Get first 10 StudentProfiles
+     * const studentProfiles = await prisma.studentProfile.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const studentProfileWithIdOnly = await prisma.studentProfile.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends StudentProfileFindManyArgs>(args?: SelectSubset<T, StudentProfileFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a StudentProfile.
+     * @param {StudentProfileCreateArgs} args - Arguments to create a StudentProfile.
+     * @example
+     * // Create one StudentProfile
+     * const StudentProfile = await prisma.studentProfile.create({
+     *   data: {
+     *     // ... data to create a StudentProfile
+     *   }
+     * })
+     * 
+     */
+    create<T extends StudentProfileCreateArgs>(args: SelectSubset<T, StudentProfileCreateArgs<ExtArgs>>): Prisma__StudentProfileClient<$Result.GetResult<Prisma.$StudentProfilePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many StudentProfiles.
+     * @param {StudentProfileCreateManyArgs} args - Arguments to create many StudentProfiles.
+     * @example
+     * // Create many StudentProfiles
+     * const studentProfile = await prisma.studentProfile.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends StudentProfileCreateManyArgs>(args?: SelectSubset<T, StudentProfileCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many StudentProfiles and returns the data saved in the database.
+     * @param {StudentProfileCreateManyAndReturnArgs} args - Arguments to create many StudentProfiles.
+     * @example
+     * // Create many StudentProfiles
+     * const studentProfile = await prisma.studentProfile.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many StudentProfiles and only return the `id`
+     * const studentProfileWithIdOnly = await prisma.studentProfile.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends StudentProfileCreateManyAndReturnArgs>(args?: SelectSubset<T, StudentProfileCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentProfilePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a StudentProfile.
+     * @param {StudentProfileDeleteArgs} args - Arguments to delete one StudentProfile.
+     * @example
+     * // Delete one StudentProfile
+     * const StudentProfile = await prisma.studentProfile.delete({
+     *   where: {
+     *     // ... filter to delete one StudentProfile
+     *   }
+     * })
+     * 
+     */
+    delete<T extends StudentProfileDeleteArgs>(args: SelectSubset<T, StudentProfileDeleteArgs<ExtArgs>>): Prisma__StudentProfileClient<$Result.GetResult<Prisma.$StudentProfilePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one StudentProfile.
+     * @param {StudentProfileUpdateArgs} args - Arguments to update one StudentProfile.
+     * @example
+     * // Update one StudentProfile
+     * const studentProfile = await prisma.studentProfile.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends StudentProfileUpdateArgs>(args: SelectSubset<T, StudentProfileUpdateArgs<ExtArgs>>): Prisma__StudentProfileClient<$Result.GetResult<Prisma.$StudentProfilePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more StudentProfiles.
+     * @param {StudentProfileDeleteManyArgs} args - Arguments to filter StudentProfiles to delete.
+     * @example
+     * // Delete a few StudentProfiles
+     * const { count } = await prisma.studentProfile.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends StudentProfileDeleteManyArgs>(args?: SelectSubset<T, StudentProfileDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more StudentProfiles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StudentProfileUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many StudentProfiles
+     * const studentProfile = await prisma.studentProfile.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends StudentProfileUpdateManyArgs>(args: SelectSubset<T, StudentProfileUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more StudentProfiles and returns the data updated in the database.
+     * @param {StudentProfileUpdateManyAndReturnArgs} args - Arguments to update many StudentProfiles.
+     * @example
+     * // Update many StudentProfiles
+     * const studentProfile = await prisma.studentProfile.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more StudentProfiles and only return the `id`
+     * const studentProfileWithIdOnly = await prisma.studentProfile.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends StudentProfileUpdateManyAndReturnArgs>(args: SelectSubset<T, StudentProfileUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentProfilePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one StudentProfile.
+     * @param {StudentProfileUpsertArgs} args - Arguments to update or create a StudentProfile.
+     * @example
+     * // Update or create a StudentProfile
+     * const studentProfile = await prisma.studentProfile.upsert({
+     *   create: {
+     *     // ... data to create a StudentProfile
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the StudentProfile we want to update
+     *   }
+     * })
+     */
+    upsert<T extends StudentProfileUpsertArgs>(args: SelectSubset<T, StudentProfileUpsertArgs<ExtArgs>>): Prisma__StudentProfileClient<$Result.GetResult<Prisma.$StudentProfilePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of StudentProfiles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StudentProfileCountArgs} args - Arguments to filter StudentProfiles to count.
+     * @example
+     * // Count the number of StudentProfiles
+     * const count = await prisma.studentProfile.count({
+     *   where: {
+     *     // ... the filter for the StudentProfiles we want to count
+     *   }
+     * })
+    **/
+    count<T extends StudentProfileCountArgs>(
+      args?: Subset<T, StudentProfileCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], StudentProfileCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a StudentProfile.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StudentProfileAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends StudentProfileAggregateArgs>(args: Subset<T, StudentProfileAggregateArgs>): Prisma.PrismaPromise<GetStudentProfileAggregateType<T>>
+
+    /**
+     * Group by StudentProfile.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StudentProfileGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends StudentProfileGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: StudentProfileGroupByArgs['orderBy'] }
+        : { orderBy?: StudentProfileGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, StudentProfileGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetStudentProfileGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the StudentProfile model
+   */
+  readonly fields: StudentProfileFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for StudentProfile.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__StudentProfileClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    filiere<T extends FiliereDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FiliereDefaultArgs<ExtArgs>>): Prisma__FiliereClient<$Result.GetResult<Prisma.$FilierePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the StudentProfile model
+   */
+  interface StudentProfileFieldRefs {
+    readonly id: FieldRef<"StudentProfile", 'Int'>
+    readonly userId: FieldRef<"StudentProfile", 'Int'>
+    readonly filiereId: FieldRef<"StudentProfile", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * StudentProfile findUnique
+   */
+  export type StudentProfileFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentProfile
+     */
+    select?: StudentProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentProfile
+     */
+    omit?: StudentProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which StudentProfile to fetch.
+     */
+    where: StudentProfileWhereUniqueInput
+  }
+
+  /**
+   * StudentProfile findUniqueOrThrow
+   */
+  export type StudentProfileFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentProfile
+     */
+    select?: StudentProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentProfile
+     */
+    omit?: StudentProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which StudentProfile to fetch.
+     */
+    where: StudentProfileWhereUniqueInput
+  }
+
+  /**
+   * StudentProfile findFirst
+   */
+  export type StudentProfileFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentProfile
+     */
+    select?: StudentProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentProfile
+     */
+    omit?: StudentProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which StudentProfile to fetch.
+     */
+    where?: StudentProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StudentProfiles to fetch.
+     */
+    orderBy?: StudentProfileOrderByWithRelationInput | StudentProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for StudentProfiles.
+     */
+    cursor?: StudentProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StudentProfiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StudentProfiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of StudentProfiles.
+     */
+    distinct?: StudentProfileScalarFieldEnum | StudentProfileScalarFieldEnum[]
+  }
+
+  /**
+   * StudentProfile findFirstOrThrow
+   */
+  export type StudentProfileFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentProfile
+     */
+    select?: StudentProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentProfile
+     */
+    omit?: StudentProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which StudentProfile to fetch.
+     */
+    where?: StudentProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StudentProfiles to fetch.
+     */
+    orderBy?: StudentProfileOrderByWithRelationInput | StudentProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for StudentProfiles.
+     */
+    cursor?: StudentProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StudentProfiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StudentProfiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of StudentProfiles.
+     */
+    distinct?: StudentProfileScalarFieldEnum | StudentProfileScalarFieldEnum[]
+  }
+
+  /**
+   * StudentProfile findMany
+   */
+  export type StudentProfileFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentProfile
+     */
+    select?: StudentProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentProfile
+     */
+    omit?: StudentProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which StudentProfiles to fetch.
+     */
+    where?: StudentProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StudentProfiles to fetch.
+     */
+    orderBy?: StudentProfileOrderByWithRelationInput | StudentProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing StudentProfiles.
+     */
+    cursor?: StudentProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StudentProfiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StudentProfiles.
+     */
+    skip?: number
+    distinct?: StudentProfileScalarFieldEnum | StudentProfileScalarFieldEnum[]
+  }
+
+  /**
+   * StudentProfile create
+   */
+  export type StudentProfileCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentProfile
+     */
+    select?: StudentProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentProfile
+     */
+    omit?: StudentProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentProfileInclude<ExtArgs> | null
+    /**
+     * The data needed to create a StudentProfile.
+     */
+    data: XOR<StudentProfileCreateInput, StudentProfileUncheckedCreateInput>
+  }
+
+  /**
+   * StudentProfile createMany
+   */
+  export type StudentProfileCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many StudentProfiles.
+     */
+    data: StudentProfileCreateManyInput | StudentProfileCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * StudentProfile createManyAndReturn
+   */
+  export type StudentProfileCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentProfile
+     */
+    select?: StudentProfileSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentProfile
+     */
+    omit?: StudentProfileOmit<ExtArgs> | null
+    /**
+     * The data used to create many StudentProfiles.
+     */
+    data: StudentProfileCreateManyInput | StudentProfileCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentProfileIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * StudentProfile update
+   */
+  export type StudentProfileUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentProfile
+     */
+    select?: StudentProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentProfile
+     */
+    omit?: StudentProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentProfileInclude<ExtArgs> | null
+    /**
+     * The data needed to update a StudentProfile.
+     */
+    data: XOR<StudentProfileUpdateInput, StudentProfileUncheckedUpdateInput>
+    /**
+     * Choose, which StudentProfile to update.
+     */
+    where: StudentProfileWhereUniqueInput
+  }
+
+  /**
+   * StudentProfile updateMany
+   */
+  export type StudentProfileUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update StudentProfiles.
+     */
+    data: XOR<StudentProfileUpdateManyMutationInput, StudentProfileUncheckedUpdateManyInput>
+    /**
+     * Filter which StudentProfiles to update
+     */
+    where?: StudentProfileWhereInput
+    /**
+     * Limit how many StudentProfiles to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * StudentProfile updateManyAndReturn
+   */
+  export type StudentProfileUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentProfile
+     */
+    select?: StudentProfileSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentProfile
+     */
+    omit?: StudentProfileOmit<ExtArgs> | null
+    /**
+     * The data used to update StudentProfiles.
+     */
+    data: XOR<StudentProfileUpdateManyMutationInput, StudentProfileUncheckedUpdateManyInput>
+    /**
+     * Filter which StudentProfiles to update
+     */
+    where?: StudentProfileWhereInput
+    /**
+     * Limit how many StudentProfiles to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentProfileIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * StudentProfile upsert
+   */
+  export type StudentProfileUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentProfile
+     */
+    select?: StudentProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentProfile
+     */
+    omit?: StudentProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentProfileInclude<ExtArgs> | null
+    /**
+     * The filter to search for the StudentProfile to update in case it exists.
+     */
+    where: StudentProfileWhereUniqueInput
+    /**
+     * In case the StudentProfile found by the `where` argument doesn't exist, create a new StudentProfile with this data.
+     */
+    create: XOR<StudentProfileCreateInput, StudentProfileUncheckedCreateInput>
+    /**
+     * In case the StudentProfile was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<StudentProfileUpdateInput, StudentProfileUncheckedUpdateInput>
+  }
+
+  /**
+   * StudentProfile delete
+   */
+  export type StudentProfileDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentProfile
+     */
+    select?: StudentProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentProfile
+     */
+    omit?: StudentProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentProfileInclude<ExtArgs> | null
+    /**
+     * Filter which StudentProfile to delete.
+     */
+    where: StudentProfileWhereUniqueInput
+  }
+
+  /**
+   * StudentProfile deleteMany
+   */
+  export type StudentProfileDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which StudentProfiles to delete
+     */
+    where?: StudentProfileWhereInput
+    /**
+     * Limit how many StudentProfiles to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * StudentProfile without action
+   */
+  export type StudentProfileDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentProfile
+     */
+    select?: StudentProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentProfile
+     */
+    omit?: StudentProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentProfileInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Departement
+   */
+
+  export type AggregateDepartement = {
+    _count: DepartementCountAggregateOutputType | null
+    _avg: DepartementAvgAggregateOutputType | null
+    _sum: DepartementSumAggregateOutputType | null
+    _min: DepartementMinAggregateOutputType | null
+    _max: DepartementMaxAggregateOutputType | null
+  }
+
+  export type DepartementAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type DepartementSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type DepartementMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    code: string | null
+  }
+
+  export type DepartementMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    code: string | null
+  }
+
+  export type DepartementCountAggregateOutputType = {
+    id: number
+    name: number
+    code: number
+    _all: number
+  }
+
+
+  export type DepartementAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type DepartementSumAggregateInputType = {
+    id?: true
+  }
+
+  export type DepartementMinAggregateInputType = {
+    id?: true
+    name?: true
+    code?: true
+  }
+
+  export type DepartementMaxAggregateInputType = {
+    id?: true
+    name?: true
+    code?: true
+  }
+
+  export type DepartementCountAggregateInputType = {
+    id?: true
+    name?: true
+    code?: true
+    _all?: true
+  }
+
+  export type DepartementAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Departement to aggregate.
+     */
+    where?: DepartementWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Departements to fetch.
+     */
+    orderBy?: DepartementOrderByWithRelationInput | DepartementOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: DepartementWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Departements from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Departements.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Departements
+    **/
+    _count?: true | DepartementCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: DepartementAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: DepartementSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: DepartementMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: DepartementMaxAggregateInputType
+  }
+
+  export type GetDepartementAggregateType<T extends DepartementAggregateArgs> = {
+        [P in keyof T & keyof AggregateDepartement]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDepartement[P]>
+      : GetScalarType<T[P], AggregateDepartement[P]>
+  }
+
+
+
+
+  export type DepartementGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DepartementWhereInput
+    orderBy?: DepartementOrderByWithAggregationInput | DepartementOrderByWithAggregationInput[]
+    by: DepartementScalarFieldEnum[] | DepartementScalarFieldEnum
+    having?: DepartementScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DepartementCountAggregateInputType | true
+    _avg?: DepartementAvgAggregateInputType
+    _sum?: DepartementSumAggregateInputType
+    _min?: DepartementMinAggregateInputType
+    _max?: DepartementMaxAggregateInputType
+  }
+
+  export type DepartementGroupByOutputType = {
+    id: number
+    name: string
+    code: string
+    _count: DepartementCountAggregateOutputType | null
+    _avg: DepartementAvgAggregateOutputType | null
+    _sum: DepartementSumAggregateOutputType | null
+    _min: DepartementMinAggregateOutputType | null
+    _max: DepartementMaxAggregateOutputType | null
+  }
+
+  type GetDepartementGroupByPayload<T extends DepartementGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<DepartementGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DepartementGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], DepartementGroupByOutputType[P]>
+            : GetScalarType<T[P], DepartementGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type DepartementSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    code?: boolean
+    filieres?: boolean | Departement$filieresArgs<ExtArgs>
+    _count?: boolean | DepartementCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["departement"]>
+
+  export type DepartementSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    code?: boolean
+  }, ExtArgs["result"]["departement"]>
+
+  export type DepartementSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    code?: boolean
+  }, ExtArgs["result"]["departement"]>
+
+  export type DepartementSelectScalar = {
+    id?: boolean
+    name?: boolean
+    code?: boolean
+  }
+
+  export type DepartementOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "code", ExtArgs["result"]["departement"]>
+  export type DepartementInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    filieres?: boolean | Departement$filieresArgs<ExtArgs>
+    _count?: boolean | DepartementCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type DepartementIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type DepartementIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $DepartementPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Departement"
+    objects: {
+      filieres: Prisma.$FilierePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      code: string
+    }, ExtArgs["result"]["departement"]>
+    composites: {}
+  }
+
+  type DepartementGetPayload<S extends boolean | null | undefined | DepartementDefaultArgs> = $Result.GetResult<Prisma.$DepartementPayload, S>
+
+  type DepartementCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<DepartementFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: DepartementCountAggregateInputType | true
+    }
+
+  export interface DepartementDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Departement'], meta: { name: 'Departement' } }
+    /**
+     * Find zero or one Departement that matches the filter.
+     * @param {DepartementFindUniqueArgs} args - Arguments to find a Departement
+     * @example
+     * // Get one Departement
+     * const departement = await prisma.departement.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends DepartementFindUniqueArgs>(args: SelectSubset<T, DepartementFindUniqueArgs<ExtArgs>>): Prisma__DepartementClient<$Result.GetResult<Prisma.$DepartementPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Departement that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {DepartementFindUniqueOrThrowArgs} args - Arguments to find a Departement
+     * @example
+     * // Get one Departement
+     * const departement = await prisma.departement.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends DepartementFindUniqueOrThrowArgs>(args: SelectSubset<T, DepartementFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DepartementClient<$Result.GetResult<Prisma.$DepartementPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Departement that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DepartementFindFirstArgs} args - Arguments to find a Departement
+     * @example
+     * // Get one Departement
+     * const departement = await prisma.departement.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends DepartementFindFirstArgs>(args?: SelectSubset<T, DepartementFindFirstArgs<ExtArgs>>): Prisma__DepartementClient<$Result.GetResult<Prisma.$DepartementPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Departement that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DepartementFindFirstOrThrowArgs} args - Arguments to find a Departement
+     * @example
+     * // Get one Departement
+     * const departement = await prisma.departement.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends DepartementFindFirstOrThrowArgs>(args?: SelectSubset<T, DepartementFindFirstOrThrowArgs<ExtArgs>>): Prisma__DepartementClient<$Result.GetResult<Prisma.$DepartementPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Departements that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DepartementFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Departements
+     * const departements = await prisma.departement.findMany()
+     * 
+     * // Get first 10 Departements
+     * const departements = await prisma.departement.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const departementWithIdOnly = await prisma.departement.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends DepartementFindManyArgs>(args?: SelectSubset<T, DepartementFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DepartementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Departement.
+     * @param {DepartementCreateArgs} args - Arguments to create a Departement.
+     * @example
+     * // Create one Departement
+     * const Departement = await prisma.departement.create({
+     *   data: {
+     *     // ... data to create a Departement
+     *   }
+     * })
+     * 
+     */
+    create<T extends DepartementCreateArgs>(args: SelectSubset<T, DepartementCreateArgs<ExtArgs>>): Prisma__DepartementClient<$Result.GetResult<Prisma.$DepartementPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Departements.
+     * @param {DepartementCreateManyArgs} args - Arguments to create many Departements.
+     * @example
+     * // Create many Departements
+     * const departement = await prisma.departement.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends DepartementCreateManyArgs>(args?: SelectSubset<T, DepartementCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Departements and returns the data saved in the database.
+     * @param {DepartementCreateManyAndReturnArgs} args - Arguments to create many Departements.
+     * @example
+     * // Create many Departements
+     * const departement = await prisma.departement.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Departements and only return the `id`
+     * const departementWithIdOnly = await prisma.departement.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends DepartementCreateManyAndReturnArgs>(args?: SelectSubset<T, DepartementCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DepartementPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Departement.
+     * @param {DepartementDeleteArgs} args - Arguments to delete one Departement.
+     * @example
+     * // Delete one Departement
+     * const Departement = await prisma.departement.delete({
+     *   where: {
+     *     // ... filter to delete one Departement
+     *   }
+     * })
+     * 
+     */
+    delete<T extends DepartementDeleteArgs>(args: SelectSubset<T, DepartementDeleteArgs<ExtArgs>>): Prisma__DepartementClient<$Result.GetResult<Prisma.$DepartementPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Departement.
+     * @param {DepartementUpdateArgs} args - Arguments to update one Departement.
+     * @example
+     * // Update one Departement
+     * const departement = await prisma.departement.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends DepartementUpdateArgs>(args: SelectSubset<T, DepartementUpdateArgs<ExtArgs>>): Prisma__DepartementClient<$Result.GetResult<Prisma.$DepartementPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Departements.
+     * @param {DepartementDeleteManyArgs} args - Arguments to filter Departements to delete.
+     * @example
+     * // Delete a few Departements
+     * const { count } = await prisma.departement.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends DepartementDeleteManyArgs>(args?: SelectSubset<T, DepartementDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Departements.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DepartementUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Departements
+     * const departement = await prisma.departement.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends DepartementUpdateManyArgs>(args: SelectSubset<T, DepartementUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Departements and returns the data updated in the database.
+     * @param {DepartementUpdateManyAndReturnArgs} args - Arguments to update many Departements.
+     * @example
+     * // Update many Departements
+     * const departement = await prisma.departement.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Departements and only return the `id`
+     * const departementWithIdOnly = await prisma.departement.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends DepartementUpdateManyAndReturnArgs>(args: SelectSubset<T, DepartementUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DepartementPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Departement.
+     * @param {DepartementUpsertArgs} args - Arguments to update or create a Departement.
+     * @example
+     * // Update or create a Departement
+     * const departement = await prisma.departement.upsert({
+     *   create: {
+     *     // ... data to create a Departement
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Departement we want to update
+     *   }
+     * })
+     */
+    upsert<T extends DepartementUpsertArgs>(args: SelectSubset<T, DepartementUpsertArgs<ExtArgs>>): Prisma__DepartementClient<$Result.GetResult<Prisma.$DepartementPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Departements.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DepartementCountArgs} args - Arguments to filter Departements to count.
+     * @example
+     * // Count the number of Departements
+     * const count = await prisma.departement.count({
+     *   where: {
+     *     // ... the filter for the Departements we want to count
+     *   }
+     * })
+    **/
+    count<T extends DepartementCountArgs>(
+      args?: Subset<T, DepartementCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], DepartementCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Departement.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DepartementAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends DepartementAggregateArgs>(args: Subset<T, DepartementAggregateArgs>): Prisma.PrismaPromise<GetDepartementAggregateType<T>>
+
+    /**
+     * Group by Departement.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DepartementGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends DepartementGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: DepartementGroupByArgs['orderBy'] }
+        : { orderBy?: DepartementGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, DepartementGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDepartementGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Departement model
+   */
+  readonly fields: DepartementFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Departement.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__DepartementClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    filieres<T extends Departement$filieresArgs<ExtArgs> = {}>(args?: Subset<T, Departement$filieresArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FilierePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Departement model
+   */
+  interface DepartementFieldRefs {
+    readonly id: FieldRef<"Departement", 'Int'>
+    readonly name: FieldRef<"Departement", 'String'>
+    readonly code: FieldRef<"Departement", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Departement findUnique
+   */
+  export type DepartementFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Departement
+     */
+    select?: DepartementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Departement
+     */
+    omit?: DepartementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DepartementInclude<ExtArgs> | null
+    /**
+     * Filter, which Departement to fetch.
+     */
+    where: DepartementWhereUniqueInput
+  }
+
+  /**
+   * Departement findUniqueOrThrow
+   */
+  export type DepartementFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Departement
+     */
+    select?: DepartementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Departement
+     */
+    omit?: DepartementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DepartementInclude<ExtArgs> | null
+    /**
+     * Filter, which Departement to fetch.
+     */
+    where: DepartementWhereUniqueInput
+  }
+
+  /**
+   * Departement findFirst
+   */
+  export type DepartementFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Departement
+     */
+    select?: DepartementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Departement
+     */
+    omit?: DepartementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DepartementInclude<ExtArgs> | null
+    /**
+     * Filter, which Departement to fetch.
+     */
+    where?: DepartementWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Departements to fetch.
+     */
+    orderBy?: DepartementOrderByWithRelationInput | DepartementOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Departements.
+     */
+    cursor?: DepartementWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Departements from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Departements.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Departements.
+     */
+    distinct?: DepartementScalarFieldEnum | DepartementScalarFieldEnum[]
+  }
+
+  /**
+   * Departement findFirstOrThrow
+   */
+  export type DepartementFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Departement
+     */
+    select?: DepartementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Departement
+     */
+    omit?: DepartementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DepartementInclude<ExtArgs> | null
+    /**
+     * Filter, which Departement to fetch.
+     */
+    where?: DepartementWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Departements to fetch.
+     */
+    orderBy?: DepartementOrderByWithRelationInput | DepartementOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Departements.
+     */
+    cursor?: DepartementWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Departements from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Departements.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Departements.
+     */
+    distinct?: DepartementScalarFieldEnum | DepartementScalarFieldEnum[]
+  }
+
+  /**
+   * Departement findMany
+   */
+  export type DepartementFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Departement
+     */
+    select?: DepartementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Departement
+     */
+    omit?: DepartementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DepartementInclude<ExtArgs> | null
+    /**
+     * Filter, which Departements to fetch.
+     */
+    where?: DepartementWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Departements to fetch.
+     */
+    orderBy?: DepartementOrderByWithRelationInput | DepartementOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Departements.
+     */
+    cursor?: DepartementWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Departements from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Departements.
+     */
+    skip?: number
+    distinct?: DepartementScalarFieldEnum | DepartementScalarFieldEnum[]
+  }
+
+  /**
+   * Departement create
+   */
+  export type DepartementCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Departement
+     */
+    select?: DepartementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Departement
+     */
+    omit?: DepartementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DepartementInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Departement.
+     */
+    data: XOR<DepartementCreateInput, DepartementUncheckedCreateInput>
+  }
+
+  /**
+   * Departement createMany
+   */
+  export type DepartementCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Departements.
+     */
+    data: DepartementCreateManyInput | DepartementCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Departement createManyAndReturn
+   */
+  export type DepartementCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Departement
+     */
+    select?: DepartementSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Departement
+     */
+    omit?: DepartementOmit<ExtArgs> | null
+    /**
+     * The data used to create many Departements.
+     */
+    data: DepartementCreateManyInput | DepartementCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Departement update
+   */
+  export type DepartementUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Departement
+     */
+    select?: DepartementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Departement
+     */
+    omit?: DepartementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DepartementInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Departement.
+     */
+    data: XOR<DepartementUpdateInput, DepartementUncheckedUpdateInput>
+    /**
+     * Choose, which Departement to update.
+     */
+    where: DepartementWhereUniqueInput
+  }
+
+  /**
+   * Departement updateMany
+   */
+  export type DepartementUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Departements.
+     */
+    data: XOR<DepartementUpdateManyMutationInput, DepartementUncheckedUpdateManyInput>
+    /**
+     * Filter which Departements to update
+     */
+    where?: DepartementWhereInput
+    /**
+     * Limit how many Departements to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Departement updateManyAndReturn
+   */
+  export type DepartementUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Departement
+     */
+    select?: DepartementSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Departement
+     */
+    omit?: DepartementOmit<ExtArgs> | null
+    /**
+     * The data used to update Departements.
+     */
+    data: XOR<DepartementUpdateManyMutationInput, DepartementUncheckedUpdateManyInput>
+    /**
+     * Filter which Departements to update
+     */
+    where?: DepartementWhereInput
+    /**
+     * Limit how many Departements to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Departement upsert
+   */
+  export type DepartementUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Departement
+     */
+    select?: DepartementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Departement
+     */
+    omit?: DepartementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DepartementInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Departement to update in case it exists.
+     */
+    where: DepartementWhereUniqueInput
+    /**
+     * In case the Departement found by the `where` argument doesn't exist, create a new Departement with this data.
+     */
+    create: XOR<DepartementCreateInput, DepartementUncheckedCreateInput>
+    /**
+     * In case the Departement was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<DepartementUpdateInput, DepartementUncheckedUpdateInput>
+  }
+
+  /**
+   * Departement delete
+   */
+  export type DepartementDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Departement
+     */
+    select?: DepartementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Departement
+     */
+    omit?: DepartementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DepartementInclude<ExtArgs> | null
+    /**
+     * Filter which Departement to delete.
+     */
+    where: DepartementWhereUniqueInput
+  }
+
+  /**
+   * Departement deleteMany
+   */
+  export type DepartementDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Departements to delete
+     */
+    where?: DepartementWhereInput
+    /**
+     * Limit how many Departements to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Departement.filieres
+   */
+  export type Departement$filieresArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Filiere
+     */
+    select?: FiliereSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Filiere
+     */
+    omit?: FiliereOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FiliereInclude<ExtArgs> | null
+    where?: FiliereWhereInput
+    orderBy?: FiliereOrderByWithRelationInput | FiliereOrderByWithRelationInput[]
+    cursor?: FiliereWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FiliereScalarFieldEnum | FiliereScalarFieldEnum[]
+  }
+
+  /**
+   * Departement without action
+   */
+  export type DepartementDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Departement
+     */
+    select?: DepartementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Departement
+     */
+    omit?: DepartementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DepartementInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Filiere
+   */
+
+  export type AggregateFiliere = {
+    _count: FiliereCountAggregateOutputType | null
+    _avg: FiliereAvgAggregateOutputType | null
+    _sum: FiliereSumAggregateOutputType | null
+    _min: FiliereMinAggregateOutputType | null
+    _max: FiliereMaxAggregateOutputType | null
+  }
+
+  export type FiliereAvgAggregateOutputType = {
+    id: number | null
+    departementId: number | null
+  }
+
+  export type FiliereSumAggregateOutputType = {
+    id: number | null
+    departementId: number | null
+  }
+
+  export type FiliereMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    code: string | null
+    departementId: number | null
+  }
+
+  export type FiliereMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    code: string | null
+    departementId: number | null
+  }
+
+  export type FiliereCountAggregateOutputType = {
+    id: number
+    name: number
+    code: number
+    departementId: number
+    _all: number
+  }
+
+
+  export type FiliereAvgAggregateInputType = {
+    id?: true
+    departementId?: true
+  }
+
+  export type FiliereSumAggregateInputType = {
+    id?: true
+    departementId?: true
+  }
+
+  export type FiliereMinAggregateInputType = {
+    id?: true
+    name?: true
+    code?: true
+    departementId?: true
+  }
+
+  export type FiliereMaxAggregateInputType = {
+    id?: true
+    name?: true
+    code?: true
+    departementId?: true
+  }
+
+  export type FiliereCountAggregateInputType = {
+    id?: true
+    name?: true
+    code?: true
+    departementId?: true
+    _all?: true
+  }
+
+  export type FiliereAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Filiere to aggregate.
+     */
+    where?: FiliereWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Filieres to fetch.
+     */
+    orderBy?: FiliereOrderByWithRelationInput | FiliereOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FiliereWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Filieres from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Filieres.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Filieres
+    **/
+    _count?: true | FiliereCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FiliereAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FiliereSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FiliereMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FiliereMaxAggregateInputType
+  }
+
+  export type GetFiliereAggregateType<T extends FiliereAggregateArgs> = {
+        [P in keyof T & keyof AggregateFiliere]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFiliere[P]>
+      : GetScalarType<T[P], AggregateFiliere[P]>
+  }
+
+
+
+
+  export type FiliereGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FiliereWhereInput
+    orderBy?: FiliereOrderByWithAggregationInput | FiliereOrderByWithAggregationInput[]
+    by: FiliereScalarFieldEnum[] | FiliereScalarFieldEnum
+    having?: FiliereScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FiliereCountAggregateInputType | true
+    _avg?: FiliereAvgAggregateInputType
+    _sum?: FiliereSumAggregateInputType
+    _min?: FiliereMinAggregateInputType
+    _max?: FiliereMaxAggregateInputType
+  }
+
+  export type FiliereGroupByOutputType = {
+    id: number
+    name: string
+    code: string
+    departementId: number
+    _count: FiliereCountAggregateOutputType | null
+    _avg: FiliereAvgAggregateOutputType | null
+    _sum: FiliereSumAggregateOutputType | null
+    _min: FiliereMinAggregateOutputType | null
+    _max: FiliereMaxAggregateOutputType | null
+  }
+
+  type GetFiliereGroupByPayload<T extends FiliereGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FiliereGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FiliereGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FiliereGroupByOutputType[P]>
+            : GetScalarType<T[P], FiliereGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FiliereSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    code?: boolean
+    departementId?: boolean
+    departement?: boolean | DepartementDefaultArgs<ExtArgs>
+    students?: boolean | Filiere$studentsArgs<ExtArgs>
+    _count?: boolean | FiliereCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["filiere"]>
+
+  export type FiliereSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    code?: boolean
+    departementId?: boolean
+    departement?: boolean | DepartementDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["filiere"]>
+
+  export type FiliereSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    code?: boolean
+    departementId?: boolean
+    departement?: boolean | DepartementDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["filiere"]>
+
+  export type FiliereSelectScalar = {
+    id?: boolean
+    name?: boolean
+    code?: boolean
+    departementId?: boolean
+  }
+
+  export type FiliereOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "code" | "departementId", ExtArgs["result"]["filiere"]>
+  export type FiliereInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    departement?: boolean | DepartementDefaultArgs<ExtArgs>
+    students?: boolean | Filiere$studentsArgs<ExtArgs>
+    _count?: boolean | FiliereCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type FiliereIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    departement?: boolean | DepartementDefaultArgs<ExtArgs>
+  }
+  export type FiliereIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    departement?: boolean | DepartementDefaultArgs<ExtArgs>
+  }
+
+  export type $FilierePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Filiere"
+    objects: {
+      departement: Prisma.$DepartementPayload<ExtArgs>
+      students: Prisma.$StudentProfilePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      code: string
+      departementId: number
+    }, ExtArgs["result"]["filiere"]>
+    composites: {}
+  }
+
+  type FiliereGetPayload<S extends boolean | null | undefined | FiliereDefaultArgs> = $Result.GetResult<Prisma.$FilierePayload, S>
+
+  type FiliereCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FiliereFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FiliereCountAggregateInputType | true
+    }
+
+  export interface FiliereDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Filiere'], meta: { name: 'Filiere' } }
+    /**
+     * Find zero or one Filiere that matches the filter.
+     * @param {FiliereFindUniqueArgs} args - Arguments to find a Filiere
+     * @example
+     * // Get one Filiere
+     * const filiere = await prisma.filiere.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FiliereFindUniqueArgs>(args: SelectSubset<T, FiliereFindUniqueArgs<ExtArgs>>): Prisma__FiliereClient<$Result.GetResult<Prisma.$FilierePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Filiere that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FiliereFindUniqueOrThrowArgs} args - Arguments to find a Filiere
+     * @example
+     * // Get one Filiere
+     * const filiere = await prisma.filiere.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FiliereFindUniqueOrThrowArgs>(args: SelectSubset<T, FiliereFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FiliereClient<$Result.GetResult<Prisma.$FilierePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Filiere that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FiliereFindFirstArgs} args - Arguments to find a Filiere
+     * @example
+     * // Get one Filiere
+     * const filiere = await prisma.filiere.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FiliereFindFirstArgs>(args?: SelectSubset<T, FiliereFindFirstArgs<ExtArgs>>): Prisma__FiliereClient<$Result.GetResult<Prisma.$FilierePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Filiere that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FiliereFindFirstOrThrowArgs} args - Arguments to find a Filiere
+     * @example
+     * // Get one Filiere
+     * const filiere = await prisma.filiere.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FiliereFindFirstOrThrowArgs>(args?: SelectSubset<T, FiliereFindFirstOrThrowArgs<ExtArgs>>): Prisma__FiliereClient<$Result.GetResult<Prisma.$FilierePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Filieres that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FiliereFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Filieres
+     * const filieres = await prisma.filiere.findMany()
+     * 
+     * // Get first 10 Filieres
+     * const filieres = await prisma.filiere.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const filiereWithIdOnly = await prisma.filiere.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FiliereFindManyArgs>(args?: SelectSubset<T, FiliereFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FilierePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Filiere.
+     * @param {FiliereCreateArgs} args - Arguments to create a Filiere.
+     * @example
+     * // Create one Filiere
+     * const Filiere = await prisma.filiere.create({
+     *   data: {
+     *     // ... data to create a Filiere
+     *   }
+     * })
+     * 
+     */
+    create<T extends FiliereCreateArgs>(args: SelectSubset<T, FiliereCreateArgs<ExtArgs>>): Prisma__FiliereClient<$Result.GetResult<Prisma.$FilierePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Filieres.
+     * @param {FiliereCreateManyArgs} args - Arguments to create many Filieres.
+     * @example
+     * // Create many Filieres
+     * const filiere = await prisma.filiere.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FiliereCreateManyArgs>(args?: SelectSubset<T, FiliereCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Filieres and returns the data saved in the database.
+     * @param {FiliereCreateManyAndReturnArgs} args - Arguments to create many Filieres.
+     * @example
+     * // Create many Filieres
+     * const filiere = await prisma.filiere.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Filieres and only return the `id`
+     * const filiereWithIdOnly = await prisma.filiere.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FiliereCreateManyAndReturnArgs>(args?: SelectSubset<T, FiliereCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FilierePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Filiere.
+     * @param {FiliereDeleteArgs} args - Arguments to delete one Filiere.
+     * @example
+     * // Delete one Filiere
+     * const Filiere = await prisma.filiere.delete({
+     *   where: {
+     *     // ... filter to delete one Filiere
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FiliereDeleteArgs>(args: SelectSubset<T, FiliereDeleteArgs<ExtArgs>>): Prisma__FiliereClient<$Result.GetResult<Prisma.$FilierePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Filiere.
+     * @param {FiliereUpdateArgs} args - Arguments to update one Filiere.
+     * @example
+     * // Update one Filiere
+     * const filiere = await prisma.filiere.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FiliereUpdateArgs>(args: SelectSubset<T, FiliereUpdateArgs<ExtArgs>>): Prisma__FiliereClient<$Result.GetResult<Prisma.$FilierePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Filieres.
+     * @param {FiliereDeleteManyArgs} args - Arguments to filter Filieres to delete.
+     * @example
+     * // Delete a few Filieres
+     * const { count } = await prisma.filiere.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FiliereDeleteManyArgs>(args?: SelectSubset<T, FiliereDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Filieres.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FiliereUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Filieres
+     * const filiere = await prisma.filiere.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FiliereUpdateManyArgs>(args: SelectSubset<T, FiliereUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Filieres and returns the data updated in the database.
+     * @param {FiliereUpdateManyAndReturnArgs} args - Arguments to update many Filieres.
+     * @example
+     * // Update many Filieres
+     * const filiere = await prisma.filiere.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Filieres and only return the `id`
+     * const filiereWithIdOnly = await prisma.filiere.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FiliereUpdateManyAndReturnArgs>(args: SelectSubset<T, FiliereUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FilierePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Filiere.
+     * @param {FiliereUpsertArgs} args - Arguments to update or create a Filiere.
+     * @example
+     * // Update or create a Filiere
+     * const filiere = await prisma.filiere.upsert({
+     *   create: {
+     *     // ... data to create a Filiere
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Filiere we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FiliereUpsertArgs>(args: SelectSubset<T, FiliereUpsertArgs<ExtArgs>>): Prisma__FiliereClient<$Result.GetResult<Prisma.$FilierePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Filieres.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FiliereCountArgs} args - Arguments to filter Filieres to count.
+     * @example
+     * // Count the number of Filieres
+     * const count = await prisma.filiere.count({
+     *   where: {
+     *     // ... the filter for the Filieres we want to count
+     *   }
+     * })
+    **/
+    count<T extends FiliereCountArgs>(
+      args?: Subset<T, FiliereCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FiliereCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Filiere.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FiliereAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FiliereAggregateArgs>(args: Subset<T, FiliereAggregateArgs>): Prisma.PrismaPromise<GetFiliereAggregateType<T>>
+
+    /**
+     * Group by Filiere.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FiliereGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FiliereGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FiliereGroupByArgs['orderBy'] }
+        : { orderBy?: FiliereGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FiliereGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFiliereGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Filiere model
+   */
+  readonly fields: FiliereFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Filiere.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FiliereClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    departement<T extends DepartementDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DepartementDefaultArgs<ExtArgs>>): Prisma__DepartementClient<$Result.GetResult<Prisma.$DepartementPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    students<T extends Filiere$studentsArgs<ExtArgs> = {}>(args?: Subset<T, Filiere$studentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Filiere model
+   */
+  interface FiliereFieldRefs {
+    readonly id: FieldRef<"Filiere", 'Int'>
+    readonly name: FieldRef<"Filiere", 'String'>
+    readonly code: FieldRef<"Filiere", 'String'>
+    readonly departementId: FieldRef<"Filiere", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Filiere findUnique
+   */
+  export type FiliereFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Filiere
+     */
+    select?: FiliereSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Filiere
+     */
+    omit?: FiliereOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FiliereInclude<ExtArgs> | null
+    /**
+     * Filter, which Filiere to fetch.
+     */
+    where: FiliereWhereUniqueInput
+  }
+
+  /**
+   * Filiere findUniqueOrThrow
+   */
+  export type FiliereFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Filiere
+     */
+    select?: FiliereSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Filiere
+     */
+    omit?: FiliereOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FiliereInclude<ExtArgs> | null
+    /**
+     * Filter, which Filiere to fetch.
+     */
+    where: FiliereWhereUniqueInput
+  }
+
+  /**
+   * Filiere findFirst
+   */
+  export type FiliereFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Filiere
+     */
+    select?: FiliereSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Filiere
+     */
+    omit?: FiliereOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FiliereInclude<ExtArgs> | null
+    /**
+     * Filter, which Filiere to fetch.
+     */
+    where?: FiliereWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Filieres to fetch.
+     */
+    orderBy?: FiliereOrderByWithRelationInput | FiliereOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Filieres.
+     */
+    cursor?: FiliereWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Filieres from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Filieres.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Filieres.
+     */
+    distinct?: FiliereScalarFieldEnum | FiliereScalarFieldEnum[]
+  }
+
+  /**
+   * Filiere findFirstOrThrow
+   */
+  export type FiliereFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Filiere
+     */
+    select?: FiliereSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Filiere
+     */
+    omit?: FiliereOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FiliereInclude<ExtArgs> | null
+    /**
+     * Filter, which Filiere to fetch.
+     */
+    where?: FiliereWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Filieres to fetch.
+     */
+    orderBy?: FiliereOrderByWithRelationInput | FiliereOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Filieres.
+     */
+    cursor?: FiliereWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Filieres from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Filieres.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Filieres.
+     */
+    distinct?: FiliereScalarFieldEnum | FiliereScalarFieldEnum[]
+  }
+
+  /**
+   * Filiere findMany
+   */
+  export type FiliereFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Filiere
+     */
+    select?: FiliereSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Filiere
+     */
+    omit?: FiliereOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FiliereInclude<ExtArgs> | null
+    /**
+     * Filter, which Filieres to fetch.
+     */
+    where?: FiliereWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Filieres to fetch.
+     */
+    orderBy?: FiliereOrderByWithRelationInput | FiliereOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Filieres.
+     */
+    cursor?: FiliereWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Filieres from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Filieres.
+     */
+    skip?: number
+    distinct?: FiliereScalarFieldEnum | FiliereScalarFieldEnum[]
+  }
+
+  /**
+   * Filiere create
+   */
+  export type FiliereCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Filiere
+     */
+    select?: FiliereSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Filiere
+     */
+    omit?: FiliereOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FiliereInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Filiere.
+     */
+    data: XOR<FiliereCreateInput, FiliereUncheckedCreateInput>
+  }
+
+  /**
+   * Filiere createMany
+   */
+  export type FiliereCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Filieres.
+     */
+    data: FiliereCreateManyInput | FiliereCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Filiere createManyAndReturn
+   */
+  export type FiliereCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Filiere
+     */
+    select?: FiliereSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Filiere
+     */
+    omit?: FiliereOmit<ExtArgs> | null
+    /**
+     * The data used to create many Filieres.
+     */
+    data: FiliereCreateManyInput | FiliereCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FiliereIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Filiere update
+   */
+  export type FiliereUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Filiere
+     */
+    select?: FiliereSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Filiere
+     */
+    omit?: FiliereOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FiliereInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Filiere.
+     */
+    data: XOR<FiliereUpdateInput, FiliereUncheckedUpdateInput>
+    /**
+     * Choose, which Filiere to update.
+     */
+    where: FiliereWhereUniqueInput
+  }
+
+  /**
+   * Filiere updateMany
+   */
+  export type FiliereUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Filieres.
+     */
+    data: XOR<FiliereUpdateManyMutationInput, FiliereUncheckedUpdateManyInput>
+    /**
+     * Filter which Filieres to update
+     */
+    where?: FiliereWhereInput
+    /**
+     * Limit how many Filieres to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Filiere updateManyAndReturn
+   */
+  export type FiliereUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Filiere
+     */
+    select?: FiliereSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Filiere
+     */
+    omit?: FiliereOmit<ExtArgs> | null
+    /**
+     * The data used to update Filieres.
+     */
+    data: XOR<FiliereUpdateManyMutationInput, FiliereUncheckedUpdateManyInput>
+    /**
+     * Filter which Filieres to update
+     */
+    where?: FiliereWhereInput
+    /**
+     * Limit how many Filieres to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FiliereIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Filiere upsert
+   */
+  export type FiliereUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Filiere
+     */
+    select?: FiliereSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Filiere
+     */
+    omit?: FiliereOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FiliereInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Filiere to update in case it exists.
+     */
+    where: FiliereWhereUniqueInput
+    /**
+     * In case the Filiere found by the `where` argument doesn't exist, create a new Filiere with this data.
+     */
+    create: XOR<FiliereCreateInput, FiliereUncheckedCreateInput>
+    /**
+     * In case the Filiere was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FiliereUpdateInput, FiliereUncheckedUpdateInput>
+  }
+
+  /**
+   * Filiere delete
+   */
+  export type FiliereDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Filiere
+     */
+    select?: FiliereSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Filiere
+     */
+    omit?: FiliereOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FiliereInclude<ExtArgs> | null
+    /**
+     * Filter which Filiere to delete.
+     */
+    where: FiliereWhereUniqueInput
+  }
+
+  /**
+   * Filiere deleteMany
+   */
+  export type FiliereDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Filieres to delete
+     */
+    where?: FiliereWhereInput
+    /**
+     * Limit how many Filieres to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Filiere.students
+   */
+  export type Filiere$studentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentProfile
+     */
+    select?: StudentProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentProfile
+     */
+    omit?: StudentProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentProfileInclude<ExtArgs> | null
+    where?: StudentProfileWhereInput
+    orderBy?: StudentProfileOrderByWithRelationInput | StudentProfileOrderByWithRelationInput[]
+    cursor?: StudentProfileWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: StudentProfileScalarFieldEnum | StudentProfileScalarFieldEnum[]
+  }
+
+  /**
+   * Filiere without action
+   */
+  export type FiliereDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Filiere
+     */
+    select?: FiliereSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Filiere
+     */
+    omit?: FiliereOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FiliereInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -4751,6 +8382,34 @@ export namespace Prisma {
   };
 
   export type ViewScalarFieldEnum = (typeof ViewScalarFieldEnum)[keyof typeof ViewScalarFieldEnum]
+
+
+  export const StudentProfileScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    filiereId: 'filiereId'
+  };
+
+  export type StudentProfileScalarFieldEnum = (typeof StudentProfileScalarFieldEnum)[keyof typeof StudentProfileScalarFieldEnum]
+
+
+  export const DepartementScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    code: 'code'
+  };
+
+  export type DepartementScalarFieldEnum = (typeof DepartementScalarFieldEnum)[keyof typeof DepartementScalarFieldEnum]
+
+
+  export const FiliereScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    code: 'code',
+    departementId: 'departementId'
+  };
+
+  export type FiliereScalarFieldEnum = (typeof FiliereScalarFieldEnum)[keyof typeof FiliereScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -4881,6 +8540,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"User"> | Date | string
     documents?: DocumentListRelationFilter
     views?: ViewListRelationFilter
+    studentProfile?: XOR<StudentProfileNullableScalarRelationFilter, StudentProfileWhereInput> | null
   }
 
   export type UserOrderByWithRelationInput = {
@@ -4899,6 +8559,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     documents?: DocumentOrderByRelationAggregateInput
     views?: ViewOrderByRelationAggregateInput
+    studentProfile?: StudentProfileOrderByWithRelationInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -4920,6 +8581,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"User"> | Date | string
     documents?: DocumentListRelationFilter
     views?: ViewListRelationFilter
+    studentProfile?: XOR<StudentProfileNullableScalarRelationFilter, StudentProfileWhereInput> | null
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -5112,6 +8774,158 @@ export namespace Prisma {
     lastViewed?: DateTimeWithAggregatesFilter<"View"> | Date | string
   }
 
+  export type StudentProfileWhereInput = {
+    AND?: StudentProfileWhereInput | StudentProfileWhereInput[]
+    OR?: StudentProfileWhereInput[]
+    NOT?: StudentProfileWhereInput | StudentProfileWhereInput[]
+    id?: IntFilter<"StudentProfile"> | number
+    userId?: IntFilter<"StudentProfile"> | number
+    filiereId?: IntFilter<"StudentProfile"> | number
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    filiere?: XOR<FiliereScalarRelationFilter, FiliereWhereInput>
+  }
+
+  export type StudentProfileOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    filiereId?: SortOrder
+    user?: UserOrderByWithRelationInput
+    filiere?: FiliereOrderByWithRelationInput
+  }
+
+  export type StudentProfileWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    userId?: number
+    AND?: StudentProfileWhereInput | StudentProfileWhereInput[]
+    OR?: StudentProfileWhereInput[]
+    NOT?: StudentProfileWhereInput | StudentProfileWhereInput[]
+    filiereId?: IntFilter<"StudentProfile"> | number
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    filiere?: XOR<FiliereScalarRelationFilter, FiliereWhereInput>
+  }, "id" | "userId">
+
+  export type StudentProfileOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    filiereId?: SortOrder
+    _count?: StudentProfileCountOrderByAggregateInput
+    _avg?: StudentProfileAvgOrderByAggregateInput
+    _max?: StudentProfileMaxOrderByAggregateInput
+    _min?: StudentProfileMinOrderByAggregateInput
+    _sum?: StudentProfileSumOrderByAggregateInput
+  }
+
+  export type StudentProfileScalarWhereWithAggregatesInput = {
+    AND?: StudentProfileScalarWhereWithAggregatesInput | StudentProfileScalarWhereWithAggregatesInput[]
+    OR?: StudentProfileScalarWhereWithAggregatesInput[]
+    NOT?: StudentProfileScalarWhereWithAggregatesInput | StudentProfileScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"StudentProfile"> | number
+    userId?: IntWithAggregatesFilter<"StudentProfile"> | number
+    filiereId?: IntWithAggregatesFilter<"StudentProfile"> | number
+  }
+
+  export type DepartementWhereInput = {
+    AND?: DepartementWhereInput | DepartementWhereInput[]
+    OR?: DepartementWhereInput[]
+    NOT?: DepartementWhereInput | DepartementWhereInput[]
+    id?: IntFilter<"Departement"> | number
+    name?: StringFilter<"Departement"> | string
+    code?: StringFilter<"Departement"> | string
+    filieres?: FiliereListRelationFilter
+  }
+
+  export type DepartementOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    code?: SortOrder
+    filieres?: FiliereOrderByRelationAggregateInput
+  }
+
+  export type DepartementWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    name?: string
+    code?: string
+    AND?: DepartementWhereInput | DepartementWhereInput[]
+    OR?: DepartementWhereInput[]
+    NOT?: DepartementWhereInput | DepartementWhereInput[]
+    filieres?: FiliereListRelationFilter
+  }, "id" | "name" | "code">
+
+  export type DepartementOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    code?: SortOrder
+    _count?: DepartementCountOrderByAggregateInput
+    _avg?: DepartementAvgOrderByAggregateInput
+    _max?: DepartementMaxOrderByAggregateInput
+    _min?: DepartementMinOrderByAggregateInput
+    _sum?: DepartementSumOrderByAggregateInput
+  }
+
+  export type DepartementScalarWhereWithAggregatesInput = {
+    AND?: DepartementScalarWhereWithAggregatesInput | DepartementScalarWhereWithAggregatesInput[]
+    OR?: DepartementScalarWhereWithAggregatesInput[]
+    NOT?: DepartementScalarWhereWithAggregatesInput | DepartementScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Departement"> | number
+    name?: StringWithAggregatesFilter<"Departement"> | string
+    code?: StringWithAggregatesFilter<"Departement"> | string
+  }
+
+  export type FiliereWhereInput = {
+    AND?: FiliereWhereInput | FiliereWhereInput[]
+    OR?: FiliereWhereInput[]
+    NOT?: FiliereWhereInput | FiliereWhereInput[]
+    id?: IntFilter<"Filiere"> | number
+    name?: StringFilter<"Filiere"> | string
+    code?: StringFilter<"Filiere"> | string
+    departementId?: IntFilter<"Filiere"> | number
+    departement?: XOR<DepartementScalarRelationFilter, DepartementWhereInput>
+    students?: StudentProfileListRelationFilter
+  }
+
+  export type FiliereOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    code?: SortOrder
+    departementId?: SortOrder
+    departement?: DepartementOrderByWithRelationInput
+    students?: StudentProfileOrderByRelationAggregateInput
+  }
+
+  export type FiliereWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    name?: string
+    code?: string
+    AND?: FiliereWhereInput | FiliereWhereInput[]
+    OR?: FiliereWhereInput[]
+    NOT?: FiliereWhereInput | FiliereWhereInput[]
+    departementId?: IntFilter<"Filiere"> | number
+    departement?: XOR<DepartementScalarRelationFilter, DepartementWhereInput>
+    students?: StudentProfileListRelationFilter
+  }, "id" | "name" | "code">
+
+  export type FiliereOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    code?: SortOrder
+    departementId?: SortOrder
+    _count?: FiliereCountOrderByAggregateInput
+    _avg?: FiliereAvgOrderByAggregateInput
+    _max?: FiliereMaxOrderByAggregateInput
+    _min?: FiliereMinOrderByAggregateInput
+    _sum?: FiliereSumOrderByAggregateInput
+  }
+
+  export type FiliereScalarWhereWithAggregatesInput = {
+    AND?: FiliereScalarWhereWithAggregatesInput | FiliereScalarWhereWithAggregatesInput[]
+    OR?: FiliereScalarWhereWithAggregatesInput[]
+    NOT?: FiliereScalarWhereWithAggregatesInput | FiliereScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Filiere"> | number
+    name?: StringWithAggregatesFilter<"Filiere"> | string
+    code?: StringWithAggregatesFilter<"Filiere"> | string
+    departementId?: IntWithAggregatesFilter<"Filiere"> | number
+  }
+
   export type UserCreateInput = {
     email: string
     firstName: string
@@ -5127,6 +8941,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     documents?: DocumentCreateNestedManyWithoutAuthorInput
     views?: ViewCreateNestedManyWithoutViewerInput
+    studentProfile?: StudentProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -5145,6 +8960,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     documents?: DocumentUncheckedCreateNestedManyWithoutAuthorInput
     views?: ViewUncheckedCreateNestedManyWithoutViewerInput
+    studentProfile?: StudentProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -5162,6 +8978,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     documents?: DocumentUpdateManyWithoutAuthorNestedInput
     views?: ViewUpdateManyWithoutViewerNestedInput
+    studentProfile?: StudentProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -5180,6 +8997,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     documents?: DocumentUncheckedUpdateManyWithoutAuthorNestedInput
     views?: ViewUncheckedUpdateManyWithoutViewerNestedInput
+    studentProfile?: StudentProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -5378,6 +9196,136 @@ export namespace Prisma {
     lastViewed?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type StudentProfileCreateInput = {
+    user: UserCreateNestedOneWithoutStudentProfileInput
+    filiere: FiliereCreateNestedOneWithoutStudentsInput
+  }
+
+  export type StudentProfileUncheckedCreateInput = {
+    id?: number
+    userId: number
+    filiereId: number
+  }
+
+  export type StudentProfileUpdateInput = {
+    user?: UserUpdateOneRequiredWithoutStudentProfileNestedInput
+    filiere?: FiliereUpdateOneRequiredWithoutStudentsNestedInput
+  }
+
+  export type StudentProfileUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    filiereId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type StudentProfileCreateManyInput = {
+    id?: number
+    userId: number
+    filiereId: number
+  }
+
+  export type StudentProfileUpdateManyMutationInput = {
+
+  }
+
+  export type StudentProfileUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    filiereId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type DepartementCreateInput = {
+    name: string
+    code: string
+    filieres?: FiliereCreateNestedManyWithoutDepartementInput
+  }
+
+  export type DepartementUncheckedCreateInput = {
+    id?: number
+    name: string
+    code: string
+    filieres?: FiliereUncheckedCreateNestedManyWithoutDepartementInput
+  }
+
+  export type DepartementUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    filieres?: FiliereUpdateManyWithoutDepartementNestedInput
+  }
+
+  export type DepartementUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    filieres?: FiliereUncheckedUpdateManyWithoutDepartementNestedInput
+  }
+
+  export type DepartementCreateManyInput = {
+    id?: number
+    name: string
+    code: string
+  }
+
+  export type DepartementUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DepartementUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FiliereCreateInput = {
+    name: string
+    code: string
+    departement: DepartementCreateNestedOneWithoutFilieresInput
+    students?: StudentProfileCreateNestedManyWithoutFiliereInput
+  }
+
+  export type FiliereUncheckedCreateInput = {
+    id?: number
+    name: string
+    code: string
+    departementId: number
+    students?: StudentProfileUncheckedCreateNestedManyWithoutFiliereInput
+  }
+
+  export type FiliereUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    departement?: DepartementUpdateOneRequiredWithoutFilieresNestedInput
+    students?: StudentProfileUpdateManyWithoutFiliereNestedInput
+  }
+
+  export type FiliereUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    departementId?: IntFieldUpdateOperationsInput | number
+    students?: StudentProfileUncheckedUpdateManyWithoutFiliereNestedInput
+  }
+
+  export type FiliereCreateManyInput = {
+    id?: number
+    name: string
+    code: string
+    departementId: number
+  }
+
+  export type FiliereUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FiliereUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    departementId?: IntFieldUpdateOperationsInput | number
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -5463,6 +9411,11 @@ export namespace Prisma {
     every?: ViewWhereInput
     some?: ViewWhereInput
     none?: ViewWhereInput
+  }
+
+  export type StudentProfileNullableScalarRelationFilter = {
+    is?: StudentProfileWhereInput | null
+    isNot?: StudentProfileWhereInput | null
   }
 
   export type SortOrderInput = {
@@ -5759,6 +9712,123 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
+  export type FiliereScalarRelationFilter = {
+    is?: FiliereWhereInput
+    isNot?: FiliereWhereInput
+  }
+
+  export type StudentProfileCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    filiereId?: SortOrder
+  }
+
+  export type StudentProfileAvgOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    filiereId?: SortOrder
+  }
+
+  export type StudentProfileMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    filiereId?: SortOrder
+  }
+
+  export type StudentProfileMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    filiereId?: SortOrder
+  }
+
+  export type StudentProfileSumOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    filiereId?: SortOrder
+  }
+
+  export type FiliereListRelationFilter = {
+    every?: FiliereWhereInput
+    some?: FiliereWhereInput
+    none?: FiliereWhereInput
+  }
+
+  export type FiliereOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type DepartementCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    code?: SortOrder
+  }
+
+  export type DepartementAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type DepartementMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    code?: SortOrder
+  }
+
+  export type DepartementMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    code?: SortOrder
+  }
+
+  export type DepartementSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type DepartementScalarRelationFilter = {
+    is?: DepartementWhereInput
+    isNot?: DepartementWhereInput
+  }
+
+  export type StudentProfileListRelationFilter = {
+    every?: StudentProfileWhereInput
+    some?: StudentProfileWhereInput
+    none?: StudentProfileWhereInput
+  }
+
+  export type StudentProfileOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FiliereCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    code?: SortOrder
+    departementId?: SortOrder
+  }
+
+  export type FiliereAvgOrderByAggregateInput = {
+    id?: SortOrder
+    departementId?: SortOrder
+  }
+
+  export type FiliereMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    code?: SortOrder
+    departementId?: SortOrder
+  }
+
+  export type FiliereMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    code?: SortOrder
+    departementId?: SortOrder
+  }
+
+  export type FiliereSumOrderByAggregateInput = {
+    id?: SortOrder
+    departementId?: SortOrder
+  }
+
   export type DocumentCreateNestedManyWithoutAuthorInput = {
     create?: XOR<DocumentCreateWithoutAuthorInput, DocumentUncheckedCreateWithoutAuthorInput> | DocumentCreateWithoutAuthorInput[] | DocumentUncheckedCreateWithoutAuthorInput[]
     connectOrCreate?: DocumentCreateOrConnectWithoutAuthorInput | DocumentCreateOrConnectWithoutAuthorInput[]
@@ -5773,6 +9843,12 @@ export namespace Prisma {
     connect?: ViewWhereUniqueInput | ViewWhereUniqueInput[]
   }
 
+  export type StudentProfileCreateNestedOneWithoutUserInput = {
+    create?: XOR<StudentProfileCreateWithoutUserInput, StudentProfileUncheckedCreateWithoutUserInput>
+    connectOrCreate?: StudentProfileCreateOrConnectWithoutUserInput
+    connect?: StudentProfileWhereUniqueInput
+  }
+
   export type DocumentUncheckedCreateNestedManyWithoutAuthorInput = {
     create?: XOR<DocumentCreateWithoutAuthorInput, DocumentUncheckedCreateWithoutAuthorInput> | DocumentCreateWithoutAuthorInput[] | DocumentUncheckedCreateWithoutAuthorInput[]
     connectOrCreate?: DocumentCreateOrConnectWithoutAuthorInput | DocumentCreateOrConnectWithoutAuthorInput[]
@@ -5785,6 +9861,12 @@ export namespace Prisma {
     connectOrCreate?: ViewCreateOrConnectWithoutViewerInput | ViewCreateOrConnectWithoutViewerInput[]
     createMany?: ViewCreateManyViewerInputEnvelope
     connect?: ViewWhereUniqueInput | ViewWhereUniqueInput[]
+  }
+
+  export type StudentProfileUncheckedCreateNestedOneWithoutUserInput = {
+    create?: XOR<StudentProfileCreateWithoutUserInput, StudentProfileUncheckedCreateWithoutUserInput>
+    connectOrCreate?: StudentProfileCreateOrConnectWithoutUserInput
+    connect?: StudentProfileWhereUniqueInput
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -5839,6 +9921,16 @@ export namespace Prisma {
     deleteMany?: ViewScalarWhereInput | ViewScalarWhereInput[]
   }
 
+  export type StudentProfileUpdateOneWithoutUserNestedInput = {
+    create?: XOR<StudentProfileCreateWithoutUserInput, StudentProfileUncheckedCreateWithoutUserInput>
+    connectOrCreate?: StudentProfileCreateOrConnectWithoutUserInput
+    upsert?: StudentProfileUpsertWithoutUserInput
+    disconnect?: StudentProfileWhereInput | boolean
+    delete?: StudentProfileWhereInput | boolean
+    connect?: StudentProfileWhereUniqueInput
+    update?: XOR<XOR<StudentProfileUpdateToOneWithWhereWithoutUserInput, StudentProfileUpdateWithoutUserInput>, StudentProfileUncheckedUpdateWithoutUserInput>
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -5873,6 +9965,16 @@ export namespace Prisma {
     update?: ViewUpdateWithWhereUniqueWithoutViewerInput | ViewUpdateWithWhereUniqueWithoutViewerInput[]
     updateMany?: ViewUpdateManyWithWhereWithoutViewerInput | ViewUpdateManyWithWhereWithoutViewerInput[]
     deleteMany?: ViewScalarWhereInput | ViewScalarWhereInput[]
+  }
+
+  export type StudentProfileUncheckedUpdateOneWithoutUserNestedInput = {
+    create?: XOR<StudentProfileCreateWithoutUserInput, StudentProfileUncheckedCreateWithoutUserInput>
+    connectOrCreate?: StudentProfileCreateOrConnectWithoutUserInput
+    upsert?: StudentProfileUpsertWithoutUserInput
+    disconnect?: StudentProfileWhereInput | boolean
+    delete?: StudentProfileWhereInput | boolean
+    connect?: StudentProfileWhereUniqueInput
+    update?: XOR<XOR<StudentProfileUpdateToOneWithWhereWithoutUserInput, StudentProfileUpdateWithoutUserInput>, StudentProfileUncheckedUpdateWithoutUserInput>
   }
 
   export type UserCreateNestedOneWithoutDocumentsInput = {
@@ -5965,6 +10067,132 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutViewsInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutViewsInput, UserUpdateWithoutViewsInput>, UserUncheckedUpdateWithoutViewsInput>
+  }
+
+  export type UserCreateNestedOneWithoutStudentProfileInput = {
+    create?: XOR<UserCreateWithoutStudentProfileInput, UserUncheckedCreateWithoutStudentProfileInput>
+    connectOrCreate?: UserCreateOrConnectWithoutStudentProfileInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type FiliereCreateNestedOneWithoutStudentsInput = {
+    create?: XOR<FiliereCreateWithoutStudentsInput, FiliereUncheckedCreateWithoutStudentsInput>
+    connectOrCreate?: FiliereCreateOrConnectWithoutStudentsInput
+    connect?: FiliereWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutStudentProfileNestedInput = {
+    create?: XOR<UserCreateWithoutStudentProfileInput, UserUncheckedCreateWithoutStudentProfileInput>
+    connectOrCreate?: UserCreateOrConnectWithoutStudentProfileInput
+    upsert?: UserUpsertWithoutStudentProfileInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutStudentProfileInput, UserUpdateWithoutStudentProfileInput>, UserUncheckedUpdateWithoutStudentProfileInput>
+  }
+
+  export type FiliereUpdateOneRequiredWithoutStudentsNestedInput = {
+    create?: XOR<FiliereCreateWithoutStudentsInput, FiliereUncheckedCreateWithoutStudentsInput>
+    connectOrCreate?: FiliereCreateOrConnectWithoutStudentsInput
+    upsert?: FiliereUpsertWithoutStudentsInput
+    connect?: FiliereWhereUniqueInput
+    update?: XOR<XOR<FiliereUpdateToOneWithWhereWithoutStudentsInput, FiliereUpdateWithoutStudentsInput>, FiliereUncheckedUpdateWithoutStudentsInput>
+  }
+
+  export type FiliereCreateNestedManyWithoutDepartementInput = {
+    create?: XOR<FiliereCreateWithoutDepartementInput, FiliereUncheckedCreateWithoutDepartementInput> | FiliereCreateWithoutDepartementInput[] | FiliereUncheckedCreateWithoutDepartementInput[]
+    connectOrCreate?: FiliereCreateOrConnectWithoutDepartementInput | FiliereCreateOrConnectWithoutDepartementInput[]
+    createMany?: FiliereCreateManyDepartementInputEnvelope
+    connect?: FiliereWhereUniqueInput | FiliereWhereUniqueInput[]
+  }
+
+  export type FiliereUncheckedCreateNestedManyWithoutDepartementInput = {
+    create?: XOR<FiliereCreateWithoutDepartementInput, FiliereUncheckedCreateWithoutDepartementInput> | FiliereCreateWithoutDepartementInput[] | FiliereUncheckedCreateWithoutDepartementInput[]
+    connectOrCreate?: FiliereCreateOrConnectWithoutDepartementInput | FiliereCreateOrConnectWithoutDepartementInput[]
+    createMany?: FiliereCreateManyDepartementInputEnvelope
+    connect?: FiliereWhereUniqueInput | FiliereWhereUniqueInput[]
+  }
+
+  export type FiliereUpdateManyWithoutDepartementNestedInput = {
+    create?: XOR<FiliereCreateWithoutDepartementInput, FiliereUncheckedCreateWithoutDepartementInput> | FiliereCreateWithoutDepartementInput[] | FiliereUncheckedCreateWithoutDepartementInput[]
+    connectOrCreate?: FiliereCreateOrConnectWithoutDepartementInput | FiliereCreateOrConnectWithoutDepartementInput[]
+    upsert?: FiliereUpsertWithWhereUniqueWithoutDepartementInput | FiliereUpsertWithWhereUniqueWithoutDepartementInput[]
+    createMany?: FiliereCreateManyDepartementInputEnvelope
+    set?: FiliereWhereUniqueInput | FiliereWhereUniqueInput[]
+    disconnect?: FiliereWhereUniqueInput | FiliereWhereUniqueInput[]
+    delete?: FiliereWhereUniqueInput | FiliereWhereUniqueInput[]
+    connect?: FiliereWhereUniqueInput | FiliereWhereUniqueInput[]
+    update?: FiliereUpdateWithWhereUniqueWithoutDepartementInput | FiliereUpdateWithWhereUniqueWithoutDepartementInput[]
+    updateMany?: FiliereUpdateManyWithWhereWithoutDepartementInput | FiliereUpdateManyWithWhereWithoutDepartementInput[]
+    deleteMany?: FiliereScalarWhereInput | FiliereScalarWhereInput[]
+  }
+
+  export type FiliereUncheckedUpdateManyWithoutDepartementNestedInput = {
+    create?: XOR<FiliereCreateWithoutDepartementInput, FiliereUncheckedCreateWithoutDepartementInput> | FiliereCreateWithoutDepartementInput[] | FiliereUncheckedCreateWithoutDepartementInput[]
+    connectOrCreate?: FiliereCreateOrConnectWithoutDepartementInput | FiliereCreateOrConnectWithoutDepartementInput[]
+    upsert?: FiliereUpsertWithWhereUniqueWithoutDepartementInput | FiliereUpsertWithWhereUniqueWithoutDepartementInput[]
+    createMany?: FiliereCreateManyDepartementInputEnvelope
+    set?: FiliereWhereUniqueInput | FiliereWhereUniqueInput[]
+    disconnect?: FiliereWhereUniqueInput | FiliereWhereUniqueInput[]
+    delete?: FiliereWhereUniqueInput | FiliereWhereUniqueInput[]
+    connect?: FiliereWhereUniqueInput | FiliereWhereUniqueInput[]
+    update?: FiliereUpdateWithWhereUniqueWithoutDepartementInput | FiliereUpdateWithWhereUniqueWithoutDepartementInput[]
+    updateMany?: FiliereUpdateManyWithWhereWithoutDepartementInput | FiliereUpdateManyWithWhereWithoutDepartementInput[]
+    deleteMany?: FiliereScalarWhereInput | FiliereScalarWhereInput[]
+  }
+
+  export type DepartementCreateNestedOneWithoutFilieresInput = {
+    create?: XOR<DepartementCreateWithoutFilieresInput, DepartementUncheckedCreateWithoutFilieresInput>
+    connectOrCreate?: DepartementCreateOrConnectWithoutFilieresInput
+    connect?: DepartementWhereUniqueInput
+  }
+
+  export type StudentProfileCreateNestedManyWithoutFiliereInput = {
+    create?: XOR<StudentProfileCreateWithoutFiliereInput, StudentProfileUncheckedCreateWithoutFiliereInput> | StudentProfileCreateWithoutFiliereInput[] | StudentProfileUncheckedCreateWithoutFiliereInput[]
+    connectOrCreate?: StudentProfileCreateOrConnectWithoutFiliereInput | StudentProfileCreateOrConnectWithoutFiliereInput[]
+    createMany?: StudentProfileCreateManyFiliereInputEnvelope
+    connect?: StudentProfileWhereUniqueInput | StudentProfileWhereUniqueInput[]
+  }
+
+  export type StudentProfileUncheckedCreateNestedManyWithoutFiliereInput = {
+    create?: XOR<StudentProfileCreateWithoutFiliereInput, StudentProfileUncheckedCreateWithoutFiliereInput> | StudentProfileCreateWithoutFiliereInput[] | StudentProfileUncheckedCreateWithoutFiliereInput[]
+    connectOrCreate?: StudentProfileCreateOrConnectWithoutFiliereInput | StudentProfileCreateOrConnectWithoutFiliereInput[]
+    createMany?: StudentProfileCreateManyFiliereInputEnvelope
+    connect?: StudentProfileWhereUniqueInput | StudentProfileWhereUniqueInput[]
+  }
+
+  export type DepartementUpdateOneRequiredWithoutFilieresNestedInput = {
+    create?: XOR<DepartementCreateWithoutFilieresInput, DepartementUncheckedCreateWithoutFilieresInput>
+    connectOrCreate?: DepartementCreateOrConnectWithoutFilieresInput
+    upsert?: DepartementUpsertWithoutFilieresInput
+    connect?: DepartementWhereUniqueInput
+    update?: XOR<XOR<DepartementUpdateToOneWithWhereWithoutFilieresInput, DepartementUpdateWithoutFilieresInput>, DepartementUncheckedUpdateWithoutFilieresInput>
+  }
+
+  export type StudentProfileUpdateManyWithoutFiliereNestedInput = {
+    create?: XOR<StudentProfileCreateWithoutFiliereInput, StudentProfileUncheckedCreateWithoutFiliereInput> | StudentProfileCreateWithoutFiliereInput[] | StudentProfileUncheckedCreateWithoutFiliereInput[]
+    connectOrCreate?: StudentProfileCreateOrConnectWithoutFiliereInput | StudentProfileCreateOrConnectWithoutFiliereInput[]
+    upsert?: StudentProfileUpsertWithWhereUniqueWithoutFiliereInput | StudentProfileUpsertWithWhereUniqueWithoutFiliereInput[]
+    createMany?: StudentProfileCreateManyFiliereInputEnvelope
+    set?: StudentProfileWhereUniqueInput | StudentProfileWhereUniqueInput[]
+    disconnect?: StudentProfileWhereUniqueInput | StudentProfileWhereUniqueInput[]
+    delete?: StudentProfileWhereUniqueInput | StudentProfileWhereUniqueInput[]
+    connect?: StudentProfileWhereUniqueInput | StudentProfileWhereUniqueInput[]
+    update?: StudentProfileUpdateWithWhereUniqueWithoutFiliereInput | StudentProfileUpdateWithWhereUniqueWithoutFiliereInput[]
+    updateMany?: StudentProfileUpdateManyWithWhereWithoutFiliereInput | StudentProfileUpdateManyWithWhereWithoutFiliereInput[]
+    deleteMany?: StudentProfileScalarWhereInput | StudentProfileScalarWhereInput[]
+  }
+
+  export type StudentProfileUncheckedUpdateManyWithoutFiliereNestedInput = {
+    create?: XOR<StudentProfileCreateWithoutFiliereInput, StudentProfileUncheckedCreateWithoutFiliereInput> | StudentProfileCreateWithoutFiliereInput[] | StudentProfileUncheckedCreateWithoutFiliereInput[]
+    connectOrCreate?: StudentProfileCreateOrConnectWithoutFiliereInput | StudentProfileCreateOrConnectWithoutFiliereInput[]
+    upsert?: StudentProfileUpsertWithWhereUniqueWithoutFiliereInput | StudentProfileUpsertWithWhereUniqueWithoutFiliereInput[]
+    createMany?: StudentProfileCreateManyFiliereInputEnvelope
+    set?: StudentProfileWhereUniqueInput | StudentProfileWhereUniqueInput[]
+    disconnect?: StudentProfileWhereUniqueInput | StudentProfileWhereUniqueInput[]
+    delete?: StudentProfileWhereUniqueInput | StudentProfileWhereUniqueInput[]
+    connect?: StudentProfileWhereUniqueInput | StudentProfileWhereUniqueInput[]
+    update?: StudentProfileUpdateWithWhereUniqueWithoutFiliereInput | StudentProfileUpdateWithWhereUniqueWithoutFiliereInput[]
+    updateMany?: StudentProfileUpdateManyWithWhereWithoutFiliereInput | StudentProfileUpdateManyWithWhereWithoutFiliereInput[]
+    deleteMany?: StudentProfileScalarWhereInput | StudentProfileScalarWhereInput[]
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -6234,6 +10462,20 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type StudentProfileCreateWithoutUserInput = {
+    filiere: FiliereCreateNestedOneWithoutStudentsInput
+  }
+
+  export type StudentProfileUncheckedCreateWithoutUserInput = {
+    id?: number
+    filiereId: number
+  }
+
+  export type StudentProfileCreateOrConnectWithoutUserInput = {
+    where: StudentProfileWhereUniqueInput
+    create: XOR<StudentProfileCreateWithoutUserInput, StudentProfileUncheckedCreateWithoutUserInput>
+  }
+
   export type DocumentUpsertWithWhereUniqueWithoutAuthorInput = {
     where: DocumentWhereUniqueInput
     update: XOR<DocumentUpdateWithoutAuthorInput, DocumentUncheckedUpdateWithoutAuthorInput>
@@ -6294,6 +10536,26 @@ export namespace Prisma {
     lastViewed?: DateTimeFilter<"View"> | Date | string
   }
 
+  export type StudentProfileUpsertWithoutUserInput = {
+    update: XOR<StudentProfileUpdateWithoutUserInput, StudentProfileUncheckedUpdateWithoutUserInput>
+    create: XOR<StudentProfileCreateWithoutUserInput, StudentProfileUncheckedCreateWithoutUserInput>
+    where?: StudentProfileWhereInput
+  }
+
+  export type StudentProfileUpdateToOneWithWhereWithoutUserInput = {
+    where?: StudentProfileWhereInput
+    data: XOR<StudentProfileUpdateWithoutUserInput, StudentProfileUncheckedUpdateWithoutUserInput>
+  }
+
+  export type StudentProfileUpdateWithoutUserInput = {
+    filiere?: FiliereUpdateOneRequiredWithoutStudentsNestedInput
+  }
+
+  export type StudentProfileUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    filiereId?: IntFieldUpdateOperationsInput | number
+  }
+
   export type UserCreateWithoutDocumentsInput = {
     email: string
     firstName: string
@@ -6308,6 +10570,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     views?: ViewCreateNestedManyWithoutViewerInput
+    studentProfile?: StudentProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutDocumentsInput = {
@@ -6325,6 +10588,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     views?: ViewUncheckedCreateNestedManyWithoutViewerInput
+    studentProfile?: StudentProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutDocumentsInput = {
@@ -6380,6 +10644,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     views?: ViewUpdateManyWithoutViewerNestedInput
+    studentProfile?: StudentProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDocumentsInput = {
@@ -6397,6 +10662,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     views?: ViewUncheckedUpdateManyWithoutViewerNestedInput
+    studentProfile?: StudentProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type ViewUpsertWithWhereUniqueWithoutDocumentInput = {
@@ -6461,6 +10727,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     documents?: DocumentCreateNestedManyWithoutAuthorInput
+    studentProfile?: StudentProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutViewsInput = {
@@ -6478,6 +10745,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     documents?: DocumentUncheckedCreateNestedManyWithoutAuthorInput
+    studentProfile?: StudentProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutViewsInput = {
@@ -6548,6 +10816,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     documents?: DocumentUpdateManyWithoutAuthorNestedInput
+    studentProfile?: StudentProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutViewsInput = {
@@ -6565,6 +10834,266 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     documents?: DocumentUncheckedUpdateManyWithoutAuthorNestedInput
+    studentProfile?: StudentProfileUncheckedUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutStudentProfileInput = {
+    email: string
+    firstName: string
+    lastName: string
+    role: $Enums.Role
+    otp?: string | null
+    otpExpiry?: Date | string | null
+    isActive?: boolean
+    department?: string | null
+    level?: string | null
+    class?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    documents?: DocumentCreateNestedManyWithoutAuthorInput
+    views?: ViewCreateNestedManyWithoutViewerInput
+  }
+
+  export type UserUncheckedCreateWithoutStudentProfileInput = {
+    id?: number
+    email: string
+    firstName: string
+    lastName: string
+    role: $Enums.Role
+    otp?: string | null
+    otpExpiry?: Date | string | null
+    isActive?: boolean
+    department?: string | null
+    level?: string | null
+    class?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    documents?: DocumentUncheckedCreateNestedManyWithoutAuthorInput
+    views?: ViewUncheckedCreateNestedManyWithoutViewerInput
+  }
+
+  export type UserCreateOrConnectWithoutStudentProfileInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutStudentProfileInput, UserUncheckedCreateWithoutStudentProfileInput>
+  }
+
+  export type FiliereCreateWithoutStudentsInput = {
+    name: string
+    code: string
+    departement: DepartementCreateNestedOneWithoutFilieresInput
+  }
+
+  export type FiliereUncheckedCreateWithoutStudentsInput = {
+    id?: number
+    name: string
+    code: string
+    departementId: number
+  }
+
+  export type FiliereCreateOrConnectWithoutStudentsInput = {
+    where: FiliereWhereUniqueInput
+    create: XOR<FiliereCreateWithoutStudentsInput, FiliereUncheckedCreateWithoutStudentsInput>
+  }
+
+  export type UserUpsertWithoutStudentProfileInput = {
+    update: XOR<UserUpdateWithoutStudentProfileInput, UserUncheckedUpdateWithoutStudentProfileInput>
+    create: XOR<UserCreateWithoutStudentProfileInput, UserUncheckedCreateWithoutStudentProfileInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutStudentProfileInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutStudentProfileInput, UserUncheckedUpdateWithoutStudentProfileInput>
+  }
+
+  export type UserUpdateWithoutStudentProfileInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    otp?: NullableStringFieldUpdateOperationsInput | string | null
+    otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    level?: NullableStringFieldUpdateOperationsInput | string | null
+    class?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    documents?: DocumentUpdateManyWithoutAuthorNestedInput
+    views?: ViewUpdateManyWithoutViewerNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutStudentProfileInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    otp?: NullableStringFieldUpdateOperationsInput | string | null
+    otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    level?: NullableStringFieldUpdateOperationsInput | string | null
+    class?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    documents?: DocumentUncheckedUpdateManyWithoutAuthorNestedInput
+    views?: ViewUncheckedUpdateManyWithoutViewerNestedInput
+  }
+
+  export type FiliereUpsertWithoutStudentsInput = {
+    update: XOR<FiliereUpdateWithoutStudentsInput, FiliereUncheckedUpdateWithoutStudentsInput>
+    create: XOR<FiliereCreateWithoutStudentsInput, FiliereUncheckedCreateWithoutStudentsInput>
+    where?: FiliereWhereInput
+  }
+
+  export type FiliereUpdateToOneWithWhereWithoutStudentsInput = {
+    where?: FiliereWhereInput
+    data: XOR<FiliereUpdateWithoutStudentsInput, FiliereUncheckedUpdateWithoutStudentsInput>
+  }
+
+  export type FiliereUpdateWithoutStudentsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    departement?: DepartementUpdateOneRequiredWithoutFilieresNestedInput
+  }
+
+  export type FiliereUncheckedUpdateWithoutStudentsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    departementId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type FiliereCreateWithoutDepartementInput = {
+    name: string
+    code: string
+    students?: StudentProfileCreateNestedManyWithoutFiliereInput
+  }
+
+  export type FiliereUncheckedCreateWithoutDepartementInput = {
+    id?: number
+    name: string
+    code: string
+    students?: StudentProfileUncheckedCreateNestedManyWithoutFiliereInput
+  }
+
+  export type FiliereCreateOrConnectWithoutDepartementInput = {
+    where: FiliereWhereUniqueInput
+    create: XOR<FiliereCreateWithoutDepartementInput, FiliereUncheckedCreateWithoutDepartementInput>
+  }
+
+  export type FiliereCreateManyDepartementInputEnvelope = {
+    data: FiliereCreateManyDepartementInput | FiliereCreateManyDepartementInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FiliereUpsertWithWhereUniqueWithoutDepartementInput = {
+    where: FiliereWhereUniqueInput
+    update: XOR<FiliereUpdateWithoutDepartementInput, FiliereUncheckedUpdateWithoutDepartementInput>
+    create: XOR<FiliereCreateWithoutDepartementInput, FiliereUncheckedCreateWithoutDepartementInput>
+  }
+
+  export type FiliereUpdateWithWhereUniqueWithoutDepartementInput = {
+    where: FiliereWhereUniqueInput
+    data: XOR<FiliereUpdateWithoutDepartementInput, FiliereUncheckedUpdateWithoutDepartementInput>
+  }
+
+  export type FiliereUpdateManyWithWhereWithoutDepartementInput = {
+    where: FiliereScalarWhereInput
+    data: XOR<FiliereUpdateManyMutationInput, FiliereUncheckedUpdateManyWithoutDepartementInput>
+  }
+
+  export type FiliereScalarWhereInput = {
+    AND?: FiliereScalarWhereInput | FiliereScalarWhereInput[]
+    OR?: FiliereScalarWhereInput[]
+    NOT?: FiliereScalarWhereInput | FiliereScalarWhereInput[]
+    id?: IntFilter<"Filiere"> | number
+    name?: StringFilter<"Filiere"> | string
+    code?: StringFilter<"Filiere"> | string
+    departementId?: IntFilter<"Filiere"> | number
+  }
+
+  export type DepartementCreateWithoutFilieresInput = {
+    name: string
+    code: string
+  }
+
+  export type DepartementUncheckedCreateWithoutFilieresInput = {
+    id?: number
+    name: string
+    code: string
+  }
+
+  export type DepartementCreateOrConnectWithoutFilieresInput = {
+    where: DepartementWhereUniqueInput
+    create: XOR<DepartementCreateWithoutFilieresInput, DepartementUncheckedCreateWithoutFilieresInput>
+  }
+
+  export type StudentProfileCreateWithoutFiliereInput = {
+    user: UserCreateNestedOneWithoutStudentProfileInput
+  }
+
+  export type StudentProfileUncheckedCreateWithoutFiliereInput = {
+    id?: number
+    userId: number
+  }
+
+  export type StudentProfileCreateOrConnectWithoutFiliereInput = {
+    where: StudentProfileWhereUniqueInput
+    create: XOR<StudentProfileCreateWithoutFiliereInput, StudentProfileUncheckedCreateWithoutFiliereInput>
+  }
+
+  export type StudentProfileCreateManyFiliereInputEnvelope = {
+    data: StudentProfileCreateManyFiliereInput | StudentProfileCreateManyFiliereInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type DepartementUpsertWithoutFilieresInput = {
+    update: XOR<DepartementUpdateWithoutFilieresInput, DepartementUncheckedUpdateWithoutFilieresInput>
+    create: XOR<DepartementCreateWithoutFilieresInput, DepartementUncheckedCreateWithoutFilieresInput>
+    where?: DepartementWhereInput
+  }
+
+  export type DepartementUpdateToOneWithWhereWithoutFilieresInput = {
+    where?: DepartementWhereInput
+    data: XOR<DepartementUpdateWithoutFilieresInput, DepartementUncheckedUpdateWithoutFilieresInput>
+  }
+
+  export type DepartementUpdateWithoutFilieresInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DepartementUncheckedUpdateWithoutFilieresInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type StudentProfileUpsertWithWhereUniqueWithoutFiliereInput = {
+    where: StudentProfileWhereUniqueInput
+    update: XOR<StudentProfileUpdateWithoutFiliereInput, StudentProfileUncheckedUpdateWithoutFiliereInput>
+    create: XOR<StudentProfileCreateWithoutFiliereInput, StudentProfileUncheckedCreateWithoutFiliereInput>
+  }
+
+  export type StudentProfileUpdateWithWhereUniqueWithoutFiliereInput = {
+    where: StudentProfileWhereUniqueInput
+    data: XOR<StudentProfileUpdateWithoutFiliereInput, StudentProfileUncheckedUpdateWithoutFiliereInput>
+  }
+
+  export type StudentProfileUpdateManyWithWhereWithoutFiliereInput = {
+    where: StudentProfileScalarWhereInput
+    data: XOR<StudentProfileUpdateManyMutationInput, StudentProfileUncheckedUpdateManyWithoutFiliereInput>
+  }
+
+  export type StudentProfileScalarWhereInput = {
+    AND?: StudentProfileScalarWhereInput | StudentProfileScalarWhereInput[]
+    OR?: StudentProfileScalarWhereInput[]
+    NOT?: StudentProfileScalarWhereInput | StudentProfileScalarWhereInput[]
+    id?: IntFilter<"StudentProfile"> | number
+    userId?: IntFilter<"StudentProfile"> | number
+    filiereId?: IntFilter<"StudentProfile"> | number
   }
 
   export type DocumentCreateManyAuthorInput = {
@@ -6672,6 +11201,50 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
     progress?: FloatFieldUpdateOperationsInput | number
     lastViewed?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FiliereCreateManyDepartementInput = {
+    id?: number
+    name: string
+    code: string
+  }
+
+  export type FiliereUpdateWithoutDepartementInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    students?: StudentProfileUpdateManyWithoutFiliereNestedInput
+  }
+
+  export type FiliereUncheckedUpdateWithoutDepartementInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    students?: StudentProfileUncheckedUpdateManyWithoutFiliereNestedInput
+  }
+
+  export type FiliereUncheckedUpdateManyWithoutDepartementInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type StudentProfileCreateManyFiliereInput = {
+    id?: number
+    userId: number
+  }
+
+  export type StudentProfileUpdateWithoutFiliereInput = {
+    user?: UserUpdateOneRequiredWithoutStudentProfileNestedInput
+  }
+
+  export type StudentProfileUncheckedUpdateWithoutFiliereInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type StudentProfileUncheckedUpdateManyWithoutFiliereInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
   }
 
 

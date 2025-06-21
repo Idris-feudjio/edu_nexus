@@ -6,8 +6,8 @@ import {
   IsString,
 } from 'class-validator';
 import { 
-  User,
 } from '@prisma/client';
+import { User } from 'generated/prisma';
 
 export interface UserData extends User {}
 
