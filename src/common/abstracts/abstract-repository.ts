@@ -73,6 +73,10 @@ async searchAll(query: SearchQueryDto<T>): Promise<PaginateDataResponse<T>> {
    return await this.model.findUnique({ where: { id } });
  }
 
+  async findBy(field: any): Promise<T | null> {
+   return await this.model.findUnique({ where: { ...field } });
+ }
+
   async update(id: number, data: Partial<T>): Promise<T> {
     return await this.model.update({
       where: { id },

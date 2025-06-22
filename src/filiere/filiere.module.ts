@@ -8,5 +8,6 @@ import { DepartementRepository } from 'src/department/repository/department.repo
 @Module({
   providers: [FiliereService,FiliereRepository,DepartmentService,DepartementRepository],
   controllers: [FiliereController],
+  exports: [FiliereService,FiliereRepository],
 })
 export class FiliereModule {}

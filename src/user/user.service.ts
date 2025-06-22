@@ -8,6 +8,7 @@ import { UserData } from './dto';
 import { UserRepository } from './repository/user.repository';
 
 import * as xlsx from 'xlsx';
+import { FiliereService } from 'src/filiere/filiere.service';
 
  
 @Injectable()
@@ -16,7 +17,9 @@ export class UserService extends BaseService<UserData> {
     constructor(
         private readonly prisma: PrismaService,
         private readonly excelImportService: ExcelImportService, 
-        private readonly userRepository: UserRepository
+        private readonly userRepository: UserRepository,
+        private readonly filiereService: FiliereService,
+        
     ) { 
         super(); 
         this.repository = userRepository; 
@@ -92,35 +95,41 @@ async importStudentsFromExcel(file: Express.Multer.File): Promise<{ success: boo
     if (!studentsData || studentsData.length === 0) {
       throw new Error('Le fichier Excel est vide ou mal formaté.');
     } 
-    const formattedStudents = studentsData.map((row: any) => {
+    const formattedStudents = await Promise.all(studentsData.map(async (row: any) => {
+      const name = this.excelImportService.getString(row['filiere'] || row['filière']);
+      let filiereResponse = await this.filiereService.findBy({name});
+      
+
       return {
-      email: this.excelImportService.getString(row['email']),
-      firstName:  this.excelImportService.getString(row['firstName'] || row['first_name'] || row['prénom']),
-      lastName:  this.excelImportService.getString(row['lastName'] || row['last_name'] || row['nom']),
-      gender:  this.excelImportService.getString(row['gender'] || row['sexe']),
-      role:  this.excelImportService.parseRole(row['role']),
-      department: row['department'] || row['département'] || null,
-      level: this.excelImportService.getString(row['level'] || row['niveau'] || null),
-      class: row['class'] || row['classe'] || null,
-      matricule:  this.excelImportService.getString(row['matricule']),
+        email: this.excelImportService.getString(row['email']),
+        firstName: this.excelImportService.getString(row['firstName'] || row['first_name'] || row['prénom']),
+        lastName: this.excelImportService.getString(row['lastName'] || row['last_name'] || row['nom']),
+        gender: this.excelImportService.getString(row['gender'] || row['sexe']),
+        role: this.excelImportService.parseRole(row['role']),
+        department: row['department'] || row['département'] || null,
+        level: this.excelImportService.getString(row['level'] || row['niveau'] || null),
+        class: row['class'] || row['classe'] || null,
+        matricule: this.excelImportService.getString(row['matricule']),
+        filiereId: filiereResponse?.id
       };
-    });
+    }));
  
       const createdStudents = await this.prisma.$transaction(
-        formattedStudents.map(studentData => 
+        formattedStudents.map(studentData =>
           this.prisma.user.create({
-            data: {
-                  email: studentData.email,
-                  firstName: studentData.firstName,
-                  lastName: studentData.lastName,
-                  role: studentData.role || 'STUDENT',
-                  class: studentData.class  ,
-                  department: studentData.department || null,
-                  level: studentData.level || null,
-                  isActive: true,
-                  createdAt: new Date(),
-                  updatedAt: new Date(),
-            },
+        data: {
+          email: studentData.email,
+          firstName: studentData.firstName,
+          lastName: studentData.lastName,
+          role: studentData.role || 'STUDENT',
+          class: studentData.class,
+          department: studentData.department || null,
+          level: studentData.level || null,
+          isActive: true,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          filiereId: studentData.filiereId
+        },
           })
         )
       );

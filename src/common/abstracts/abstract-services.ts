@@ -21,6 +21,10 @@ async search(query: string): Promise<T[]> {
     return await this.repository.findById(id);
   }
 
+    async findBy(fieldName: any): Promise<T | null> {
+    return await this.repository.findBy(fieldName);
+  }
+
   async update(id: number, data: Partial<T>): Promise<T> {
     return await this.repository.update(id, data);
   }

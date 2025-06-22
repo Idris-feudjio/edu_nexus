@@ -6,6 +6,7 @@ import {
 import { PartialType } from '@nestjs/mapped-types';
 
 export class FiliereDto {
+  id?: number;
   name: string;
   code: string; 
   departementId: number;
