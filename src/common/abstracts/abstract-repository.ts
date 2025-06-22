@@ -1,4 +1,3 @@
-import { Prisma, PrismaClient } from "generated/prisma";
 import { AbstractCrud } from "./abstract-crud";
 import { PrismaService } from "src/prisma/prisma.service";
 import { PaginateDataResponse, SearchQueryDto } from "../dto";

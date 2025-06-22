@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common'; 
-import { Departement } from "generated/prisma";
 import { BaseService } from 'src/common/abstracts';
 import { DepartementRepository } from './repository/department.repository';
 import { PrismaService } from 'src/prisma/prisma.service';

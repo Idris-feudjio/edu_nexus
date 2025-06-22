@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import * as xlsx from 'xlsx';
 import { Role } from 'src/common/enums/role.enum';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { User } from 'generated/prisma';
 
 export class ExcelImportService {
   constructor(private prisma: PrismaService) {}

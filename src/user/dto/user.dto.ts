@@ -5,9 +5,7 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
-import { 
-} from '@prisma/client';
-import { User } from 'generated/prisma';
+import { User } from '@prisma/client'; 
 
 export interface UserData extends User {}
 

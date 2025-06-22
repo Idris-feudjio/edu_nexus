@@ -2,11 +2,11 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';  
 import { MailService } from '../common/mail/mail.service';
 import * as argon2 from 'argon2';
-import { User } from 'generated/prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { ConfigService } from '@nestjs/config';
 import { OtpService } from 'src/common/otp.service';
 import { AuthResponse } from './dto';
+import { User } from '@prisma/client';
 
 @Injectable()
 export class AuthService {

@@ -9,7 +9,6 @@ import {
   UploadedFile,
   Put,
 } from '@nestjs/common'; 
-import { User } from 'generated/prisma';
 
 
 import { FileInterceptor } from '@nestjs/platform-express';

@@ -19,8 +19,8 @@ export class FiliereController extends AbstractController<FiliereDto>  {
     
      @Post('create')
       @Roles(Role.ADMIN)
-      create(@Body() createDepartementDto: CreateFiliereDto) {
-        return this.service.create(createDepartementDto);
+      create(@Body() createDepartementDto: CreateFiliereDto) { 
+        return this.service.createFiliere(createDepartementDto);
       }
 
 }
