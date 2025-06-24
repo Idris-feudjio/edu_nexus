@@ -97,10 +97,9 @@ export class AnnouncementsService extends BaseService<AnnouncementsModel> {
     return this.prisma.document.findMany({
       where: {
         OR: [
-          { department, level, class: userClass },
-          { department, level, class: null },
+          { level, class: userClass },
+          { level, class: null },
           {
-            department,
             level: undefined,
             class: null,
           },

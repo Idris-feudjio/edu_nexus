@@ -47,21 +47,29 @@ model User {
 }
 
 model Document {
-  id          Int      @id @default(autoincrement())
-  title       String
-  description String?
-  fileUrl     String?
-  fileKey     String?
-  //fileSource  String?  This is a valid field name, not an attribute
-  author      User     @relation(fields: [authorId], references: [id])
-  authorId    Int
-  department  String
-  level       String
-  class       String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  views       View[]
+  id            Int          @id @default(autoincrement())
+  title         String
+  description   String?
+  fileUrl       String?
+  fileKey       String?
+  author        User         @relation(fields: [authorId], references: [id])
+  authorId      Int
   
+  // Nouveaux champs pour la publication flexible
+  departement   Departement? @relation(fields: [departementId], references: [id])
+  departementId Int?         // Nullable - document publié au niveau département
+  filiere       Filiere?     @relation(fields: [filiereId], references: [id])
+  filiereId     Int?         // Nullable - document publié au niveau filière
+  
+  // Métadonnées du document
+  level         String
+  class         String?
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  views         View[]
+
+  // Contrainte : un document doit être publié soit dans un département, soit dans une filière
+  //@@check(name: "publication_scope", constraint: "(departementId IS NOT NULL AND filiereId IS NULL) OR (departementId IS NULL AND filiereId IS NOT NULL)")
   @@map("documents")
 }
 
@@ -83,6 +91,7 @@ model Departement {
   name     String    @unique
   code     String    @unique
   filieres Filiere[]
+  documents Document[]  // Nouveaux documents au niveau département
 
   @@map("department")
 }
@@ -94,6 +103,7 @@ model Filiere {
   departement   Departement      @relation(fields: [departementId], references: [id])
   departementId Int
   users         User[]
+  documents     Document[]       // Nouveaux documents spécifiques à la filière
 
    @@map("filiere")
 }
