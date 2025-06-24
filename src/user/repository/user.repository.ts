@@ -7,7 +7,7 @@ import { PrismaService } from "src/prisma/prisma.service";
 
 
 @Injectable()
-export class UserRepository extends BaseRepository<UserData> {
+export class UserRepository extends BaseRepository<UserData,UserData> {
     // Extend BaseRepository with UserData type
     // Set the model to the Prisma user model
     // This allows us to use the methods from BaseRepository with UserData

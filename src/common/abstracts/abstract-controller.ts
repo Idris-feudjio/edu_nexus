@@ -4,24 +4,24 @@ import { BaseService } from "./abstract-services";
 import { PaginateDataResponse, SearchQueryDto } from "../dto";
 
 
-export abstract class AbstractController<T> implements AbstractCrud<T> {
-  protected abstract service: BaseService<T>;
+export abstract class AbstractController<D,S> implements AbstractCrud<D,S> {
+  protected abstract service: BaseService<D,S>;
  
 
     @Post('create')
-    async create(@Body() data: Partial<T>): Promise<T> {
+    async create(@Body() data: Partial<D>): Promise<S> {
         console.log(data);
         
         return this.service.create(data);
     }
 
     @Get(':id/detail')
-    async findById(@Param('id') id: number) {
+    async findById(@Param('id') id: number): Promise<S | null>{
         return this.service.findById(id);
     }
 
     @Put(':id/update')
-    async update(@Param('id') id: number, @Body() data: Partial<T>) {
+    async update(@Param('id') id: number, @Body() data: Partial<D>):Promise<S> {
         return this.service.update(id, data);
     }
 
@@ -31,7 +31,7 @@ export abstract class AbstractController<T> implements AbstractCrud<T> {
     }
 
     @Post('count')
-    async count(@Body() filters: SearchQueryDto<T>): Promise<number> {
+    async count(@Body() filters: SearchQueryDto<D>): Promise<number> {
         return this.service.count(filters);
     }
 
@@ -41,13 +41,13 @@ export abstract class AbstractController<T> implements AbstractCrud<T> {
     }
 
     @Get('search')
-    async search(@Param('query') query: string): Promise<T[]> {
+    async search(@Param('query') query: string): Promise<S[]> {
          
         return this.service.search(query);
     }
 
     @Post('search-all')
-    async searchAll(@Body() filters: SearchQueryDto<T>):Promise<PaginateDataResponse<T>> {
+    async searchAll(@Body() filters: SearchQueryDto<D>):Promise<PaginateDataResponse<S>> {
         console.log(filters);
         
         return this.service.searchAll(filters);

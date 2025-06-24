@@ -23,6 +23,7 @@ import {
   AnnouncementsModel,
   RecordAnnouncementViewDto,
   UpdateAnnouncementDto,
+  DocumentSummaryDto,
 } from './dto'; 
 import {
   ApiBearerAuth,
@@ -46,7 +47,7 @@ import {
 @ApiBearerAuth()
 @Controller('announcements')
 @UseGuards(JwtAuthGuard, RolesGuard)
-export class AnnouncementsController extends AbstractController<AnnouncementsModel> {
+export class AnnouncementsController extends AbstractController<AnnouncementsModel,DocumentSummaryDto> {
   service: AnnouncementsService;
 
   constructor(
@@ -118,8 +119,9 @@ export class AnnouncementsController extends AbstractController<AnnouncementsMod
     createDocumentDto.authorId = Number(
       createDocumentDto.authorId,
     );
-    console.log(createDocumentDto);
-    console.log(file);
+    createDocumentDto.filiereId = Number(createDocumentDto.filiereId)
+     createDocumentDto.departementId = Number(createDocumentDto.departementId)
+ 
 
     // Vérifier que l'auteur est bien l'utilisateur connecté
     if (
@@ -137,7 +139,7 @@ export class AnnouncementsController extends AbstractController<AnnouncementsMod
     );
   }
 
-  @Get()
+  @Post()
   @ApiOperation({
     summary:
       'Get all documents (filtered by user role)',

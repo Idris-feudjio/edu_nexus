@@ -111,3 +111,11 @@ export class CreateStudent implements Partial<User> {
   @IsString()
   role: User["role"] = "STUDENT";
 }
+
+export class SimpleUserProfileSummary{
+  id:number;
+  email:string;
+  firstName:string; 
+  lastName:string;
+  role:string
+}

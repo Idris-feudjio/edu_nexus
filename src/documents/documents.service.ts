@@ -9,6 +9,7 @@ import {
   AnnouncementsModel,
   RecordAnnouncementViewDto,
   UpdateAnnouncementDto,
+  DocumentSummaryDto,
 } from './dto';
 import { S3Service } from '../common/storage/s3.service';
 import {
@@ -17,9 +18,10 @@ import {
 } from 'src/common/abstracts';
 import { AnnouncementRepository } from './repository/document.repository';
 import { UserService } from 'src/user/user.service';
+import { $Enums } from '@prisma/client';
 
 @Injectable()
-export class AnnouncementsService extends BaseService<AnnouncementsModel> {
+export class AnnouncementsService extends BaseService<AnnouncementsModel,DocumentSummaryDto> {
   repository: AnnouncementRepository;
   constructor(
     private prisma: PrismaService,
@@ -53,7 +55,18 @@ export class AnnouncementsService extends BaseService<AnnouncementsModel> {
   async createWithImage(
     createAnnouncementsDto: CreateAnnouncementDto,
     file: Express.Multer.File,
-  ) {
+  ): Promise<DocumentSummaryDto>{
+ 
+      const isUserActive =
+      await this.userService.isUserActive(
+        createAnnouncementsDto.authorId,
+      );
+    if (!isUserActive) {
+      throw new NotFoundException(
+        'User Not Found',
+      );
+    }
+
     const { fileUrl, fileKey } =
       await this.s3Service.uploadFile(
         file,
@@ -64,28 +77,23 @@ export class AnnouncementsService extends BaseService<AnnouncementsModel> {
     const { fileSource, ...restDto } =
       createAnnouncementsDto;
 
-    const data = {
-      ...restDto,
-      fileUrl,
-      fileKey,
-    };
-    return this.repository.create(data);
-    // return this.prisma.document.create({
-    //   data: {
-    //     ...restDto,
-    //     fileUrl,
-    //     fileKey,
-    //     level: createAnnouncementsDto.level ?? '', // Ensure level is a string
-    //   },
+    const announceResponse =await this.prisma.document.create({
+      data: {
+        ...restDto,
+        fileUrl,
+        fileKey,
+      }, 
+      include: { author: true,departement:true,filiere:true },
+    });
 
-    //   include: { author: true },
-    // });
+    return this. buildDocumentresponse(announceResponse) 
   }
 
-  async findAll() {
-    return this.prisma.document.findMany({
-      include: { author: true },
-    });
+  async findAll() : Promise<DocumentSummaryDto[]>{
+   const documents =await this.prisma.document.findMany({
+      include: {  author: true,departement:true,filiere:true  },
+    }); 
+    return documents.map(doc => (this. buildDocumentresponse(doc)));
   }
 
   async findForUser(
@@ -172,5 +180,41 @@ export class AnnouncementsService extends BaseService<AnnouncementsModel> {
         progress,
       },
     });
+  }
+
+
+
+
+  buildDocumentresponse(doc: { author: { id: number; filiereId: number | null; level: string | null; class: string | null; createdAt: Date; updatedAt: Date; email: string; firstName: string; lastName: string; role: $Enums.Role; otp: string | null; otpExpiry: Date | null; isActive: boolean; department: string | null; }; departement: { id: number; name: string; code: string; } | null; filiere: { id: number; departementId: number; name: string; code: string; } | null; } & { id: number; title: string; description: string | null; fileUrl: string | null; fileKey: string | null; authorId: number; departementId: number | null; filiereId: number | null; level: string; class: string | null; createdAt: Date; updatedAt: Date; }):DocumentSummaryDto{
+   const docResp:DocumentSummaryDto={
+       id: doc.id,
+      title: doc.title,
+      description: doc.description,
+      fileUrl: doc.fileUrl, 
+      author: {
+        email:doc.author.email,
+        firstName:doc.author.firstName,
+        id:doc.author.id,
+        lastName: doc.author.lastName,
+        role:doc.author.role
+      }, 
+      class:doc.class,
+      filiere: {
+        code: doc.filiere?.code,
+        id: doc.filiere?.id,
+        name: doc.filiere?.name ,
+        department:{
+          code: doc.departement?.code , 
+          name: doc.departement?.name
+        }
+      },
+      departement: {
+        code: doc.departement?.code , 
+        name: doc.departement?.name
+      },
+      createdAt: doc.createdAt
+    } 
+    return docResp
+
   }
 }

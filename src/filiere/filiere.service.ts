@@ -5,11 +5,11 @@ import {
 import { BaseService } from 'src/common/abstracts';
 import { FiliereRepository } from './repository/filiere.repository';
 import { DepartmentService } from 'src/department/department.service';
-import { CreateFiliereDto, FiliereDto } from './dto';
+import { CreateFiliereDto, FiliereDto, FiliereSummaryDto } from './dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
-export class FiliereService extends BaseService<FiliereDto> {
+export class FiliereService extends BaseService<FiliereDto,FiliereSummaryDto> {
   repository: FiliereRepository;
   constructor(
     private departmentService: DepartmentService,
@@ -22,12 +22,7 @@ export class FiliereService extends BaseService<FiliereDto> {
 
   async createFiliere(
     filiere: CreateFiliereDto,
-  ): Promise<{
-    name: string;
-   // id: number;
-    code: string;
-    departementId: number;
-  }> {
+  ): Promise<FiliereSummaryDto> {
     let isDepartmentExit =
       await this.departmentService.exists(
         filiere.departementId!,
@@ -37,12 +32,7 @@ export class FiliereService extends BaseService<FiliereDto> {
         'Departemant not found',
       );
     }
-    const createdFiliere = await this.repository.create(filiere);
-    return {
-      name: createdFiliere.name,
-     // id: createdFiliere.id,
-      code: createdFiliere.code,
-      departementId: createdFiliere.departementId,
-    };
+    return await this.repository.create(filiere);
+  
   }
 }

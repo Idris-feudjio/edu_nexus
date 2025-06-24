@@ -26,7 +26,7 @@ import { JwtAuthGuard, RolesGuard } from 'src/auth/guard';
 
 @UseGuards(new JwtAuthGuard())
 @Controller('users')
-export class UserController extends AbstractController<UserData> {
+export class UserController extends AbstractController<UserData,UserData> {
    protected service: UserService ;
  
   constructor(

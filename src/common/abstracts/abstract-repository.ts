@@ -3,14 +3,14 @@ import { PrismaService } from "src/prisma/prisma.service";
 import { PaginateDataResponse, SearchQueryDto } from "../dto";
 
 
-export abstract class BaseRepository<T> implements AbstractCrud<T> {
+export abstract class BaseRepository<D,S> implements AbstractCrud<D,S> {
   protected abstract model: any;
 
-  async create(data: Partial<T>): Promise<T> {
+  async create(data: Partial<D>): Promise<S> {
     return await this.model.create({ data });
   }
 
-  async search(query: string): Promise<T[]> {
+  async search(query: string): Promise<S[]> {
     return await this.model.findMany({
       where: {
         OR: [
@@ -21,7 +21,7 @@ export abstract class BaseRepository<T> implements AbstractCrud<T> {
     }); 
   }
 
-async searchAll(query: SearchQueryDto<T>): Promise<PaginateDataResponse<T>> {
+async searchAll(query: SearchQueryDto<D>): Promise<PaginateDataResponse<S>> {
   
     const { search, filters: filterConditions, page, limit, sortBy, order, fieldFilters } = query;
     const where: any = {};
@@ -69,15 +69,15 @@ async searchAll(query: SearchQueryDto<T>): Promise<PaginateDataResponse<T>> {
     };
   }
 
-  async findById(id: any): Promise<T | null> {
+  async findById(id: any): Promise<S | null> {
    return await this.model.findUnique({ where: { id } });
  }
 
-  async findBy(field: any): Promise<T | null> {
+  async findBy(field: any): Promise<S | null> {
    return await this.model.findUnique({ where: { ...field } });
  }
 
-  async update(id: number, data: Partial<T>): Promise<T> {
+  async update(id: number, data: Partial<D>): Promise<S> {
     return await this.model.update({
       where: { id },
       data,
@@ -88,7 +88,7 @@ async searchAll(query: SearchQueryDto<T>): Promise<PaginateDataResponse<T>> {
     return await this.model.delete({ where: { id } });
   }
 
-  async count(filters: SearchQueryDto<T>): Promise<number> {
+  async count(filters: SearchQueryDto<D>): Promise<number> {
     return await this.model.count({
       where: {
         ...filters.toQueryObject(),

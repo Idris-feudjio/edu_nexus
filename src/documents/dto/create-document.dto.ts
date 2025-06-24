@@ -1,6 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
-import { Document  } from '@prisma/client';
+import { Document, User  } from '@prisma/client';
+import { FiliereSummaryDto } from 'src/filiere/dto';
+import {  DepartementSummaryDto } from 'src/department/dto';
+import {  SimpleUserProfileSummary } from 'src/user/dto';
  
 // If you need a Document model, use composition or type aliasing instead of class inheritance
 export interface AnnouncementsModel extends Document{}; 
@@ -32,21 +35,13 @@ export class CreateAnnouncementDto {
   authorId: number;
 
   @ApiProperty({
-    description: 'Département cible',
-    example: 'Informatique',
-  })
-  @IsString()
-  @IsNotEmpty()
-  department: string;
-
-  @ApiProperty({
     description: 'Niveau cible',
     example: 'L1',
     required: false,
   })
   @IsString()
   @IsOptional()
-  level?: string;
+  level: string;
 
   @ApiProperty({
     description: 'Classe cible',
@@ -68,4 +63,24 @@ export class CreateAnnouncementDto {
   @IsString()
   @IsOptional()
   fileSource?:string;// 'COURSES'|'PROFILES'|'SCHEDULES';
+
+
+  @IsOptional()
+  filiereId?:number
+
+  @IsOptional()
+  departementId?:number
+}
+
+export class DocumentSummaryDto {
+    id: number;
+    title: string;
+    description: string | null;
+    fileUrl: string | null;
+    author: SimpleUserProfileSummary;
+    departement?: DepartementSummaryDto;
+    filiere?:FiliereSummaryDto;
+    level?: string;
+    class?: string | null;
+    createdAt: Date; 
 }

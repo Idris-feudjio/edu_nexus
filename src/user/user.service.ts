@@ -12,7 +12,7 @@ import { FiliereService } from 'src/filiere/filiere.service';
 
  
 @Injectable()
-export class UserService extends BaseService<UserData> {
+export class UserService extends BaseService<UserData,UserData> {
     repository: UserRepository; 
     constructor(
         private readonly prisma: PrismaService,

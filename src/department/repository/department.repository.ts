@@ -3,10 +3,10 @@
 import { Injectable } from "@nestjs/common";
 import { BaseRepository } from "src/common/abstracts"; 
 import { PrismaService } from "src/prisma/prisma.service"; 
-import { DepartementDto } from "../dto";
+import { DepartementDto, DepartementSummaryDto } from "../dto";
 
 @Injectable()
-export class DepartementRepository extends BaseRepository<DepartementDto> {
+export class DepartementRepository extends BaseRepository<DepartementDto,DepartementSummaryDto> {
   protected model: PrismaClient['departement']
 
     constructor(private readonly prisma: PrismaService) {

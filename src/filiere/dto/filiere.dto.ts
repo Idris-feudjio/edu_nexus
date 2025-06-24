@@ -3,7 +3,8 @@ import {
   IsNotEmpty,
   IsInt,
 } from 'class-validator';
-import { PartialType } from '@nestjs/mapped-types';
+import { DepartementSummaryDto } from 'src/department/dto';
+import { PartialType } from '@nestjs/swagger';
 
 export class FiliereDto {
   id?: number;
@@ -24,4 +25,8 @@ export class CreateFiliereDto {
   @IsInt()
   @IsNotEmpty()
   departementId: number;
+}
+
+export class FiliereSummaryDto  extends PartialType(FiliereDto){
+  department:DepartementSummaryDto
 }
