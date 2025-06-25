@@ -5,7 +5,7 @@ import * as argon2 from 'argon2';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { ConfigService } from '@nestjs/config';
 import { OtpService } from 'src/common/otp.service';
-import { AuthResponse } from './dto';
+import { AuthResponse, ValidateOtpDto } from './dto';
 import { User } from '@prisma/client';
 
 @Injectable()
@@ -44,7 +44,10 @@ export class AuthService {
     return {success:true, message: 'OTP sent to your email' };
   }
 
-  async validateOtp(email: string, otp: string): Promise<User> {
+  async validateOtp( dto: ValidateOtpDto): Promise<User> {
+    const otp = dto.otpCode
+    const email = dto.email 
+    
     const user = await this.prisma.user.findUnique({ where: { email } });
 
     if (!user || !user.otp || !user.otpExpiry) {
