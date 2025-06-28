@@ -12,3 +12,9 @@ export interface AbstractCrud<D,S> {
      exists(id: number): Promise<boolean>;
 }
 
+
+export interface ResponseSummary<T>{
+  data?:T,
+  message?:string,
+  success:boolean 
+}

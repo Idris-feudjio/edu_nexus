@@ -63,7 +63,7 @@ export class AuthService {
       throw new UnauthorizedException('Invalid OTP');
     }
 
-    // Clear OTP after successful validation
+    // Clear OTP after successful validation   otpCode must be a stringotpCode should not be empty
     await this.prisma.user.update({
       where: { email },
       data: { otp: null, otpExpiry: null },

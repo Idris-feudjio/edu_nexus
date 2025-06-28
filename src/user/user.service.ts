@@ -78,7 +78,7 @@ export class UserService extends BaseService<UserData,UserData> {
     }
 
 
-async importStudentsFromExcel(file: Express.Multer.File): Promise<{ success: boolean; count: number; students: any[] }> {
+async importStudentsFromExcel(file: Express.Multer.File): Promise<{ success: boolean; imported: number; students: any[] }> {
     if (!file?.buffer) {
         throw new BadRequestException('Fichier invalide');
      } 
@@ -136,7 +136,7 @@ async importStudentsFromExcel(file: Express.Multer.File): Promise<{ success: boo
       
       return {
         success: true,
-        count: createdStudents.length,
+        imported: createdStudents.length,
         students: createdStudents,
       };
     } catch (error) { 
