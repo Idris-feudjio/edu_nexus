@@ -1,5 +1,9 @@
 import { PartialType } from '@nestjs/swagger';
-import { IsString, IsNotEmpty } from 'class-validator';
+import {
+  IsString,
+  IsNotEmpty,
+  IsOptional,
+} from 'class-validator';
 
 export class CreateDepartementDto {
   @IsString()
@@ -9,6 +13,13 @@ export class CreateDepartementDto {
   @IsString()
   @IsNotEmpty()
   code: string;
+  @IsOptional()
+  @IsString()
+  createdAt: Date;
+
+  @IsOptional()
+  @IsString()
+  updatedAt: Date;
 }
 
 export class DepartementDto {
@@ -21,4 +32,8 @@ export class DepartementDto {
   code: string;
 }
 
-export class DepartementSummaryDto extends PartialType(DepartementDto){}
+export class DepartementSummaryDto extends PartialType(
+  DepartementDto,
+) {
+  createdAt?: string;
+}
