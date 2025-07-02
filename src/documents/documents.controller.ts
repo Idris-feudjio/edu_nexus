@@ -266,42 +266,31 @@ export class AnnouncementsController extends AbstractController<AnnouncementsMod
     return this.announceService.remove(+id);
   }
 
-  @Post('view')
-  @ApiOperation({
-    summary: 'Record document view progress',
-  })
-  @ApiResponse({
-    status: 201,
-    description: 'View recorded',
-  })
-  @ApiResponse({
-    status: 400,
-    description: 'Bad request',
-  })
-  async recordView(
-    @Body() recordViewDto: RecordAnnouncementViewDto,
-    @Req() req,
-  ) {
-    // S'assurer que l'utilisateur ne peut enregistrer que sa propre progression
-    if (recordViewDto.userId !== req.user.sub) {
-      throw new ForbiddenException(
-        'You can only record your own progress',
-      );
-    }
-    return this.announceService.recordView(
-      recordViewDto,
+  @Get('mydocs/:authorId')
+  getAuthorAnnouncements(
+    @Param('authorId') authorId: number,
+  ): Promise<DocumentSummaryDto[]> {
+    console.log(authorId);
+    
+    return this.announceService.getAuthorAnnouncements(
+      authorId,
     );
   }
 
-  @Get('user/progress')
-  @ApiOperation({
-    summary: 'Get user document progress',
-  })
-  @ApiResponse({
-    status: 200,
-    description: 'List of document progresses',
-  })
-  async getUserProgress(@Req() req) {
-    //return this.announceService.getUserProgress(req.user.sub);
+  @Get('by-departement/:departementId')
+ async  getStudentAnnouncementsByDepartment(
+    @Param('departementId') departementId: number,
+  ): Promise<DocumentSummaryDto[]> {
+    return this.announceService.getStudentAnnouncementsByDepartment(
+      departementId,
+    );
   }
-}
+  @Get('by-filiere/:filiereId')
+  async getStudentAnnouncementsByFiliere(
+    @Param('filiereId') filiereId: number,
+  ): Promise<DocumentSummaryDto[]> {
+    return this.announceService.getStudentAnnouncementsByFiliere(
+      filiereId,
+    );
+  }
+ }

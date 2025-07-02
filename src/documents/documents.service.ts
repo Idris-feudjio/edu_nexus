@@ -96,6 +96,34 @@ export class AnnouncementsService extends BaseService<AnnouncementsModel,Documen
     return documents.map(doc => (this. buildDocumentresponse(doc)));
   }
 
+  async getAuthorAnnouncements(authorId: number): Promise<DocumentSummaryDto[]> {
+    const documents = await this.prisma.document.findMany({
+      where: { authorId },
+      include: {  author: true,departement:true,filiere:true  },
+    });
+    return  documents.map(doc => (this. buildDocumentresponse(doc)));
+  }
+
+  async getStudentAnnouncementsByFiliere(
+    filiereId: number,
+  ): Promise<DocumentSummaryDto[]> {
+    const documents = await this.prisma.document.findMany({
+      where: { filiereId },
+      include: {  author: true,departement:true,filiere:true  },
+    });
+    return  documents.map(doc => (this. buildDocumentresponse(doc)));
+  }
+
+  async getStudentAnnouncementsByDepartment(
+    departementId: number,
+  ): Promise<DocumentSummaryDto[]> {
+    const documents = await this.prisma.document.findMany({
+      where: { departementId },
+      include: {  author: true,departement:true,filiere:true  },
+    });
+    return  documents.map(doc => (this. buildDocumentresponse(doc)));
+  }
+
   async findForUser(
     userId: number,
     department: string,
