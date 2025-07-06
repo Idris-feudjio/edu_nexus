@@ -6,7 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
+ // output   = "../generated/prisma"
 }
 
 datasource db {
@@ -38,22 +38,39 @@ model User {
   updatedAt   DateTime @updatedAt
   documents   Document[]
   views       View[]
+
+
+ filiereId Int?  // Nullable pour les non-étudiants
+ filiere   Filiere? @relation(fields: [filiereId], references: [id])
+
+  @@map("users")
 }
 
 model Document {
-  id          Int      @id @default(autoincrement())
-  title       String
-  description String?
-  fileUrl     String
-  fileKey     String
-  author      User     @relation(fields: [authorId], references: [id])
-  authorId    Int
-  department  String
-  level       String
-  class       String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  views       View[]
+  id            Int          @id @default(autoincrement())
+  title         String
+  description   String?
+  fileUrl       String?
+  fileKey       String?
+  author        User         @relation(fields: [authorId], references: [id])
+  authorId      Int
+  
+  // Nouveaux champs pour la publication flexible
+  departement   Departement? @relation(fields: [departementId], references: [id])
+  departementId Int?         // Nullable - document publié au niveau département
+  filiere       Filiere?     @relation(fields: [filiereId], references: [id])
+  filiereId     Int?         // Nullable - document publié au niveau filière
+  
+  // Métadonnées du document
+  level         String
+  class         String?
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  views         View[]
+
+  // Contrainte : un document doit être publié soit dans un département, soit dans une filière
+  //@@check(name: "publication_scope", constraint: "(departementId IS NOT NULL AND filiereId IS NULL) OR (departementId IS NULL AND filiereId IS NOT NULL)")
+  @@map("documents")
 }
 
 model View {
@@ -64,6 +81,35 @@ model View {
   userId      Int
   progress    Float    @default(0)
   lastViewed  DateTime @default(now())
+
+  @@map("views") 
+}
+
+
+model Departement {
+  id       Int       @id @default(autoincrement())
+  name     String    @unique
+  code     String    @unique
+  filieres Filiere[]
+  documents Document[]  // Nouveaux documents au niveau département
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  @@map("department")
+}
+
+model Filiere {
+  id            Int              @id @default(autoincrement())
+  name          String           @unique
+  code          String           @unique
+  departement   Departement      @relation(fields: [departementId], references: [id])
+  departementId Int
+  users         User[]
+  documents     Document[]       // Nouveaux documents spécifiques à la filière
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+   @@map("filiere")
 }
 
 

@@ -1,10 +1,12 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-import { User } from '@prisma/client';
-import { PrismaService } from '../common/prisma/prisma.service';
-import { OtpService } from './otp.service';
+import { JwtService } from '@nestjs/jwt';  
 import { MailService } from '../common/mail/mail.service';
 import * as argon2 from 'argon2';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { ConfigService } from '@nestjs/config';
+import { OtpService } from 'src/common/otp.service';
+import { AuthResponse, ValidateOtpDto } from './dto';
+import { User } from '@prisma/client';
 
 @Injectable()
 export class AuthService {
@@ -13,9 +15,10 @@ export class AuthService {
     private jwtService: JwtService,
     private otpService: OtpService,
     private mailService: MailService,
+    private configService: ConfigService,
   ) {}
 
-  async requestOtp(email: string): Promise<{ message: string }> {
+  async requestOtp(email: string): Promise<AuthResponse> { // { message: string }
     const user = await this.prisma.user.findUnique({ where: { email } });
     
     if (!user) {
@@ -27,7 +30,9 @@ export class AuthService {
     }
 
     const otp = this.otpService.generateOtp();
-    const otpExpiry = new Date(Date.now() + 5 * 60 * 1000); // 5 minutes expiry
+
+    const otpExpiry = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours expiry
+    
 
     await this.prisma.user.update({
       where: { email },
@@ -36,10 +41,13 @@ export class AuthService {
 
     await this.mailService.sendOtpEmail(user.email, otp);
 
-    return { message: 'OTP sent to your email' };
+    return {success:true, message: 'OTP sent to your email' };
   }
 
-  async validateOtp(email: string, otp: string): Promise<User> {
+  async validateOtp( dto: ValidateOtpDto): Promise<User> {
+    const otp = dto.otpCode
+    const email = dto.email 
+    
     const user = await this.prisma.user.findUnique({ where: { email } });
 
     if (!user || !user.otp || !user.otpExpiry) {
@@ -55,7 +63,7 @@ export class AuthService {
       throw new UnauthorizedException('Invalid OTP');
     }
 
-    // Clear OTP after successful validation
+    // Clear OTP after successful validation   otpCode must be a stringotpCode should not be empty
     await this.prisma.user.update({
       where: { email },
       data: { otp: null, otpExpiry: null },
@@ -64,7 +72,7 @@ export class AuthService {
     return user;
   }
 
-  async login(user: User) {
+  async login(user: User):Promise<AuthResponse> {
     const payload = { 
       email: user.email, 
       sub: user.id,
@@ -75,17 +83,16 @@ export class AuthService {
     };
 
     return {
-      access_token: this.jwtService.sign(payload),
-      user: {
-        id: user.id,
-        email: user.email,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        role: user.role,
-        department: user.department,
-        level: user.level,
-        class: user.class,
-      },
+      success:true,message:"Authentication successful",
+      token: this.jwtService.sign(payload,{expiresIn: '24h',secret: this.configService.get<string>('JWT_SECRET')}), 
+      user:user
     };
   }
+
+  // logic to logout
+async logout(user: User): Promise<AuthResponse> {
+  // For JWT-based stateless auth, logout is handled client-side by deleting the token.
+  // Optionally, you can implement token blacklisting here if needed.
+  return { success: true, message: 'Logged out successfully' };
+}
 }
