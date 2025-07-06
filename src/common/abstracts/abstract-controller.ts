@@ -48,8 +48,6 @@ export abstract class AbstractController<D,S> implements AbstractCrud<D,S> {
 
     @Post('search-all')
     async searchAll(@Body() filters: SearchQueryDto<D>):Promise<PaginateDataResponse<S>> {
-        console.log(filters);
-        
         return this.service.searchAll(filters);
     } 
 }

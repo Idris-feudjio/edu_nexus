@@ -68,39 +68,16 @@ export class AnnouncementsController extends AbstractController<AnnouncementsMod
     );
   }
 
+
   @Post('publish')
   @Roles(Role.TEACHER, Role.PEDAGOGIC, Role.ADMIN)
-  @UseInterceptors(FileInterceptor('file'))
-  @ApiConsumes('multipart/form-data')
-  @ApiBody({
-    description: 'Create a new document',
-    type: CreateAnnouncementDto,
-  })
-  @ApiOperation({
-    summary: 'Upload a new document',
-  })
-  @ApiResponse({
-    status: 201,
-    description: 'Document successfully uploaded',
-  })
-  @ApiResponse({
-    status: 400,
-    description: 'Bad request',
-  })
-  @ApiResponse({
-    status: 401,
-    description: 'Unauthorized',
-  })
-  @ApiResponse({
-    status: 403,
-    description: 'Forbidden',
-  })
+
   async createWithImage(
         @UploadedFile(
       new ParseFilePipe({
         validators: [
           new FileTypeValidator({
-            fileType: '.(png|jpeg|jpg|pdf)',
+            fileType: /(png|jpeg|jpg|pdf|doc|docx|csv)$/i,
           }),
          // new MaxFileSizeValidator({
          //   maxSize: 10, // 10MB
