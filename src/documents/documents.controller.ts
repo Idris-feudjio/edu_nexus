@@ -71,49 +71,35 @@ export class AnnouncementsController extends AbstractController<AnnouncementsMod
 
   @Post('publish')
   @Roles(Role.TEACHER, Role.PEDAGOGIC, Role.ADMIN)
-
+ @UseInterceptors(FileInterceptor('file'))
+  @ApiConsumes('multipart/form-data')
   async createWithImage(
         @UploadedFile(
       new ParseFilePipe({
         validators: [
           new FileTypeValidator({
-            fileType: /(png|jpeg|jpg|pdf|doc|docx|csv)$/i,
+            fileType: '.(png|jpeg|jpg|pdf)',
           }),
-         // new MaxFileSizeValidator({
-         //   maxSize: 10, // 10MB
-         //   message:
-         //     'File is too large. Max file size is 10MB',
-         // }),
         ],
         fileIsRequired: true,
       }),
     )
     file: Express.Multer.File,
     @Body() createDocumentDto: CreateAnnouncementDto, 
-    @Req() req,
   ) {
+    console.log(createDocumentDto);
+    
     // Je veux convertir authorId disponible dans l'objet CreateAnnouncementDto en string et afficher l'objet
     createDocumentDto.authorId = Number(
       createDocumentDto.authorId,
     );
     createDocumentDto.filiereId = Number(createDocumentDto.filiereId)
      createDocumentDto.departementId = Number(createDocumentDto.departementId)
- 
 
-    // Vérifier que l'auteur est bien l'utilisateur connecté
-    if (
-      createDocumentDto.authorId !==
-        req.user.sub &&
-      req.user.role !== Role.ADMIN
-    ) {
-      throw new ForbiddenException(
-        'You can only upload documents for yourself',
-      );
-    }
-    return this.announceService.createWithImage(
-      createDocumentDto,
-      file,
-    );
+   return this.announceService.createWithImage(
+     createDocumentDto,
+     file,
+   );
   }
 
   @Post()
@@ -126,6 +112,7 @@ export class AnnouncementsController extends AbstractController<AnnouncementsMod
     description: 'List of documents',
   })
   async findAll(@Req() req) {
+    
     if (
       req.user.role === Role.ADMIN ||
       req.user.role === Role.PEDAGOGIC
