@@ -60,6 +60,7 @@ model Document {
   departementId Int?         // Nullable - document publié au niveau département
   filiere       Filiere?     @relation(fields: [filiereId], references: [id])
   filiereId     Int?         // Nullable - document publié au niveau filière
+  fileSource    String?      
   
   // Métadonnées du document
   level         String

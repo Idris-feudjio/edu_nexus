@@ -74,12 +74,12 @@ export class AnnouncementsService extends BaseService<AnnouncementsModel,Documen
         createAnnouncementsDto.fileSource,
       );
     // Remove fileSource from createAnnouncementsDto before saving
-    const { fileSource, ...restDto } =
-      createAnnouncementsDto;
+   //const { fileSource, ...restDto } =
+   //  createAnnouncementsDto;
 
     const announceResponse =await this.prisma.document.create({
       data: {
-        ...restDto,
+        ...createAnnouncementsDto,
         fileUrl,
         fileKey,
       }, 
