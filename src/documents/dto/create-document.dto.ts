@@ -77,6 +77,8 @@ export class DocumentSummaryDto {
     title: string;
     description: string | null;
     fileUrl: string | null;
+    filiereId?:number
+    fileSource?:string;
     author: SimpleUserProfileSummary;
     departement?: DepartementSummaryDto;
     filiere?:FiliereSummaryDto;

@@ -42,6 +42,7 @@ import { Role } from 'src/common/enums/role.enum';
 import {
   AbstractController
 } from 'src/common/abstracts';
+import { log } from 'console';
 
 @ApiTags('Announcements')
 @ApiBearerAuth()
@@ -87,7 +88,6 @@ export class AnnouncementsController extends AbstractController<AnnouncementsMod
     file: Express.Multer.File,
     @Body() createDocumentDto: CreateAnnouncementDto, 
   ) {
-    console.log(createDocumentDto);
     
     // Je veux convertir authorId disponible dans l'objet CreateAnnouncementDto en string et afficher l'objet
     createDocumentDto.authorId = Number(
