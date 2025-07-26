@@ -102,7 +102,7 @@ export class AnnouncementsController extends AbstractController<AnnouncementsMod
    );
   }
 
-  @Post()
+  @Get('all')
   @ApiOperation({
     summary:
       'Get all documents (filtered by user role)',
@@ -111,7 +111,7 @@ export class AnnouncementsController extends AbstractController<AnnouncementsMod
     status: 200,
     description: 'List of documents',
   })
-  async findAll(@Req() req) {
+  async findAll(@Req() req):Promise<DocumentSummaryDto[]>{
     
     if (
       req.user.role === Role.ADMIN ||
@@ -119,13 +119,15 @@ export class AnnouncementsController extends AbstractController<AnnouncementsMod
     ) {
       return this.announceService.findAll();
     } else {
-      return this.announceService.findForUser(
-        req.user.sub,
-        req.user.department,
-        req.user.level,
-        req.user.class,
-      );
+     // return this.announceService.findForUser(
+     //   req.user.sub,
+     //   req.user.department,
+     //   req.user.level,
+     //   req.user.class,
+     // );
+     return[]
     }
+
   }
 
   @Get(':id')
@@ -257,4 +259,44 @@ export class AnnouncementsController extends AbstractController<AnnouncementsMod
       filiereId,
     );
   }
+
+
+  // @Post('view')
+  // @ApiOperation({
+  //   summary: 'Record document view progress',
+  // })
+  // @ApiResponse({
+  //   status: 201,
+  //   description: 'View recorded',
+  // })
+  // @ApiResponse({
+  //   status: 400,
+  //   description: 'Bad request',
+  // })
+  // async recordView(
+  //   @Body() recordViewDto: RecordAnnouncementViewDto,
+  //   @Req() req,
+  // ) {
+  //   // S'assurer que l'utilisateur ne peut enregistrer que sa propre progression
+  //   if (recordViewDto.userId !== req.user.sub) {
+  //     throw new ForbiddenException(
+  //       'You can only record your own progress',
+  //     );
+  //   }
+  //   return this.announceService.recordView(
+  //     recordViewDto,
+  //   );
+  // }
+
+  // @Get('user/progress')
+  // @ApiOperation({
+  //   summary: 'Get user document progress',
+  // })
+  // @ApiResponse({
+  //   status: 200,
+  //   description: 'List of document progresses',
+  // })
+  // async getUserProgress(@Req() req) {
+  //   //return this.announceService.getUserProgress(req.user.sub);
+  // }
  }
